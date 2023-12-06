@@ -1,0 +1,23 @@
+.member-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.join-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+}
+
+.subBtn {
+  font-weight: 700;
+}
+
+.otherfind {
+  background-color: #4b4b4b;
+  padding: 8px 24px;
+  border-radius: 25px;
+}
