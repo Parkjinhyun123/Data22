@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // 카운터 딜레마
+    // 1. 카운터가 동작하지만 add함수밖에서도 카운팅할 수 있음
+    // let counter = 0;
+    // function add() {
+    //   counter = counter + 1;
+    //   console.log(counter);
+    // }
+    // add();
+    // add();
+    // add();
+    // counter = counter + 1;
+    // console.log(counter);
+
+    // 2. add함수에서만 counter에 접근할 수 있지만 카운팅 불가능
+    // function add() {
+    //   let counter = 0;
+    //   counter = counter + 1;
+    //   console.log(counter);
+    // }
+    // add();
+    // add();
+    // add();
+    // counter = counter + 1;
+    // console.log(counter);
+
+    // 3. counter를 함수내에 선언하여 함수호출로만 접근가능하지만,
+    // add 함수 종료시에 같이 사라지기때문에 카운팅 불가능
+    // function add() {
+    //   let counter = 0;
+    //   function plus() {
+    //     counter = counter + 1;
+    //   }
+    //   plus();
+    //   console.log(counter);
+    // }
+    // add();
+    // add();
+    // add();
+
+    // 4.
+    const add = (function () {
+      let counter = 0;
+      return function () {
+        counter = counter + 1;
+        console.log(counter);
+      };
+    })();
+    add();
+    add();
+    add();
+  </script>
+</html>
