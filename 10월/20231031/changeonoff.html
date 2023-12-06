@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    #wrapper {
+      background-color: rgb(196, 196, 196);
+      width: 500px;
+      height: 500px;
+      position: relative;
+      border-radius: 50%;
+      border: 5px solid gray;
+      background: linear-gradient(135deg, gray, white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    /* #wrapper > div { */
+    .imgWrapper {
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    div.on {
+      border: 20px solid black;
+    }
+    div {
+      border: 5px solid black;
+    }
+
+    img {
+      width: 50%;
+      height: 50%;
+      object-fit: cover;
+    }
+
+    img:hover {
+      cursor: pointer;
+    }
+
+    img.off {
+      filter: contrast(1%);
+    }
+
+    img.on {
+      filter: opacity(0.5) drop-shadow(0 0 0 red) saturate(400%) blur(3px);
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="imgWrapper" class="imgWrapper">
+        <img src="image/off.png" alt="" class="imgWrapper" />
+      </div>
+    </div>
+  </body>
+  <script>
+    const imgTag = document.querySelector("img");
+    const divTag = document.querySelector("#imgWrapper");
+
+    imgTag.addEventListener("click", function () {
+      const currentClass = imgTag.classList[0];
+      imgTag.classList.toggle("on");
+      divTag.classList.toggle("on");
+      //   if (currentClass == "off") {
+      //     imgTag.classList.remove("off");
+      //     imgTag.classList.add("on");
+      //     divTag.classList.remove("off");
+      //     divTag.classList.add("on");
+      //   } else {
+      //     imgTag.classList.remove("on");
+      //     imgTag.classList.add("off");
+      //     divTag.classList.remove("on");
+      //     divTag.classList.add("off");
+      //   }
+    });
+  </script>
+</html>

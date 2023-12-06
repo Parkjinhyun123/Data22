@@ -1,0 +1,11 @@
+character entity 종류 
+
+&nbsp; :          공백 
+&middot; :       가운데점
+&copy; :          ⓒ  
+&amp; :           & 
+&lt     :           <
+&gt    :           >
+&#8361  :        ＼
+
+png to ico

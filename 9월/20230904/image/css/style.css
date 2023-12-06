@@ -1,0 +1,32 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.gallery{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 100vh;
+    /* viewport witdh,viewport height -화면, 브라우저 사이즈 만큼 차지 할 수있다. */
+    /* gap: 10px; */
+    align-content: center;
+    /* 각 행이 아니라 전체에서 자식요소들을 교차축으로 중앙정렬할때 사용 */
+}
+
+.gallery .image-wrapper{
+    width: calc(100%/ 3);
+    /* calc 속성은 자주사용 */
+    /* flex-basis: calc(100%/ 3); */
+    flex-grow: 0;
+    flex-shrink: 1;
+    padding: 10px;
+}
+
+img{
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // 1. forEach()메소드
+    // 해당 배열의 모든 요소에 대하여 반복적으로 명시된 함수를 실행한다.
+    document.write("<h2>1. forEach</h2>");
+    const arr = [1, true, "Javascipt"];
+    function printArr(value, index, array) {
+      document.write(`arr[${index}] = ${value}<br>`);
+    }
+    arr.forEach(printArr);
+    document.write("<hr>");
+    // 2. map() 메소드 ⭐
+    // 해당 배열의 모든 요소에 대하여 반복적으로 명시된 콜백 함수를 실행한 후
+    // 그 실행 결과를 새로운 배열에 담아 반환한다.
+    document.write("<h2>2. map()</h2>");
+    const arr2 = [3, 4, 5, 6];
+    const tempArr = [];
+    for (let i = 0; i < arr2.length; i++) {
+      tempArr.push(arr2[i] * 3);
+    }
+    let modifiedArr = arr2.map(function (element) {
+      return element * 3;
+    });
+    // let modifiedArr = arr2.map((v) => v * 3);
+    document.write(`arr2 : [${arr2}]<br>`);
+    document.write(`arr2의 원소 곱3 : [${modifiedArr}]<br>`);
+    document.write("<hr>");
+
+    let users = [
+      { firstName: "BeackHam1", lastName: "David" },
+      { firstName: "BeackHam2", lastName: "David" },
+      { firstName: "BeackHam3", lastName: "David" },
+    ];
+
+    let nameArr = users.map(function (v) {
+      return `${v.lastName} ${v.firstName}<br>`;
+    });
+    console.log(users);
+    document.write(`users : [${users}]<br>`);
+    document.write(`nameArr : [${nameArr}]<br>`);
+    document.write("<hr>");
+
+    const numberArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    function multiplyTwo(number) {
+      return number * 2;
+    }
+
+    const newnumberArr = numberArr.map(multiplyTwo);
+    document.write(`numberArr : [${numberArr}]<br>`);
+    document.write(`newnumberArr : [${newnumberArr}]<br>`);
+    document.write("<hr>");
+
+    const numberArr2 = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ];
+
+    // const newnumberArr2 = numberArr2.map(function (element) {
+    //   return element.map(function (element) {
+    //     return element * 2;
+    //   });
+    // });
+
+    const newnumberArr2 = numberArr2.map((el) =>
+      el.map((number) => number * 2)
+    );
+
+    document.write(`numberArr2 : [${numberArr2}]<br>`);
+    document.write(`newnumberArr2 : [${newnumberArr2}]`);
+    document.write("<hr>");
+    // 3.filter() 함수
+    // 배열의 모든 요소에 대하여 명시된 콜백 함수를 실행한 후,
+    // 그 결과값이 true인 요소들만을 새로운 배열로 반환
+    document.write("<h2>2. filter()</h2>");
+    const numberArr3 = [1, 2, 3, 4, 5];
+    // const newnumberArr3 = numberArr3.filter(function (v) {
+    //   return v > 3;
+    // });
+
+    newnumberArr3 = numberArr3.filter((el) => el > 3);
+    document.write(`numberArr3 : [${numberArr3}]<br>`);
+    document.write(`newnumberArr3 : [${newnumberArr3}]<br>`);
+    document.write("<hr>");
+    const guys = [
+      { name: "덕배", money: 500000 },
+      { name: "베컴", money: 700000 },
+      { name: "홀란드", money: 600000 },
+      { name: "포든", money: 400000 },
+    ];
+    // const rich = guys.filter(function (el) {
+    //   return el.money > 500000;
+    // });
+
+    const richNames = guys
+      .filter((el) => el.money > 500000)
+      .map((el) => el.name);
+
+    const twoConditionguy = guys
+      .filter((el) => el.money > 500000 && el.name == "홀란드")
+      .map((el) => el.name);
+    console.log(richNames);
+    document.write(`guys : [${guys}]<br>`);
+    document.write(`richNames : [${richNames}]<br>`);
+    document.write(`twoConditionguy : [${twoConditionguy}]<br>`);
+  </script>
+</html>

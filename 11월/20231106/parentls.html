@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../resources/js/jquery-3.6.4.js"></script>
+  </head>
+  <style>
+    div {
+      border: 3px solid orange;
+    }
+  </style>
+  <body>
+    <div>
+      <p>무궁화 꽃이 피었습니다</p>
+    </div>
+
+    <p id="pTag">은주는 예쁘다~~</p>
+
+    <div>
+      <p>사뿐히 즈려밟고 가시옵소서</p>
+    </div>
+  </body>
+  <script>
+    $("p").on("click", function () {
+      // 1. 선택된 p 태그를 가져온다.
+      const pTag = $(this);
+
+      // 2. 선택된 p태그의 부모요소를 가져온다.
+      const parentEl = pTag.parent();
+
+      // 3. 부모요소를 확인한다.(div 태그인지)
+      const parentTagName = parentEl.prop("tagName").toLowerCase();
+
+      // 4. div 태그라면 선택된 p태그의 텍스트를 가져온다.
+      if (parentTagName == "div") {
+        const txt = pTag.text();
+        // 4.1 선택된 p태그의 부모요소에 새로운 p태그를 추가한다.
+        // parentEl.append(`<p style="color: red;">${txt}</p>`);
+        // parentEl.append(
+        //   $("<p>").prop({
+        //     innerHTML: txt,
+        //     style: "color: red",
+        //   })
+        // );
+        parentEl.append(pTag.clone(true).css("color", "red"));
+      } else {
+        // 5. div 태그가 아니라면 alert 창을 띄운다.
+        alert("작업대상이 아닙니다.");
+      }
+    });
+  </script>
+</html>

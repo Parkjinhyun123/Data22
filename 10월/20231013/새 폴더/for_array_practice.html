@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    let arr = [1, 3, 5, 7, 9];
+    document.write("첫번째 원소값 :" + arr[0]);
+    document.write("<br>");
+    for (let i = 0; i < arr.length; i++) {
+      document.write(i + 1 + "번째 원소 값 : " + arr[i] + "<br>");
+    }
+    document.write("<hr>");
+    document.write("<h1>for...in문</h1>");
+    for (let i in arr) {
+      document.write(+i + 1 + "번째 원소 값 : " + arr[i] + "<br>");
+    }
+    document.write("<hr>");
+    let car = {
+      brand: "Hyundai",
+      name: "Kona",
+      price: "40,000,000",
+    };
+    Object.keys(car);
+    Object.values(car);
+    Object.entries(car);
+    document.write("<h1>for...in문을 활용한 Object값 가져오기</h1>");
+    for (let i in car) {
+      document.write("key 값 : " + i + ", value 값 : " + car[i] + "<br>");
+      console.log(car[i]);
+    }
+    document.write("<hr>");
+    document.write("<h1>for...of문을 활용한 배열값 가져오기</h1>");
+    document.write(
+      "객체는 for...of를 사용할 수 없다. (not iterable 이기 때문에)"
+    );
+    // for (let v of car) {
+    //   document.write(v);
+    // }
+    document.write("<hr>");
+    arr.forEach(function (value, index, array) {
+      document.write(
+        "value 값 : " +
+          value +
+          " index 값 : " +
+          index +
+          " Array : " +
+          array +
+          "<br>"
+      );
+      document.write(
+        `<h2> value 값 : ${value} , index 값 : ${index}, Array : ${array},</h2> `
+      );
+    });
+  </script>
+</html>

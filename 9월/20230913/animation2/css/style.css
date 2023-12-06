@@ -1,0 +1,83 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+.container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.chevron-item{
+    width: 20px;
+    height: 20px;
+    border-right: 3px solid red;
+    border-bottom: 3px solid red;
+    transform: translateY(5px) rotate(45deg);
+    margin-top: -10px;
+    animation: fadedown 1s infinite alternate cubic-bezier(1, 0, 0, 1);
+}
+
+.chevron-item:nth-child(2){
+    animation-delay: 0.3333s;
+}
+
+.chevron-item:nth-child(3){
+    animation-delay: 0.6666s;
+}
+
+.dot{
+    display: flex;
+    gap: 8px;
+}
+
+.dot-item{
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    border-radius: 50px;
+    animation: bounce 1s infinite alternate ease;
+}
+
+.dot-item:nth-child(2){
+    animation-delay: 0.33s;
+}
+
+.dot-item:nth-child(3){
+    animation-delay: 0.66s;
+}
+
+@keyframes fadedown{
+    0%{
+        opacity: 0;
+        transform: translateY(5px) rotate(45deg);
+    }
+    50%{
+        opacity: 1;
+        border-color: orange;
+    }
+    100%{
+        transform: translateY(0px) rotate(45deg)
+    }
+}
+
+@keyframes bounce{
+    from{
+        opacity: 0.2;
+        transform: translateY(0) scaleY(0.8);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(-20px) scale(1);
+    }
+}

@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'IAMAPLAYER';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/IAMAPLAYER.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.nav{
+    display: flex;
+    width: 100%;
+    max-width: 1280px;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.brand{
+    font-family: 'IAMAPLAYER';
+}
+
+.nav .menu-list{
+    list-style: none;
+    display: flex;
+    gap: 3rem;
+    font-weight: 400;
+}
+
+.icons{
+    display: flex;
+    gap: 1rem;
+}
+
+.nav .icons .icon{
+    font-size: 1.5rem;
+}

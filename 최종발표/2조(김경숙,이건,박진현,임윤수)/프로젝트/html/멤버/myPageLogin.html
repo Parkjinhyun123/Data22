@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>마이페이지</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../resources/css/nav.css" />
+    <link rel="stylesheet" href="../../resources/css/member.css" />
+    <link rel="stylesheet" href="../../resources/css/myPage.css" />
+    <link rel="icon" href="../../resources/img/사이트 파비콘.png" />
+    <!-- 제작할 페이지의 CSS 링크 -->
+  </head>
+  <body>
+    <!-- header -->
+    <header id="header">
+      <nav class="navigation">
+        <div class="nav_left">
+          <div class="site">
+            <a href="../../index_login.html" class="site_name">
+              <img
+                src="../../resources/img/logo.png"
+                alt="사이트로고"
+                class="site_logo"
+              />
+
+              <span>복습하자</span>
+            </a>
+          </div>
+          <ul class="gnb">
+            <li class="gmain">
+              <a href="#">
+                <div class="item">당신을 위한</div>
+              </a>
+              <ul class="gsub">
+                <li><a href="../당신을위한/html_login.html">HTML</a></li>
+                <li><a href="../당신을위한/css_for_you_login.html">CSS</a></li>
+                <li>
+                  <a href="../당신을위한/Javascript_login.html">JavaScript</a>
+                </li>
+              </ul>
+            </li>
+            <li class="gmain">
+              <a href="#">
+                <div class="item">디자인</div>
+              </a>
+              <ul class="gsub">
+                <li><a href="../디자인/design-color_login.html">Color</a></li>
+                <li><a href="../디자인/design-font_login.html">Font</a></li>
+                <li><a href="../디자인/design-icon_login.html">Icon </a></li>
+              </ul>
+            </li>
+            <li class="gmain">
+              <a href="../유용한자료/real_login.html">
+                <div class="item">유용한자료</div>
+              </a>
+            </li>
+            <li class="gmain">
+              <a href="../예제/example_login.html">
+                <div class="item">예제</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- 여기부터 -->
+        <div class="account">
+          <a href="myPageLogin.html" class="login"> 마이페이지 </a>
+          <span class="middot"> &middot; </span>
+          <input
+            type="button"
+            class="log-out"
+            id="log-out"
+            value="로그아웃"
+            onclick="logOut_btn()"
+          />
+        </div>
+        <!-- 여기 교체 -->
+        <div class="hamburger-button">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+    <!-- header -->
+    <!-- main -->
+    <main id="main">
+      <!-- 모달 -->
+      <div class="modal" onclick="closeModal()">
+        <div class="modal_body">
+          <div class="modal_top">
+            <h2>로그아웃하시겠습니까?</h2>
+          </div>
+          <div class="modal_btn_body">
+            <input
+              type="button"
+              class="modal_btn"
+              value="예"
+              id="modalTrue"
+              onclick="log_out()"
+            />
+            <input
+              type="button"
+              class="modal_btn"
+              value="아니요"
+              id="modalFalse"
+              onclick="log_out_cancle()"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- 모달 종료 이 아래로 붙여넣을것 -->
+      <img
+        src="../../resources/img/마이페이지.jpg"
+        alt="마이페이지"
+        style="width: 100%; height: 500px"
+      />
+      <div class="keep-container">
+        <div class="member-top">
+          <h2>내 정보</h2>
+          <p>변경할 정보를 입력해주세요.</p>
+        </div>
+        <div class="keep-body">
+          <table class="join-area">
+            <colgroup>
+              <col data-member-form="th" style="width: 20%" />
+              <col data-member-form="td" style="width: 80%" />
+            </colgroup>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <span class="marking">*</span>
+                  <label for="id">회원아이디</label>
+                </th>
+                <td>
+                  <input
+                    type="text"
+                    id="id"
+                    name="id"
+                    class="required"
+                    title="아이디"
+                  />
+                  <input
+                    type="button"
+                    class="member-btn"
+                    id="id_ajax"
+                    value="중복확인"
+                  />
+                  <em>
+                    한글, 특수문자를 제외한 4~20자까지의 영문과 숫자로
+                    입력해주세요.
+                  </em>
+                  <div class="ok hidden">사용가능한 아이디입니다.</div>
+                  <div class="notOk hidden">사용 불가능한 아이디입니다.</div>
+                  <div class="nono hidden" style="color: red">
+                    중복된 아이디입니다.
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="marking">*</span>
+                  <label for="password">비밀번호</label>
+                </th>
+                <td>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    class="required"
+                    title="비밀번호"
+                  />
+                  <em
+                    >비밀번호는 4~12자 사이의 영문과 숫자 조합 형태로
+                    입력해주세요.</em
+                  >
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="marking">*</span>
+                  <label for="password2">비밀번호확인</label>
+                </th>
+                <td>
+                  <input
+                    type="password"
+                    name="password2"
+                    id="password2"
+                    class="required"
+                    title="비밀번호"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="marking">*</span>
+                  <label for="name">이름</label>
+                </th>
+                <td>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    title="이름"
+                    class="required"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <span class="marking">*</span>
+                  <label for="email">이메일</label>
+                </th>
+                <td>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    title="이메일아이디 "
+                  />
+                  @
+                  <input
+                    type="text"
+                    name="email2"
+                    id="email2"
+                    title="이메일 주소 직접입력"
+                    disabled
+                  />
+                  <select name="tmp_mail" id="tmp_mail">
+                    <option value="">선택하세요</option>
+                    <option value="naver.com">naver.com</option>
+                    <option value="daum.net">daum.net</option>
+                    <option value="hanmail.net">hanmail.net</option>
+                    <option value="gmail.com">gmail.com</option>
+                    <option value="other">직접입력</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="marking">*</span>
+                  <label for="phone1">연락처</label>
+                </th>
+                <td>
+                  <div class="wrapper_middle">
+                    <input
+                      class="input"
+                      id="phoneNumber"
+                      type="tel"
+                      placeholder="연락처"
+                      oninput="autoHyphen(this)"
+                    />
+                    <button class="get_number" onclick="takeTarget()">
+                      인증번호 받기
+                    </button>
+                  </div>
+                  <div class="wrapper_bottom">
+                    <input
+                      class="input_target"
+                      type="text"
+                      maxlength="6"
+                      placeholder="인증번호"
+                    />
+                    <span class="target_time">
+                      <span id="remaining_min">3</span> :
+                      <span id="remaining_sec">00</span>
+                    </span>
+                    <button class="complete_target" id="complete">
+                      인증완료
+                    </button>
+                  </div>
+                  <em>해당 연락처는 아이디 비밀번호 찾기시 이용합니다.</em>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="address">주소</label>
+                </th>
+                <td class="addr-wrapper">
+                  <input
+                    type="text"
+                    id="sample6_postcode"
+                    placeholder="우편번호"
+                  />
+                  <!-- API이용 -->
+                  <input
+                    type="button"
+                    value="우편번호 찾기"
+                    onclick="sample6_execDaumPostcode()"
+                  /><br />
+                  <input
+                    type="text"
+                    id="sample6_address"
+                    placeholder="주소"
+                    style="width: 100%"
+                  /><br />
+                  <input
+                    type="text"
+                    id="sample6_detailAddress"
+                    placeholder="상세주소"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="btn-area">
+            <div class="left-btn">
+              <input type="submit" value="수정하기" class="subBtn" />
+              <a href="../../index_login.html" class="back">메인으로</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- main -->
+    <!-- footer -->
+    <footer id="footer">
+      <div class="footer_wrap">
+        <div class="footer_bottom">
+          <div class="footer-top">
+            <div class="bottom_logo">
+              <img
+                src="../../resources/img/logo.png"
+                alt="사이트로고"
+                class="logo"
+              />
+            </div>
+          </div>
+          <div class="bottom_address">
+            <address class="site_address">
+              주소: 대전광역시 중구 중앙로 121번길 20 (선화동 41) 2층<br />
+              <a href="mailto:"
+                ><i class="fa-regular fa-envelope"></i> &nbsp; 이메일
+                abcd@naver.com
+              </a>
+              <a href="tel:042-222-2402"
+                ><i class="fa-solid fa-phone"></i> &nbsp; 대표 전화
+                010-1234-5678</a
+              >
+            </address>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- footer -->
+  </body>
+  <script src="../../resources/js/nav.js"></script>
+  <script src="../../resources/js/member.js"></script>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <!-- 제작할 페이지의 스크립트 -->
+  <script>
+    function sample6_execDaumPostcode() {
+      new daum.Postcode({
+        oncomplete: function (data) {
+          // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+          // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+          // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+          var addr = ""; // 주소 변수
+          var extraAddr = ""; // 참고항목 변수
+
+          //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+          if (data.userSelectedType === "R") {
+            // 사용자가 도로명 주소를 선택했을 경우
+            addr = data.roadAddress;
+          } else {
+            // 사용자가 지번 주소를 선택했을 경우(J)
+            addr = data.jibunAddress;
+          }
+
+          // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+          if (data.userSelectedType === "R") {
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
+              extraAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if (data.buildingName !== "" && data.apartment === "Y") {
+              extraAddr +=
+                extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
+            }
+            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if (extraAddr !== "") {
+              extraAddr = " (" + extraAddr + ")";
+            }
+            // 조합된 참고항목을 해당 필드에 넣는다.
+            // document.getElementById("sample6_extraAddress").value = extraAddr;
+          } else {
+            document.getElementById("sample6_extraAddress").value = "";
+          }
+
+          // 우편번호와 주소 정보를 해당 필드에 넣는다.
+          document.getElementById("sample6_postcode").value = data.zonecode;
+          document.getElementById("sample6_address").value = addr;
+          // 커서를 상세주소 필드로 이동한다.
+          document.getElementById("sample6_detailAddress").focus();
+        },
+      }).open();
+    }
+  </script>
+  <script type="module">
+    import * as firebase from "../../resources/js/firebase.js";
+    const {
+      db,
+      getDocs,
+      collection,
+      getDatas,
+      setDoc,
+      addDoc,
+      doc,
+      addDatas,
+      deleteDatas,
+      updateDoc,
+      deleteField,
+      updateDatas,
+      idDatas,
+    } = firebase;
+    const noNo = document.querySelector(".nono");
+    const okId = document.querySelector(".ok");
+    const notOkId = document.querySelector(".notOk");
+    const idAjax = document.querySelector("#id_ajax");
+
+    async function getMembers() {
+      const snapshot = await getDatas("member");
+      snapshot.forEach((doc) => {
+        const {
+          memberId,
+          memberPass,
+          memberName,
+          memberMail,
+          memberMailSelf,
+          memberTel,
+          memberAddr,
+        } = doc.data();
+        const chId = doc.data();
+        // console.log(chId["memberId"]);
+        // console.log(Object.values(chId["memberId"]));
+        // const idArr = [];
+        // idArr.push(chId["memberId"]);
+        // console.log(idArr);
+
+        // 중복확인
+        idAjax.addEventListener("click", function () {
+          const idPattern = /^[a-zA-Z][0-9a-zA-Z]{4,16}$/;
+          const focusID = document.querySelector("#id");
+          const checkId = document.querySelector("#id").value;
+          let isExist = 0;
+          idDatas("member", checkId).then((result) => {
+            isExist = result;
+            if (checkId == "") {
+              alert("아이디를 입력해주세요.");
+              setTimeout(function () {
+                focusID.focus();
+              }, 5);
+            } else if (!idPattern.test(checkId) == true) {
+              notOkId.classList.remove("hidden");
+              if (
+                // 사용불가능한이 떠있을때 사용가능과 중복아이디가 안뜨게
+                notOkId.classList.contains("hidden") == false
+              ) {
+                noNo.classList.add("hidden");
+                okId.classList.add("hidden");
+                notOkId.classList.remove("hidden");
+              }
+            } else if (checkId == chId["memberId"]) {
+              noNo.classList.remove("hidden");
+              if (noNo.classList.contains("hidden") == false) {
+                console.log("3");
+                okId.classList.add("hidden");
+                notOkId.classList.add("hidden");
+                noNo.classList.remove("hidden");
+              }
+            } else if (!idPattern.test(checkId) == false && isExist == 0) {
+              okId.classList.remove("hidden");
+              console.log("그만");
+              if (okId.classList.contains("hidden") == false) {
+                notOkId.classList.add("hidden");
+                noNo.classList.add("hidden");
+              }
+            }
+          });
+          // console.log(idPattern.test(checkId));
+          // console.log(checkId != chId["memberId"]);
+        });
+      });
+    }
+    getMembers();
+    // 수정하기로 변경
+    submit.addEventListener("click", function () {
+      const memberInfo = {
+        memberId: document.querySelector("input[name=id]").value,
+        memberPass: document.querySelector("input[name=password]").value,
+        memberName: document.querySelector("input[name=name]").value,
+        memberMail: document.querySelector("input[name=email]").value,
+        memberMailSelf: document.querySelector("input[name=email2]").value,
+        memberTel: document.querySelector("input[type=tel]").value,
+        memberAddr: document.querySelector("input[id=sample6_address]").value,
+      };
+      // addDatas("member", memberInfo).then(() => window.location.reload());
+      // 정규식 input
+      const passwordVal = document.querySelector("#password").value;
+      // 아이디
+      if (memberId.value == "") {
+        alert("아이디를 입력해주세요.");
+        setTimeout(function () {
+          memberId.focus();
+          return false;
+        }, 5);
+      } else if (notOkId.classList.contains("show") == true) {
+        alert("중복확인을 해주세요.");
+        setTimeout(function () {
+          memberId.focus();
+          return false;
+        }, 5);
+        // 비밀번호
+      } else if (password.value == "") {
+        alert("비밀번호를 입력해주세요.");
+        setTimeout(function () {
+          password.focus();
+          return false;
+        }, 5);
+      } else if (password.value != passwordCheck.value) {
+        alert("비밀번호가 일치하지 않습니다.");
+        setTimeout(function () {
+          passwordCheck.focus();
+          return false;
+        }, 5);
+      } else if (!passwordPattern.test(passwordVal)) {
+        alert("사용하실 수 없는 비밀번호입니다.");
+        setTimeout(function () {
+          password.focus();
+          return false;
+        }, 5);
+      } else if (memberId.value == password.value) {
+        alert("아이디와 비밀번호는 다르게 해주세요.");
+        setTimeout(function () {
+          memberId.focus();
+          return false;
+        }, 5);
+        // 이름
+      } else if (memberName.value == "") {
+        alert("이름을 입력해주세요.");
+        setTimeout(function () {
+          memberName.focus();
+          return false;
+        }, 5);
+        // 이메일
+      } else if (firstMail.value == "") {
+        alert("이메일을 입력해주세요.");
+        setTimeout(function () {
+          firstMail.focus();
+          return false;
+        }, 5);
+      } else if (selected.value == "") {
+        alert("이메일을 선택해주세요.");
+        setTimeout(function () {
+          selected.focus();
+          return false;
+        }, 5);
+      } else if (selected.value == "other") {
+        if (self.value == "") {
+          alert("이메일을 입력해주세요.");
+          setTimeout(function () {
+            self.focus();
+            return false;
+          }, 5);
+        }
+        // 연락처
+      } else if (phoneNum.value == "") {
+        alert("연락처를 입력해주세요.");
+        setTimeout(function () {
+          phoneNum.focus();
+          return false;
+        }, 5);
+      } else if (completeBtn.disabled != true) {
+        alert("인증을 완료해주세요.");
+        setTimeout(function () {
+          numberInput.focus();
+          return false;
+        }, 5);
+
+        // 마무리
+      } else if (addr.value == "") {
+        alert("주소를 입력해주세요.");
+        setTimeout(function () {
+          addr.focus();
+          return false;
+        }, 5);
+      } else {
+        alert("수정되셨습니다.");
+        addDatas("member", memberInfo).then(
+          () => (window.location.href = "../../index_login.html")
+        );
+      }
+      //  location.href = "../../index_login.html";
+    });
+  </script>
+</html>

@@ -1,0 +1,47 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    display: flex;
+    /* gap: 10px; */
+    /* flex-wrap: wrap; */
+    background-color: rgba(0, 255, 0, 0.418);
+    height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    /* flex 주축의 방향은 기본 값이row */
+    /* row-reverse는 주축의 진행방향을 역순으로 변경 */
+    /* column은 주축의 진행방향을 교차축 방향으로 바꿈, 가로에서 세로로 변경  */
+    /* column-revese는 밑에서 위로 진행 */
+}
+
+.box{
+    flex-grow: 1;
+    background-color: red;
+    flex-basis: calc(100%/ 3);
+}
+
+
+.box:nth-child(2){
+    background-color: blue;
+    /* flex-grow: 2; */
+}
+
+.box:nth-child(3){
+    background-color: green;
+}
+
+.box:nth-child(4){
+    background-color: purple;
+}
+
+.box:nth-child(5){
+    background-color: orange;
+}
+
+.box:nth-child(6){
+    background-color: cyan;
+}

@@ -1,0 +1,71 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box{
+    width: 500px;
+    height: 500px;
+    position: relative;
+    animation: spin 3s linear infinite;
+    border: 1px solid #222;
+    border-radius: 50%;
+    transition: all 1s ease;
+    background-image: url(https://images.unsplash.com/photo-1505506874110-6a7a69069a08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8JUVDJTlBJUIwJUVDJUEzJUJDfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60);
+}
+.dot{
+    position: absolute;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    margin: 1rem;
+    border-radius: 50%;
+    background-image: url(https://e7.pngegg.com/pngimages/863/860/png-clipart-moon-moon.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.dot2{
+    position: absolute;
+    bottom: 10%;
+    right: 50%;
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT5v_5bPz2E0SbqmE6jrUUbaIOJy0HSy627Q&usqp=CAU);
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.dot3{
+    position: absolute;
+    bottom: 50%;
+    right: 40%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe7ACr-z7BZwrmtYrtNV0LTvg2S4AZpZLPutKYeIJD&s);
+    background-position: center;
+    background-size: cover;
+}
+
+@keyframes spin{
+    0%{
+        transform: rotate(360deg);
+       
+    }
+    100%{
+        transform: rotate(720deg);
+
+    }
+}
+

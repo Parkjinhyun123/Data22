@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>버튼을 누르면 문구가 화면에 표시됩니다.</p>
+    <button onclick="interval()">START</button>
+    <button onclick="stopInterval()">STOP</button>
+  </body>
+  <script>
+    let printPtag;
+    function interval() {
+      printPtag = setInterval(function () {
+        // const pTag = document.createElement("p");
+        // document.body.append(pTag, "ds");
+        // changeBackGroundColor(pTag);
+        let backGroundArr = [];
+        let colorArr = [];
+        for (let i = 0; i < 2; i++) {
+          for (let j = 0; j < 3; j++) {
+            //     if (i == 0) {
+            //       backGroundArr.push(parseInt(Math.random() * 256));
+            //     } else {
+            //       colorArr.push(parseInt(Math.random() * 256));
+            //     }
+            //   }
+            // }
+            const randNum = parseInt(Math.random() * 256);
+            i == 0 ? backGroundArr.push(randNum) : colorArr.push(randNum);
+            const pTag = document.querySelector("p");
+            pTag.style.backgroundColor = `rgb(${backGroundArr.toString()})`;
+            pTag.style.color = `rgb(${colorArr.toString()})`;
+          }
+        }
+      }, 1000);
+    }
+
+    function stopInterval() {
+      clearInterval(printPtag);
+    }
+  </script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../resources/js/jquery-3.6.4.js"></script>
+  </head>
+  <body>
+    <form>
+      <input type="text" name="id" /><br />
+      <input type="password" name="pass" /><br />
+
+      <select name="mySelect">
+        <option>Option1</option>
+        <option selected>Option2</option>
+        <option>Option3</option>
+        <option>Option4</option>
+      </select>
+      <br />
+      <textarea name="enTextarea" rows="10" cols="20" readonly>text</textarea
+      ><br />
+      <input type="button" value="확인" disabled /> <br />
+    </form>
+    <br />
+    <br />
+    <br />
+    <form>
+      취 미 :
+      <input type="checkbox" name="hobby" value="여행" checked /> 여행
+      <input type="checkbox" name="hobby" value="장기" />장기
+      <input type="checkbox" name="hobby" value="바둑" />바둑
+      <input type="checkbox" name="hobby" value="독서" />독서
+      <input type="checkbox" name="hobby" value="낚시" />낚시<br /><br />
+      <input type="hidden" name="hidden" />
+      <input type="button" value="전송" />
+    </form>
+  </body>
+  <script>
+    $(":disabled").css("border", "4px solid red");
+    $("input:disabled").css("border", "4px solid blue");
+    $(":selected").css("backgroundColor", "orange");
+    console.log($("input:checked"));
+    $(":enabled").css("border", "2px solid yellow");
+    console.log($(":hidden"));
+  </script>
+</html>

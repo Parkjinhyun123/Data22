@@ -1,0 +1,69 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+img{
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.background{
+    background-image: url('https://images.unsplash.com/photo-1693892256614-6bceaa9e1b67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0NHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60');
+    object-fit: cover;
+    width: 0vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.card{
+    border: 10px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    justify-content: center;
+    align-content: center;
+    background-color: aliceblue;
+    padding: 1rem;
+    margin: 1rem;
+    width: 30%;
+}
+
+.image{
+    width: calc(100%/1.5);
+}
+div{
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: calc(100%/2);
+    justify-content: center;
+    align-items: center;
+}
+
+div > p{
+    margin: 10px;
+}
+
+.button{
+    text-decoration: none;
+    color: black;
+    border:1px solid black;
+    border-radius: 10px;
+    display: flex;
+    /* flex-direction: row; */
+    padding: 1rem 1.25rem;
+    margin: 0.5rem;
+    align-items: flex-start;
+
+}
+
+.gps{
+    display: flex;
+    border-top: 1px solid rgba(0, 0, 0, 0.123);
+}

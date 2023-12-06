@@ -1,0 +1,117 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  word-break: keep-all;
+}
+
+#main {
+  width: 100%;
+  max-width: 100%;
+}
+
+.login-img {
+  width: 100%;
+  height: 600px;
+  background-image: url("https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fCVFQyVCRCU5NCVFQiU5NCVBOXxlbnwwfHwwfHx8MA%3D%3D");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 30px;
+}
+
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 50%;
+  max-width: 50;
+  height: 100%;
+  padding: 40px;
+  /* border: 2px solid#f2c301; */
+}
+
+.login-wrapper > h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #f2c301;
+  margin-bottom: 20px;
+}
+
+#login-form {
+  width: 80%;
+  max-width: 60%;
+}
+
+#login-form > input {
+  width: 100%;
+  height: 48px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+#login-form > input::placeholder {
+  color: #212212;
+}
+
+#login-form input[type="submit"] {
+  color: #fff;
+  border: 1px solid #f2c301;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: transparent;
+  margin-top: 20px;
+  transition: all 0.2s ease;
+}
+
+#login-form input[type="submit"]:hover {
+  color: #212212;
+  font-weight: 700;
+  background-color: #f2c301;
+}
+
+#login-form > input[type="checkbox"] {
+  display: none;
+}
+
+#login-form > label {
+  color: #999999;
+}
+
+#login-form input[type="checkbox"] + label {
+  cursor: pointer;
+  padding-left: 26px;
+  background-image: url("checkbox.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#login-form input[type="checkbox"]:checked + label {
+  background-image: url("checkbox-active.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.login-bottom {
+  display: flex;
+  gap: 6px;
+  justify-content: space-around;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 1024px) {
+  .login-wrapper {
+    width: 75%;
+  }
+  #login-form {
+    width: 80%;
+  }
+  .login-bottom {
+    width: 100%;
+  }
+}

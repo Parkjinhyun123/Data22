@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../resources/js/jquery-3.6.4.js"></script>
+  </head>
+  <style>
+    th {
+      text-align: left;
+    }
+    textarea {
+      resize: none;
+    }
+  </style>
+  <body>
+    <h1>회원가입</h1>
+    <form action="attrselector2.html">
+      <fieldset>
+        <legend>필수입력사항</legend>
+        <table>
+          <tr>
+            <th>ID</th>
+            <td><input type="text" placeholder="아이디 10글자 이내" /></td>
+            <td><input type="button" value="중복확인" /></td>
+          </tr>
+          <tr>
+            <th>비밀번호</th>
+            <td>
+              <input
+                type="password"
+                name=""
+                id=""
+                placeholder="영문,숫자,특수문자 포함 8자 이상"
+              />
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>비밀번호 확인</th>
+            <td><input type="password" name="" id="" /></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td><input type="text" name="" id="" /></td>
+            <td>
+              <select name="" id="">
+                <option value="">-선택-</option>
+                <option value="">직접입력</option>
+                <option value="">@gmail.com</option>
+                <option value="">@naver.com</option>
+                <option value="">@daum.net</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+      </fieldset>
+      <fieldset>
+        <legend>추가 정보</legend>
+        <table>
+          <tr>
+            <td>프로필 사진</td>
+            <td><input type="file" value="파일 선택" accept="image/jpg" /></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>성별 :</td>
+            <td>
+              <input type="radio" name="gender" id="" />남자
+              <input type="radio" name="gender" id="" />여자
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>생년월일 :</td>
+            <td><input type="date" name="" id="" /></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>취미</td>
+            <td>
+              <input type="checkbox" name="" id="" />
+              <label for="">야구</label>
+              <input type="checkbox" name="" id="" />
+              <label for="">농구</label>
+              <input type="checkbox" name="" id="" />
+              <label for="">축구</label>
+              <br />
+              <input type="checkbox" name="" id="" />
+              <label for="">공부</label>
+              <input type="checkbox" name="" id="" />
+              <label for="">음악감상</label>
+              <br />
+              <input type="checkbox" name="" id="" />
+              <label for="">기타</label>
+              <input type="text" />
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>자기소개</td>
+            <td>
+              <textarea name="" id="" cols="100" rows="10"></textarea>
+            </td>
+          </tr>
+        </table>
+      </fieldset>
+      <p>
+        <input type="submit" value="회원가입" />
+        <input type="reset" value="다시입력" />
+        <input
+          type="button"
+          value="이전으로"
+          onclick="javascipt:history.go(-1)"
+        />
+      </p>
+    </form>
+  </body>
+  <script>
+    $(":input").css({
+      border: "2px solid lime",
+      backgroundColor: "pink",
+    });
+    $(":button").css("backgroundColor", "yellow");
+    $(":submit").css("backgroundColor", "green");
+    $(":text , :password").css("border", "2px solid blue");
+    $(":file").css("border", "2px solid red");
+  </script>
+</html>

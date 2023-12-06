@@ -1,0 +1,67 @@
+/* ul > li:nth-child(1),
+ul > li:nth-child(3) {
+ background-color: cyan; width: 150px;
+  } 
+참고용 */
+
+ul > li:nth-child(2n){
+   background-color: red;
+}
+
+ul > li:nth-child(odd){
+     background-color: blue;
+     }
+
+ul > li {
+    color: yellow;
+       }
+
+ul{
+  /*border-width: 10px; */
+  /* border-style: solid; */
+  /* border-style: dashed; */
+  /*border-style: dotted; */
+  /*border-color: black; */
+    border: 3px solid black;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+ol > li:nth-child(even) {
+ background-color: blue;
+ color: red;
+   }
+
+ol > li:nth-child(odd) {
+ background-color: black;
+ color: white;
+ }
+
+ol > li:last-child {
+  background-color: green;
+   }
+
+ol {
+  border-top: 10px solid black;
+  border-left: 5px double red;
+  border-right: 5px dotted blue;
+  border-bottom: 5px dashed green;
+ /* border: 3px double black;*/
+ /* 
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;  */
+  border-radius: 50px;
+  overflow: hidden;
+   }
+
+
+/* ol > li:first-child {
+   background-color: pink;
+     } */
+
+
+/* 숫자n 은 해당 숫자의 배수를 뜻함 */
+/* 홀수번째를 쓸때는 odd*/
+/* 짝수번째를 쓸때는 even*/

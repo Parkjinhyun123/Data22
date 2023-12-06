@@ -1,0 +1,86 @@
+.box{
+    width: 120px;
+    height: 120px;
+    border: 1px solid;
+    border-radius: 10px;
+    background-color: turquoise;
+    display: inline-block;
+} /*inline 이면서 block을 가짐 */
+
+#first{
+
+    background-color: cyan;
+    transform: rotate(0deg);
+    /* deg = degree 각도*/
+    transition: all 0.5s ease;
+}
+
+#first:hover{
+    transform: rotate(60deg);
+}
+
+#second{
+
+    background-color: yellow;
+    transform: scale(1);
+    transition: all 0.5s ease;
+}
+
+#second:hover{
+    transform: scale(1.5);
+}
+
+#third{
+
+    background-color: lime;
+    /* transform: skew(30deg);
+    transform: skewX(20deg); */
+    /* x방향으로 기울임 */
+    transform: skewY(45deg);
+    /* y방향으로 기울임 */
+    transition: all 0.5s 1s cubic-bezier(0.45, 0.05, 0.55, 0.95); /* 앞의 초는 애니메이션의 작동 시간, 뒤의 초는 애니메이션 실행까지의 딜레이 시간 */
+}
+
+#third:hover{
+    transform: skewX(45deg);
+    transform: rotate(600deg);
+}
+
+#t1{
+    transform: translateX(0%);
+    /* transition: all 0.5s ease-in-out, margin-left 1s ease; */
+    transform-origin:bottom; 
+    transform: rotate(50deg);
+    /* transform의 기준점 */
+    /* translateX= x축으로 이동 */
+    transition: transform 1s ease;
+   /* 여러가지 속성에 개별 적용가능*/     
+}
+
+#t1:hover{
+    transform: translate(100%) translateX(100%);
+}
+
+#t2{
+    transform: translateY(0%);
+    transition: all 0.5s ease;
+    transform-origin:top right;
+    /* translateY= y축으로 이동 */
+}
+
+#t2:hover{
+    transform: translate(100%);
+}
+
+#t3{
+    transform: translate(0%);
+    transition: all 0.5s ease;
+        /* (x,y) */
+}
+
+#t3:hover{
+    transform: translate(100%);
+}
+
+/* 퍼포먼스 개선을 위해 translate 3d 사용 */
+/* 주의: animation/transform을 과하게 사용시 브라우저의 일이 늘어나 화면이 버벅임 */

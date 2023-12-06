@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../resources/js/jquery-3.6.4.js"></script>
+  </head>
+  <style>
+    div {
+      border: 2px solid blue;
+    }
+
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+  <body>
+    <div>
+      <img src="../resources/img/1.jpg" alt="" />
+      <img src="../resources/img/2.jpg" alt="" />
+      <img src="../resources/img/3.jpg" alt="" />
+      <img src="../resources/img/4.jpg" alt="" />
+      <img src="../resources/img/5.jpg" alt="" />
+      <br />
+      <button onclick="changeTitle()">눌러보세요</button>
+    </div>
+  </body>
+  <script>
+    function changeTitle() {
+      const imgTags = $("img");
+      imgTags.each((i, el) => {
+        $(el).attr("title", $(el).attr("src"));
+        // const srcVal = $(el).attr("src");
+        // $(el).attr("title", srcVal);
+      });
+    }
+  </script>
+</html>

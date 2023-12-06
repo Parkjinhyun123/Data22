@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    document.write("<h2>1부터 200까지의 짝수의 합(continue 사용)</h2>");
+    let sum = 0;
+    for (let i = 1; i <= 200; i += 1) {
+      if (i % 2 == 1) {
+        continue;
+      }
+      sum += i;
+    }
+    document.write(`sum : ${sum}`);
+    document.write("<hr>");
+
+    document.write(
+      "<h2>사용자가 입력한 값을 계속 더하고, 사용자가 0을 입력하면 그때까지 누적된 값을 출력하는 프로그램</h2>"
+    );
+    sum = 0;
+    // while (true) {
+    //   var num = +prompt("숫자 입력(0을 입력하면 종료)");
+    //   //   parseInt 대신 + 사용가능
+
+    //   if (num == 0) {
+    //     break;
+    //   }
+    //   sum += num;
+    // }
+    // document.write(`입력한 값의 합 : ${sum}`);
+    document.write("<hr>");
+    document.write(
+      "<h2>1~10까지 반복되는 두개의 for문을 이용해서 i와 k를 더한 합이 3의 배수일때만 출력(continue를 이용) </h2>"
+    );
+    for (let i = 1; i <= 10; i++) {
+      for (let k = 1; k <= 10; k++) {
+        if ((i + k) % 3 !== 0) {
+          continue;
+        }
+        document.write(`i : ${i}, k : ${k}, 합 : ${i + k} <br> `);
+        console.log(i + k);
+      }
+    }
+    document.write("<hr>");
+    document.write("<h2>2의 배수이면서 3의 배수인 것만 출력</h2>");
+    for (let i = 1; i <= 100; i++) {
+      if (i % 2 == 0 && i % 3 == 0) {
+        document.write(`i : ${i} <br>`);
+        continue;
+      }
+    }
+    document.write("<hr>");
+    document.write(
+      "<h2>두 수를 입력(prompt) 두 수의 합이 100이상 일때만 출력 continue사용 , 두수 모두 0이 입력되면 종료</h2>"
+    );
+    while (true) {
+      var num1 = +prompt("첫번째 숫자 입력(0을 입력하면 종료)");
+      var num2 = +prompt("두번째 숫자 입력(0을 입력하면 종료)");
+      //   parseInt 대신 + 사용가능
+
+      if (num1 + num2 >= 100) {
+        document.write(
+          `첫번째 수 : ${num1}, 두번째 수 : ${num2}, 합 : ${num1 + num2}`
+        );
+      } else if (num1 == 0 && num2 == 0) {
+        break;
+      } else {
+        continue;
+      }
+    }
+  </script>
+</html>

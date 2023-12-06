@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.bigBox1 {
+  width: 100%;
+  text-align: center;
+  color: blue;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.bigBox2 {
+  width: 80%;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 20px;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.bigBox2 .b1 img {
+  width: 100%;
+}
+
+.bigBox2 .b2 {
+  padding: 10px;
+  font-size: 1.2rem;
+}
+
+.bigBox3 {
+  width: 80%;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.bigBox3 img {
+  width: 100%;
+}
+
+.bigBox3 p {
+  font-size: 1.2rem;
+}

@@ -1,0 +1,22 @@
+.btn{
+    display: inline;
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: rgb(99, 99, 243);
+    color: white;
+    border: 2px solid navy;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    /* 1000ms = 1s */
+    /* transition은 주로 before */
+}
+
+.btn:hover{
+    background-color: red;
+    border-radius: 30px;
+}
+
+.btn:active{
+     background-color: yellow;
+     color: black;
+}

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>당신을 위한 | Javascript</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../resources/css/nav.css" />
+    <link rel="stylesheet" href="../../resources/css/javascript.css" />
+    <link rel="icon" href="../../resources/img/사이트 파비콘.png" />
+  </head>
+  <body>
+    <!-- header -->
+    <header id="header">
+      <nav class="navigation">
+        <div class="nav_left">
+          <div class="site">
+            <a href="../../index.html" class="site_name">
+              <img
+                src="../../resources/img/logo.png"
+                alt="사이트로고"
+                class="site_logo"
+              />
+              <!-- 로고 결정시 아래 div 제거후 사용 -->
+              <span>복습하자</span>
+            </a>
+          </div>
+          <ul class="gnb">
+            <li class="gmain">
+              <a href="#">
+                <div class="item">당신을 위한</div>
+              </a>
+              <ul class="gsub">
+                <li><a href="html_login.html">HTML</a></li>
+                <li><a href="css_for_you_login.html">CSS</a></li>
+                <li><a href="Javascript_login.html">JavaScript</a></li>
+              </ul>
+            </li>
+            <li class="gmain">
+              <a href="#">
+                <div class="item">디자인</div>
+              </a>
+              <ul class="gsub">
+                <li><a href="../디자인/design-color_login.html">Color</a></li>
+                <li><a href="../디자인/design-font_login.html">Font</a></li>
+                <li><a href="../디자인/design-icon_login.html">Icon </a></li>
+              </ul>
+            </li>
+            <li class="gmain">
+              <a href="../유용한자료/real_login.html">
+                <div class="item">유용한자료</div>
+              </a>
+            </li>
+            <li class="gmain">
+              <a href="../예제/example_login.html">
+                <div class="item">예제</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="account">
+          <a href="../멤버/myPageLogin.html" class="login"> 마이페이지 </a>
+          <span class="middot"> &middot; </span>
+          <input
+            type="button"
+            class="log-out"
+            id="log-out"
+            value="로그아웃"
+            onclick="logOut_btn()"
+          />
+        </div>
+        <div class="hamburger-button">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+    <!-- header -->
+    <!-- header -->
+    <!-- main -->
+    <main id="main">
+      <img
+        src="../../resources/img/당신을 위한123.jpg"
+        alt="당신을 위한 자바스크립트"
+        width="100%"
+        height="500px"
+      />
+      <!-- 모달시작 -->
+      <div class="modal">
+        <div class="modal_body">
+          <div class="modal_top">
+            <h2>로그아웃하시겠습니까?</h2>
+          </div>
+          <div class="modal_btn_body">
+            <input
+              type="button"
+              class="modal_btn"
+              value="예"
+              id="modalTrue"
+              onclick="log_out()"
+            />
+            <input
+              type="button"
+              class="modal_btn"
+              value="아니요"
+              id="modalFalse"
+              onclick="log_out_cancle()"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- 모달종료 -->
+      <div class="all_container">
+        <!-- 헤드 -->
+        <!-- 여기부터 -->
+        <div class="head_container">
+          <div class="head_list">
+            <h3>목차</h3>
+            <ol class="javascript_list">
+              <li class="list_name_wrapper">
+                <a href="#0." class="list_name">1. 변수</a>
+              </li>
+              <li class="list_name_wrapper">
+                <a href="#1." class="list_name">2. 상수</a>
+              </li>
+              <li class="list_name_wrapper">
+                <a href="#2." class="list_name">3. 지역변수, 전역변수</a>
+              </li>
+              <li class="list_name_wrapper">
+                <a href="#3." class="list_name">4. 객체</a>
+              </li>
+              <li class="list_name_wrapper">
+                <a href="#4." class="list_name">5. Key, Value</a>
+              </li>
+              <li class="list_name_wrapper">
+                <a href="#5." class="list_name">6. 배열</a>
+              </li>
+              <li class="list_name_wrapper">
+                <a href="#6." class="list_name">7. 반복문</a>
+              </li>
+              <li class="list_name_wrapper">
+                <a href="#7." class="list_name">8. 조건문</a>
+              </li>
+              <li class="list_name_wrapper">
+                <a href="#8." class="list_name">9. 함수</a>
+              </li>
+              <li class="list_name_wrapper">
+                <a href="#9." class="list_name">10. 팁</a>
+              </li>
+              <li class="list_name_wrapper">
+                <a href="#10." class="list_name">11. 주의할점</a>
+              </li>
+            </ol>
+          </div>
+          <!-- 여기까지 -->
+          <div class="head_intro">
+            <div class="intro_inner">
+              <table class="intro_tb">
+                <tr>
+                  <td colspan="2">
+                    <div>
+                      <h5 class="intro_name">자바스크립트</h5>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="tb_img">
+                  <td colspan="2">
+                    <div class="intro_img_wrapper">
+                      <img
+                        src="../../resources/img/javascript.png"
+                        alt="자바스크립트"
+                        class="intro_img"
+                      />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>개발</td>
+                  <td>브랜든 아이크</td>
+                </tr>
+                <tr>
+                  <td>개발일</td>
+                  <td>1995년 12월 4일</td>
+                </tr>
+                <tr>
+                  <td>최신버전</td>
+                  <td>ECMAScript 2023(2023년 6월)</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="foryou_container">
+          <div class="foryou_name" id="0.">
+            <h1>JavaScript</h1>
+          </div>
+          <!-- 설명 -->
+          <div class="foryou_body">
+            <div class="head_name">
+              <h2>Java와 JavaScript의 차이</h2>
+            </div>
+            <div class="head_content">
+              <p class="head_content_inner">
+                JavaScript 와 Java는 여러 면에서 비슷하지만 어떤 면에서는
+                근본적으로 다릅니다. JavaScript 언어는 Java를 닮았지만 Java의
+                정적 형 지정과 강한 형 검사를 가지고있지 않습니다. JavaScript는
+                대부분의 Java 표현 구문, 명명 규칙 및 기본적인 흐름 제어 구조를
+                따르며 이것이 LiveScript에서 JavaScript로 이름이 변경된
+                이유입니다.
+              </p>
+            </div>
+          </div>
+          <!-- 변수 var -->
+          <div class="foryou_body" id="1.">
+            <div class="body_name">
+              <h2>
+                변수
+                <iconify-icon class="icon" icon="mdi:chevron-up"></iconify-icon>
+              </h2>
+            </div>
+            <div class="body_content">
+              <h3 class="body_content_name">var | let</h3>
+              <p class="body_content_inner">
+                변수를 선언하고, 선택적으로 초기화할 수 있습니다.
+              </p>
+              <div class="ex">
+                예제1
+                <p class="ex_inner">
+                  var x = 1; <br />
+                  if (x === 1) { var x = 2; console.log(x); // 결과값: 2 }
+
+                  <br />console.log(x); // 결과값: 2
+                </p>
+              </div>
+              <div class="ex">
+                예제 2
+                <p class="ex_inner">
+                  let x = 1;<br />
+                  if (x === 1) { let x = 2; console.log(x); // 결과값: 2 }<br />console.log(x);
+                  // 결과값: 1
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- 상수 const -->
+          <div class="foryou_body" id="2.">
+            <div class="body_name">
+              <h2>
+                상수<iconify-icon
+                  class="icon"
+                  icon="mdi:chevron-up"
+                ></iconify-icon>
+              </h2>
+            </div>
+            <div class="body_content">
+              <h3 class="body_content_name">const</h3>
+              <p class="body_content_inner">
+                const 선언은 블록 범위의 상수를 선언합니다. 상수의 값은 재할당할
+                수 없으며 다시 선언할 수도 없습니다.
+              </p>
+              <div class="ex">
+                예제
+                <p class="ex_inner">
+                  const number = 42;<br />
+                  console.log(number); // 결과값: 42
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- 지역변수, 전역변수 -->
+          <div class="foryou_body" id="3.">
+            <div class="body_name">
+              <h2>
+                지역변수, 전역변수<iconify-icon
+                  class="icon"
+                  icon="mdi:chevron-up"
+                ></iconify-icon>
+              </h2>
+            </div>
+            <div class="body_content">
+              <div class="ex">
+                예제
+                <div class="ex_img">
+                  <img
+                    src="../../resources/img/지역변수,전역변수.PNG"
+                    alt="지역변수,전역변수설명"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Object -->
+          <div class="foryou_body" id="4.">
+            <div class="body_name">
+              <h2>
+                Object(객체)
+                <iconify-icon class="icon" icon="mdi:chevron-up"></iconify-icon>
+              </h2>
+            </div>
+            <div class="body_content">
+              <p class="body_content_inner">
+                JavaScript의 데이터 유형 중 하나를 나타냅니다. 프로퍼티인 Key와
+                Value 로 구성되어있습니다.
+                <br />
+                ※ <strong>배열</strong>과는 달리 열거할 때 순서를 보장하지
+                않습니다.
+              </p>
+              <div class="ex">예제</div>
+              <div class="ex_img">
+                <img src="../../resources/img/객체설명.PNG" alt="객체설명" />
+              </div>
+            </div>
+          </div>
+          <!-- key, value -->
+          <div class="foryou_body" id="5.">
+            <div class="body_name">
+              <h2>
+                Key, Value
+                <iconify-icon class="icon" icon="mdi:chevron-up"></iconify-icon>
+              </h2>
+            </div>
+            <div class="body_content">
+              <p class="body_content_inner">
+                속성(property)이라는 용어는 키-값 쌍을 의미한다.
+              </p>
+              <div class="ex">
+                예제
+                <p class="ex_inner">
+                  const object1 = { a: 'somestring', b: 42, c: false, }; <br />
+                  console.log(Object.values(object1)); <br />// 결과값: Array
+                  ["somestring", 42, false]
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- 배열 -->
+          <div class="foryou_body" id="6.">
+            <div class="body_name">
+              <h2>
+                Array
+                <iconify-icon class="icon" icon="mdi:chevron-up"></iconify-icon>
+              </h2>
+            </div>
+            <div class="body_content">
+              <p class="body_content_inner">
+                다른 프로그래밍 언어의 배열과 마찬가지로, Array 객체는 여러
+                항목의 컬렉션을 단일 변수 이름 아래 저장할 수 있고, 일반적인
+                배열 연산을 수행하기 위한 멤버가 있습니다.
+              </p>
+              <div class="ex">
+                예제
+                <div class="ex_img">
+                  <img src="../../resources/img/배열예제.PNG" alt="배열설명" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 반복문 -->
+          <div class="foryou_body" id="7.">
+            <div class="body_name">
+              <h2>
+                반복문
+                <iconify-icon class="icon" icon="mdi:chevron-up"></iconify-icon>
+              </h2>
+            </div>
+            <div class="body_content">
+              <h3 class="body_content_name">
+                while/do...while|for/fot...in/for...of/forEach
+              </h3>
+              <p class="body_content_inner">
+                반복 문은 명령문 또는 명령문 블록을 반복적으로 실행합니다.
+              </p>
+              <div class="ex">
+                예제 1
+                <div class="ex_img">
+                  <img
+                    src="../../resources/img/반복문1.PNG"
+                    alt="반복문설명1"
+                  />
+                </div>
+              </div>
+              <div class="ex">
+                예제 2
+                <div class="ex_img">
+                  <img
+                    src="../../resources/img/반복문2.PNG"
+                    alt="반복문설명2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 조건문 -->
+          <div class="foryou_body" id="8.">
+            <div class="body_name">
+              <h2>
+                조건문
+                <iconify-icon class="icon" icon="mdi:chevron-up"></iconify-icon>
+              </h2>
+            </div>
+            <div class="body_content">
+              <h3 class="body_content_name">if/else/else if | switch |case</h3>
+              <p class="body_content_inner">
+                특정 조건 만족 시(참인 경우) 실행하는 명령의 집합 이며, 어떤
+                작업을 수행하고 싶을 때 사용하는 것이 조건문입니다.
+              </p>
+              <div class="ex">
+                예제 1
+                <div class="ex_img">
+                  <img
+                    src="../../resources/img/조건문예제1.PNG"
+                    alt="조건문설명1"
+                  />
+                </div>
+              </div>
+              <div class="ex">
+                예제 2
+                <div class="ex_img">
+                  <img
+                    src="../../resources/img/조건문예제2.PNG"
+                    alt="조건문설명2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 함수 -->
+          <div class="foryou_body" id="9.">
+            <div class="body_name">
+              <h2>
+                함수
+                <iconify-icon class="icon" icon="mdi:chevron-up"></iconify-icon>
+              </h2>
+            </div>
+            <div class="body_content">
+              <h3 class="body_content_name">Function()</h3>
+              <p class="body_content_inner">
+                새 Function 객체를 만듭니다. 이 생성자를 직접 호출하여 동적으로
+                함수를 생성할 수도 있으나, 보안 문제가 발생할 수 있습니다
+              </p>
+              <div class="ex">
+                예제 1
+                <div class="ex_img">
+                  <img
+                    src="../../resources/img/함수예제1.PNG"
+                    alt="함수설명1"
+                  />
+                </div>
+              </div>
+              <div class="ex">
+                예제 2
+                <div class="ex_img">
+                  <img
+                    src="../../resources/img/함수예제2.PNG"
+                    alt="함수설명2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 팁 -->
+          <div class="foryou_body" id="10.">
+            <div class="body_name">
+              <h2>
+                알아두면 좋은 팁
+                <iconify-icon class="icon" icon="mdi:chevron-up"></iconify-icon>
+              </h2>
+            </div>
+            <div class="body_content">
+              <div class="ex">
+                키워드
+                <div class="ex_img">
+                  <img src="../../resources/img/키워드.PNG" alt="키워드" />
+                </div>
+              </div>
+              <div class="ex">
+                내장함수
+                <div class="ex_img">
+                  <img src="../../resources/img/내장함수.PNG" alt="내장함수" />
+                </div>
+              </div>
+              <div class="ex">
+                이벤트 핸들러
+                <div class="ex_img">
+                  <img
+                    src="../../resources/img/이벤트핸들러.PNG"
+                    alt="이벤트핸들러"
+                  />
+                </div>
+              </div>
+              <div class="ex">
+                연산자
+                <div class="ex_img">
+                  <img src="../../resources/img/연산자.PNG" alt="연산자" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 주의점 -->
+          <div class="foryou_body" id="11.">
+            <div class="body_name">
+              <h2>
+                Javascript 사용시 주의사항
+                <iconify-icon class="icon" icon="mdi:chevron-up"></iconify-icon>
+              </h2>
+            </div>
+            <div class="body_content">
+              <div class="ex">
+                공통 주의점
+                <div class="ex_img">
+                  <img
+                    src="../../resources/img/주의사항1.PNG"
+                    alt="주의사항1"
+                  />
+                </div>
+              </div>
+              <div class="ex">
+                함수 주의점
+                <div class="ex_img">
+                  <img
+                    src="../../resources/img/주의사항2.PNG"
+                    alt="주의사항2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- main -->
+    <!-- footer 시작-->
+    <footer id="footer">
+      <div class="footer_wrap">
+        <div class="footer_bottom">
+          <div class="footer-top">
+            <div class="bottom_logo">
+              <img
+                src="../../resources/img/logo.png"
+                alt="사이트 로고"
+                class="logo"
+              />
+            </div>
+          </div>
+          <div class="bottom_address">
+            <address class="site_address">
+              주소: 대전광역시 중구 중앙로 121번길 20 (선화동 41) 2층<br />
+              <a href="mailto:"
+                ><i class="fa-regular fa-envelope"></i> &nbsp; 이메일
+                abcd@naver.com
+              </a>
+              <a href="tel:042-222-2402"
+                ><i class="fa-solid fa-phone"></i> &nbsp; 대표 전화
+                010-1234-5678</a
+              >
+            </address>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- footer 종료-->
+  </body>
+  <script src="../../resources/js/nav.js"></script>
+  <script src="../../resources/js/Javascript.js"></script>
+</html>

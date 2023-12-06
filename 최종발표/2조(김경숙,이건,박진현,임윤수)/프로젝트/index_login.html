@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>복습하자</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="resources/css/nav.css" />
+    <link rel="stylesheet" href="resources/css/index.css" />
+    <link rel="stylesheet" href="resources/css/index-main-copy.css" />
+    <link rel="icon" href="resources/img/사이트 파비콘.png" />
+  </head>
+  <body>
+    <!-- header -->
+    <header id="header">
+      <nav class="navigation">
+        <div class="nav_left">
+          <div class="site">
+            <a href="index_login.html" class="site_name">
+              <img
+                src="resources/img/logo.png"
+                alt="사이트로고"
+                class="site_logo"
+              />
+              <span>홈페이지</span>
+            </a>
+          </div>
+          <ul class="gnb">
+            <li class="gmain">
+              <a href="#">
+                <div class="item">당신을 위한</div>
+              </a>
+              <ul class="gsub">
+                <li><a href="html/당신을위한/html_login.html">HTML</a></li>
+                <li>
+                  <a href="html/당신을위한/css_for_you_login.html">CSS</a>
+                </li>
+                <li>
+                  <a href="html/당신을위한/Javascript_login.html">JavaScript</a>
+                </li>
+              </ul>
+            </li>
+            <li class="gmain">
+              <a href="#">
+                <div class="item">디자인</div>
+              </a>
+              <ul class="gsub">
+                <li><a href="html/디자인/design-color_login.html">Color</a></li>
+                <li><a href="html/디자인/design-font_login.html">Font</a></li>
+                <li><a href="html/디자인/design-icon_login.html">Icon </a></li>
+              </ul>
+            </li>
+            <li class="gmain">
+              <a href="html/유용한자료/real_login.html">
+                <div class="item">유용한자료</div>
+              </a>
+            </li>
+            <li class="gmain">
+              <a href="html/예제/example_login.html">
+                <div class="item">예제</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- 여기부터 -->
+        <div class="account">
+          <a href="html/멤버/myPageLogin.html" class="login"> 마이페이지 </a>
+          <span class="middot"> &middot; </span>
+          <input
+            type="button"
+            class="log-out"
+            id="log-out"
+            value="로그아웃"
+            onclick="logOut_btn()"
+          />
+        </div>
+        <!-- 여기 교체 -->
+        <div class="hamburger-button">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+    <!-- header -->
+    <!-- main -->
+    <main id="main">
+      <!-- 슬라이더 시작 -->
+      <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="resources/img/메인사진후보/메인사진후보 3.jpg"
+              class="d-block w-100"
+              alt="..."
+              height="500px"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="resources/img/메인사진후보/메인사진후보2.jpg"
+              class="d-block w-100"
+              alt="111"
+              height="500px"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="resources/img/메인사진후보/메인사진후보1.jpg"
+              class="d-block w-100"
+              alt="..."
+              height="500px"
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <!-- 슬라이더 종료 -->
+      <!-- 애니매이션 우리는 시작 -->
+      <!-- 모달 -->
+      <div class="modal" onclick="closeModal()">
+        <div class="modal_body">
+          <div class="modal_top">
+            <h2>로그아웃하시겠습니까?</h2>
+          </div>
+          <div class="modal_btn_body">
+            <input
+              type="button"
+              class="modal_btn"
+              value="예"
+              id="modalTrue"
+              onclick="log_out()"
+            />
+            <input
+              type="button"
+              class="modal_btn"
+              value="아니요"
+              id="modalFalse"
+              onclick="log_out_cancle()"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- 모달 종료 이 아래로 붙여넣을것 -->
+      <div class="lg-main-container-2">
+        <div class="lg-main-content-2">
+          <p>
+            <span class="spanTag">우</span>
+            <span class="spanTag">리</span>
+            <span class="spanTag">는</span>
+          </p>
+          <p>
+            <span class="spanTag">신</span>
+            <span class="spanTag">대</span>
+            <span class="spanTag">륙</span>
+            <span class="spanTag">을</span>
+            <span class="spanTag">&nbsp;</span>
+            <span class="spanTag">발</span>
+            <span class="spanTag">견</span>
+            <span class="spanTag">하</span>
+            <span class="spanTag">기</span>
+            <span class="spanTag">에</span>
+            <span class="spanTag">는</span>
+            <span class="spanTag">&nbsp;</span>
+            <span class="spanTag">너</span>
+            <span class="spanTag">무</span>
+            <span class="spanTag">&nbsp;</span>
+            <span class="spanTag">늦</span>
+            <span class="spanTag">게</span>
+            <span class="spanTag">&nbsp;</span>
+            <span class="spanTag">태</span>
+            <span class="spanTag">어</span>
+            <span class="spanTag">났</span>
+            <span class="spanTag">고,</span>
+          </p>
+          <p>
+            <span class="spanTag">우</span>
+            <span class="spanTag">주</span>
+            <span class="spanTag">선</span>
+            <span class="spanTag">을</span>
+            <span class="spanTag">&nbsp;</span>
+            <span class="spanTag">타</span>
+            <span class="spanTag">고</span>
+            <span class="spanTag">&nbsp;</span>
+            <span class="spanTag">우</span>
+            <span class="spanTag">주</span>
+            <span class="spanTag">를</span>
+            <span class="spanTag">&nbsp;</span>
+            <span class="spanTag">탐</span>
+            <span class="spanTag">험</span>
+            <span class="spanTag">하</span>
+            <span class="spanTag">기</span>
+            <span class="spanTag">에</span>
+            <span class="spanTag">는</span>
+            <span class="spanTag">&nbsp;</span>
+            <span class="spanTag">너</span>
+            <span class="spanTag">무</span>
+            <span class="spanTag">&nbsp;</span>
+            <span class="spanTag">일</span>
+            <span class="spanTag">찍</span>
+            <span class="spanTag">&nbsp;</span>
+            <span class="spanTag">태</span>
+            <span class="spanTag">어</span>
+            <span class="spanTag">났</span>
+            <span class="spanTag">다.</span>
+          </p>
+          <p>
+            <span class="spanTag">그</span>
+            <span class="spanTag">러</span>
+            <span class="spanTag">니</span>
+            <span class="spanTag">까</span>
+            <span class="spanTag">&nbsp;</span>
+            <span class="spanTag">그</span>
+            <span class="spanTag">냥</span>
+            <span class="spanTag">&nbsp;</span>
+            <span class="spanTag"><strong>복</strong></span>
+            <span class="spanTag"><strong>습</strong></span>
+            <span class="spanTag">이</span>
+            <span class="spanTag">나</span>
+            <span class="spanTag">하</span>
+            <span class="spanTag">자</span>
+          </p>
+        </div>
+      </div>
+      <!-- 애니매이션 우리는 끝 -->
+      <!-- html css js 설명 시작 -->
+      <div class="sub_content">
+        <div class="content1">
+          <img
+            src="resources/img/html-5.png"
+            alt="HTML5"
+            class="sub_content_img"
+          />
+          <div class="content_inn">
+            <h4 class="content_head">HTML5</h4>
+            <p class="content_intro">
+              WHATWG와 W3C가 발표하는 HTML의 최신 버전으로, 2014년 10월 28일
+              완전히 표준화되었다. XHTML에서 다시 HTML로 회귀하게 되었다. 따라서
+              HTML5는 XHTML의 상위 버전이 아니라, HTML4.01의 상위 버전이다.
+              완전히 XHTML 문법을 버린 것은 아니고 선택적으로 이용할 수 있게
+              되어있다.
+            </p>
+          </div>
+        </div>
+        <div class="content2">
+          <img
+            src="resources/img/css-3.png"
+            alt="CSS3"
+            class="sub_content_img"
+          />
+          <div class="content_inn">
+            <h4 class="content_head">CSS3</h4>
+            <p class="content_intro">
+              HTML 등의 마크업 언어로 작성된 문서가 실제로 웹사이트에 표현되는
+              방법을 정해주는 스타일 시트 언어. CSS의 C가 Cascading의 약자인데,
+              이는 상위 요소의 스타일 속성을 자손 요소들에게 상속시켜주는 모습이
+              DOM 트리구조에서 마치 폭포수처럼 내려가는 모습을 닮았기 때문이다.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="main_content">
+        <div class="main_content_inn">
+          <img
+            src="resources/img/CSS3.png"
+            alt="CSS3"
+            class="sub_content_img"
+          />
+          <div class="content_inn">
+            <h4 class="content_head">JavaScript</h4>
+            <p class="content_intro">
+              Ecma International의 프로토타입 기반의 프로그래밍 언어로, 스크립트
+              언어에 해당된다. 특수한 목적이 아닌 이상 모든 웹 브라우저에
+              인터프리터가 내장되어 있다. 오늘날 HTML, CSS와 함께 웹을 구성하는
+              요소 중 하나다. HTML이 웹 페이지의 기본 구조를 담당하고, CSS가
+              디자인을 담당한다면 JavaScript는 클라이언트 단에서 웹 페이지가
+              동작하는 것을 담당한다. 웹 페이지를 자동차에 비유하자면, HTML은
+              자동차의 뼈대, CSS는 자동차의 외관, JavaScript는 자동차의 동력원인
+              엔진이라고 볼 수 있다.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- html css js 설명 끝 -->
+      <!-- 이건 메인 내용 추가 부분 -->
+      <div class="lg-main-container">
+        <div class="lg-main-content">
+          <a href="html/공용/뻥이야.html">
+            <p class="lg-main-pTag">
+              전체 이용자 수 <br />
+              1,000만명 돌파<span class="lg-joke">(예정)</span>
+            </p>
+          </a>
+        </div>
+        <div class="lg-main-content">
+          <a href="">
+            <p class="lg-main-pTag">
+              <a href="html/예제/example.html">
+                너? <br />
+                재능있어<br />
+                이거보고 연습해
+              </a>
+            </p>
+          </a>
+        </div>
+        <div class="lg-main-content">
+          <a href="https://www.jobkorea.co.kr/recruit/joblist">
+            <p class="lg-main-pTag">
+              만약 내가 <br />
+              이미 마스터 햇다면?
+            </p>
+          </a>
+        </div>
+        <div class="lg-main-content">
+          <a href="">
+            <p class="lg-main-pTag">
+              <strong>공지사항</strong>
+            </p>
+          </a>
+        </div>
+      </div>
+      <!-- 메인추가부분 끝 -->
+    </main>
+    <!-- main -->
+    <!-- footer -->
+    <footer id="footer">
+      <div class="footer_wrap">
+        <div class="footer_bottom">
+          <div class="footer-top">
+            <div class="bottom_logo">
+              <img
+                src="resources/img/logo.png"
+                alt="사이트 로고"
+                class="logo"
+              />
+            </div>
+          </div>
+          <div class="bottom_address">
+            <address class="site_address">
+              주소: 대전광역시 중구 중앙로 121번길 20 (선화동 41) 2층<br />
+              <a href="mailto:"
+                ><i class="fa-regular fa-envelope"></i> &nbsp; 이메일
+                abcd@naver.com
+              </a>
+              <a href="tel:042-222-2402"
+                ><i class="fa-solid fa-phone"></i> &nbsp; 대표 전화
+                010-1234-5678</a
+              >
+            </address>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- footer -->
+  </body>
+  <script src="resources/js/nav.js"></script>
+  <script src="resources/js/index-main-copy.js"></script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    var grade = prompt("점수 입력", "입력칸");
+    grade = parseInt(grade);
+    switch (parseInt(grade / 10)) {
+      case 10:
+      case 9:
+        document.write("A");
+        break;
+      case 8:
+        document.write("B");
+        break;
+      case 7:
+        document.write("C");
+        break;
+      case 6:
+        document.write("D");
+        break;
+      default:
+        document.write("F");
+        break;
+    }
+  </script>
+</html>

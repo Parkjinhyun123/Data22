@@ -1,0 +1,121 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+img{
+    width: 100%;
+    max-width: 100%;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: rgb(207, 247, 233);
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.profile{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    box-shadow: 0 1px 2px black;
+    background-color: aliceblue;
+    overflow: hidden;
+    gap: 1rem;
+    object-fit: cover;
+    flex-basis: 100%;
+    flex-grow: 1;
+    max-width: 300px;
+    transition: all 0.5s ease;
+}
+
+.profile:hover{
+    transform: scale(1.2);
+}
+
+.image{
+    object-fit: cover;
+    width: 98px;
+    height: 98px;
+    padding: 0.5rem;
+}
+
+.image img{
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+}
+
+.job{
+    display: flex;
+    background-color: yellowgreen;
+    border: 2px solid green;
+    border-radius: 3rem;
+    padding: 0.3rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons{
+    border-top: 1px solid rgb(123, 130, 136);
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-color: aliceblue;
+    width: 100%;
+    text-align: center;
+}
+
+.btn{
+    text-decoration: none;
+    color: black;
+    padding: 1rem;
+    letter-spacing: -0.1px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+
+.btn:first-child {
+    border-right: 1px solid rgb(123, 130, 136)
+}
+
+.btn:active{
+    box-shadow: none;
+    background-color: rgb(191, 198, 204);
+}
+
+@media (min-width:640px){
+    .profile{
+        flex-basis: calc(100%/2);
+    }
+}
+
+@media (min-width:1024px){
+    .profile{
+        flex-basis: calc(100%/3);
+    }
+}
+
+@media (min-width:1200px) and (max-width:1440px){
+    .profile{
+        flex-basis: calc(100%/4);
+    }
+}
+
+@media (min-width:930px){
+    .container{
+        justify-content: space-between;
+    }
+}

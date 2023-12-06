@@ -1,0 +1,26 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.background{
+    background-image: url('https://dimg.donga.com/wps/NEWS/IMAGE/2022/08/12/114928754.2.jpg');
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    border:1px solid black;
+    background-position: top center;
+    /* background-size: 120% 50%; */
+    background-size: cover;
+    /* 좌우, 상하 */
+}
+ /* ' 는 주소 앞뒤에 넣기 */
+
+
+
+
+img{
+    width: 100%;
+    max-width: 100%;
+}

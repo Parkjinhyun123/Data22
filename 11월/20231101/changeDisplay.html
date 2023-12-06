@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>클릭하면사라집니다1</h2>
+    <h2>클릭하면사라집니다2</h2>
+    <h2>클릭하면사라집니다3</h2>
+    <h2>클릭하면사라집니다4</h2>
+    <h2>클릭하면사라집니다5</h2>
+    <h2>클릭하면사라집니다6</h2>
+    <h2>클릭하면사라집니다7</h2>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.6.4.js"
+    integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    // 순수 자바스크립트
+    // const h2 = document.getElementsByTagName("h2");
+    // for (let i = 0; i < h2.length; i++) {
+    //   h2[i].addEventListener("click", function () {
+    //     h2[i].style.display = "none";
+    //   });
+    //   //   addEventListener("click", function (e) {
+    //   //     e.target.style.display = "none";
+    //   //   });
+    // }
+
+    // jQuery
+    $("h2").on("click", function () {
+      $(this).css("display", "none");
+    });
+  </script>
+</html>

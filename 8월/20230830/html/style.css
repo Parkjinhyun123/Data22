@@ -1,0 +1,14 @@
+          #red{
+             color: rgb(255,0,0);
+             font-size: 25px;
+             background-color: rgb(208, 255, 0); width: 50px;
+             text-align: center;
+                          }
+
+           #blue{
+              font-size: 18px;
+              font-weight: 100;
+              color: rgb(0, 0, 255);
+                 }
+
+           

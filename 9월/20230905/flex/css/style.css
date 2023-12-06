@@ -1,0 +1,92 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.flex{
+    display: flex;
+    background-color: cyan;
+    width: 100%;
+    max-width: 600px;
+    /* margin-left: auto;
+    margin-right: auto; */
+    /* 양쪽으로 균등한 여백을 만들어 중앙으로 정렬 */
+    margin:0 auto;
+    /* 중앙 정렬 축약형 */
+    height: 300px;
+    justify-content: center;
+    /* 자식요소들을 균등하게 배치할때 자주 사용 */
+    /* flex-direction: row-reverse; */
+    align-items: center;
+}
+
+.flex div{
+    flex-basis: calc(100%/5);
+}
+
+.container{
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    margin: 0 auto;
+    height: 400px;
+    background-color: turquoise;
+    flex-wrap: wrap;
+    /* align-content: space-between; */
+    /* align-content: 여러줄일때만 작동 */
+}
+
+.container > div{
+    flex-basis: calc(100%/5);
+    flex-grow: 0;
+    flex-shrink: 1;
+}
+
+.container > div:first-child{
+    flex-basis: 40%;
+}
+
+.container > div:nth-child(n+4){
+    color: white;
+}/* 4번째부터 글자 하얀색 */
+
+.flex > div:nth-child(1),
+.container > div:nth-child(1){
+    background-color: rgb(0, 255, 221);
+}
+
+.flex > div:nth-child(2),
+.container > div:nth-child(2){
+    background-color: rgb(0, 217, 255);
+}
+
+.flex > div:nth-child(3),
+.container > div:nth-child(3){
+    background-color: rgb(0, 195, 255);
+}
+.flex > div:nth-child(4),
+.container > div:nth-child(4){
+    background-color: rgb(0, 153, 255);
+}
+.flex > div:nth-child(5),
+.container > div:nth-child(5){
+    background-color: rgb(0, 119, 255);
+}
+.flex > div:nth-child(6),
+.container > div:nth-child(6){
+    background-color: rgb(0, 81, 255);
+}
+.flex > div:nth-child(7),
+.container > div:nth-child(7){
+    background-color: rgb(47, 0, 255);
+    flex-basis: 60%;
+}
+.flex > div:nth-child(8),
+.container > div:nth-child(8){
+    background-color: rgb(98, 0, 255);
+}
+.flex > div:nth-child(9),
+.container > div:nth-child(9){
+    background-color: rgb(153, 0, 255);
+}

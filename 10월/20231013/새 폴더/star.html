@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    for (let i = 0; i < 11; i++) {
+      for (let j = 10; j > i; j--) {
+        document.write("&nbsp;");
+      }
+      for (let k = 0; k <= i; k++) {
+        document.write("*");
+      }
+      for (let l = 1; l <= i; l++) {
+        document.write("*");
+      }
+      document.write("<br>");
+    }
+
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j <= i; j++) {
+        document.write("&nbsp;");
+      }
+      for (let k = 10; k > i; k--) {
+        document.write("*");
+      }
+      for (let l = 9; l > i; l--) {
+        document.write("*");
+      }
+      document.write("<br>");
+    }
+
+    document.write("<hr>");
+    for (let i = 0; i < 6; i++) {
+      for (let j = 5; j > i; j--) {
+        document.write("&nbsp;");
+      }
+      for (let k = 0; k <= i * 2; k++) {
+        document.write("*");
+      }
+      document.write("<br>");
+    }
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j <= i; j++) {
+        document.write("&nbsp;");
+      }
+      for (let k = 8; k >= i * 2; k--) {
+        // 876543210
+        document.write("*");
+      }
+      document.write("<br>");
+    }
+    document.write("<hr>");
+    //repeat 함수 사용
+    //문자열.repeat(반복횟수);
+    // document.write("*".repeat(5));
+    for (let i = 1; i <= 5; i++) {
+      document.write("&nbsp;".repeat(5 - i) + "*".repeat(2 * i - 1) + "<br>");
+    }
+    for (let j = 4; j >= 1; j--) {
+      document.write("&nbsp;".repeat(5 - j) + "*".repeat(j * 2 - 1) + "<br>");
+    }
+  </script>
+</html>

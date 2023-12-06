@@ -1,0 +1,142 @@
+/* LG css 시작 */
+/* 유용한자료 css */
+.lg-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.lg-title {
+  padding: 16px;
+  margin-top: 16px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.lg-content {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.lg-maintext {
+  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.lg-text {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 250px;
+  border: 2px solid #f2c301;
+  border-radius: 16px;
+  color: #212212;
+  font-weight: bold;
+  padding-left: 16px;
+  gap: 10px;
+}
+
+.lg-text:hover a {
+  color: #212212;
+  border: 1px solid #4b4b4b;
+}
+.lg-clickimg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  font-weight: bold;
+}
+
+p {
+  font-weight: 500;
+}
+
+.lg-box {
+  padding: 10px;
+  margin: 10px;
+  color: #212212;
+}
+
+.lg-box h4,
+h3 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.lg-text img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.lg-text:hover {
+  background-color: #f2c301;
+}
+/* 단축키 css  */
+.lg-shortcut-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.lg-short-container {
+  width: 80%;
+  padding: 16px;
+  margin-left: 32px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border: 4px solid #f2c301;
+  border-radius: 16px;
+}
+
+.lg-shortcut {
+  padding: 16px;
+  border-bottom: 2px solid #4b4b4b;
+}
+.lg-shortcut:last-child {
+  border-bottom: none;
+}
+
+.lg-h2-shortcut {
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.lg-imgbox {
+  display: none;
+  width: 100%;
+  height: 50%;
+  background-color: #4b4b4b;
+}
+
+.lg-bigimg {
+  width: 80%;
+  height: 80%;
+}
+
+.lg-clickimg h5 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.lg-modal {
+  display: flex;
+  justify-content: center;
+}
+
+/* 단축키 종료 */
+/* 메인 종료 */
+
+@media screen and (max-width: 1024px) {
+  .lg-maintext {
+    grid-template-columns: none;
+    width: 100%;
+  }
+}

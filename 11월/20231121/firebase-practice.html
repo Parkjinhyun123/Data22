@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>firebase-pracitce</title>
+  </head>
+  <body>
+    <p>
+      <label>이름 : </label>
+      <input type="text" name="name" />
+    </p>
+    <p>
+      <label>나이 : </label>
+      <input type="text" name="age" />
+    </p>
+    <p>
+      <label>아이디 : </label>
+      <input type="text" name="id" />
+    </p>
+    <p>
+      <label>전화번호 : </label>
+      <input type="text" name="tel" />
+    </p>
+    <p>
+      <label>성별 : </label>
+      <input type="text" name="gender" />
+    </p>
+    <p>
+      <button onclick="saveData()">데이터저장</button>
+    </p>
+  </body>
+  <script>
+    import * as firebase from "../resources/js/firebase.js";
+    const { db, getDocs, collection, getDatas } = firebase;
+    function saveData() {
+      const memberInfo = {
+        memberName: document.querySelector("input[name=name]").value,
+        memberAge: document.querySelector("input[name=age]").value,
+        memberGender: document.querySelector("input[name=gender]").value,
+        memberTel: document.querySelector("input[name=tel]").value,
+        memberId: document.querySelector("input[name=id]").value,
+      };
+      console.log(memberInfo);
+    }
+  </script>
+</html>

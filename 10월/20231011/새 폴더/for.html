@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // let i = 0;
+    // for (i = 0; i < 10; i++) {
+    //   document.write(i + "<br>");
+    // }
+    // document.write("<hr>");
+
+    // let sum = 0;
+    // for (let i = 1; i <= 5; i++) {
+    //   sum += i;
+    //   for (let j = 1; j <= i; j++) {
+    //     if (j != i) {
+    //       document.write(j + "+");
+    //     } else {
+    //       document.write(j);
+    //     }
+    //   }
+    //   document.write("=" + sum + "<br>");
+    // }
+
+    let sum = 0;
+    let str = "";
+    for (let i = 1; i <= 5; i++) {
+      sum += 1;
+      if (i == 1) {
+        str += i;
+      } else {
+        str += "+" + i;
+      }
+      document.write(str + "=" + sum + "<br>");
+    }
+  </script>
+</html>

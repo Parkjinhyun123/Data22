@@ -1,0 +1,47 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.list{
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.list-item{
+    padding: 1rem;
+    box-shadow: 0 0 0 3px rgb(200, 200 ,200);
+    border-radius: 8px;
+    cursor: pointer;
+    height: auto;
+}
+
+
+.list-item.selected{
+    box-shadow: 0 0 0 3px rgb(255, 0 , 0);
+}
+
+.list-item .content{
+    display: none; 
+    transition: all 1s;
+}
+
+.list-item.selected .content{
+    display: block;
+}
+
+.list-item .title{
+    display: flex;
+    align-items: center;
+}
+
+.list-item .icon{
+    transform: rotate(180deg);
+}
+
+.list-item.selected .icon{
+    transform: rotate(360deg);
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // 4. reduce()함수
+    // 해당 배열의 모든 요소를 하나의 값으로 줄이기 위해, 두개의 인수를 전달받는 콜백함수를 실행한다.
+    // 이때 명시된 콜백함수에 배열의 첫번째 요소와 두번째 요소를 인수로 전달하고 실행한다.
+    // 그 결과 반환된 결과값에 세번째 요소를 다시 인수로 전달하고 실행한다.
+    document.write("<h2>reduce()</h2>");
+    let arr = [1, 2, 3, 4, 5];
+    function sumOfArr(x, y) {
+      return x - y;
+    }
+    let result = arr.reduce(sumOfArr);
+    document.write(`원본배열 : ${arr}<br>`);
+    document.write(`reduce 결과 : ${result}`);
+    document.write("<hr>");
+    // accumalator : 콜백함수의 반환 값을 누적
+    //  initialValue : 최초 콜백함수 실행시 accumalator 할당되는 값,
+    // 초기값을 제공하지 않는 경우 배열의 첫번째 요소 사용
+    let result2 = arr.reduce(function (
+      accumalator,
+      currentValue
+      //   index,
+      //   array
+    ) {
+      return accumalator - currentValue;
+    }, 5);
+    document.write(`원본배열 : ${arr}<br>`);
+    document.write(`initialValue 사용 결과 : ${result2}`);
+    // 5 - 1 - 2 - 3 - 4 - 5 = -10
+    document.write("<hr>");
+    // 5. reduceRight() 함수
+    // reduce와 같은 방식으로 실행되며, 배열의 마지막 요소부터 줄이기 시작한다.
+    document.write("<h2>reduceRight()</h2>");
+    let result3 = arr.reduceRight(sumOfArr);
+    document.write(`원본배열 : ${arr}<br>`);
+    document.write(`reduceRight 사용 결과 : ${result3}`);
+    // 5 - 4 - 3 - 2 - 1
+    // every() some()
+  </script>
+</html>

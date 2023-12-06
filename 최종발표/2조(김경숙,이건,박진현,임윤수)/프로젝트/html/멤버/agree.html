@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>약관동의</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../resources/css/nav.css" />
+    <link rel="stylesheet" href="../../resources/css/agree.css" />
+    <link rel="icon" href="../../resources/img/사이트 파비콘.png" />
+    <!-- 제작할 페이지의 CSS 링크 -->
+  </head>
+  <body>
+    <!-- header -->
+    <header id="header">
+      <nav class="navigation">
+        <div class="nav_left">
+          <div class="site">
+            <a href="../../index.html" class="site_name">
+              <img
+                src="../../resources/img/logo.png"
+                alt="사이트로고"
+                class="site_logo"
+              />
+              <!-- 로고 결정시 아래 div 제거후 사용 -->
+              <span>복습하자</span>
+            </a>
+          </div>
+          <ul class="gnb">
+            <li class="gmain">
+              <a href="#">
+                <div class="item">당신을 위한</div>
+              </a>
+              <ul class="gsub">
+                <li><a href="../당신을위한/html.html">HTML</a></li>
+                <li><a href="../당신을위한/css_for_you.html">CSS</a></li>
+                <li><a href="../당신을위한/Javascript.html">JavaScript</a></li>
+              </ul>
+            </li>
+            <li class="gmain">
+              <a href="#">
+                <div class="item">디자인</div>
+              </a>
+              <ul class="gsub">
+                <li><a href="../디자인/design-color.html">Color</a></li>
+                <li><a href="../디자인/design-font.html">Font</a></li>
+                <li><a href="../디자인/design-icon.html">Icon </a></li>
+              </ul>
+            </li>
+            <li class="gmain">
+              <a href="../유용한자료/real.html">
+                <div class="item">유용한자료</div>
+              </a>
+            </li>
+            <li class="gmain">
+              <a href="../예제/example.html">
+                <div class="item">예제</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="account">
+          <a href="login.html" class="login"> 로그인 </a>
+          <span class="middot"> &middot; </span>
+          <a href="agree.html" class="sign_in"> 회원가입 </a>
+        </div>
+        <div class="hamburger-button">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+    <!-- header -->
+    <!-- main -->
+    <main id="main">
+      <img
+        src="../../resources/img/마이페이지.jpg"
+        alt="회원가입이미지"
+        style="width: 100%; height: 500px"
+      />
+      <div class="agree-wrap">
+        <div class="agree">
+          <div class="agree-inn">
+            <textarea
+              name="약관1"
+              id="agree-item1"
+              cols="100"
+              rows="10"
+              readonly,
+              style="
+                overflow-y: scroll;
+                width: 80%;
+                resize: none;
+                padding: 16px;
+              "
+              resize
+            >
+  Lorem, ipsum.
+  
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quae praesentium neque voluptate accusamus dicta molestias nulla deserunt delectus cum quos, magni totam aspernatur tempora numquam atque, quam libero cumque?
+  
+  Lorem, ipsum.
+  
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quae praesentium neque voluptate accusamus dicta molestias nulla deserunt delectus cum quos, magni totam aspernatur tempora numquam atque, quam libero cumque?
+  
+  Lorem, ipsum.
+  
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quae praesentium neque voluptate accusamus dicta molestias nulla deserunt delectus cum quos, magni totam aspernatur tempora numquam atque, quam libero cumque?</textarea
+            >
+            <div class="agree-box">
+              <label for="agreeA"
+                ><input type="checkbox" name="agree" id="agreeA" />
+                회원가입약관에 동의합니다.</label
+              >
+            </div>
+          </div>
+          <br />
+          <br />
+          <div class="agree-inn">
+            <textarea
+              name="약관2"
+              id="agree-item2"
+              cols="100"
+              rows="10"
+              readonly,
+              style="
+                overflow-y: scroll;
+                width: 80%;
+                resize: none;
+                padding: 16px;
+              "
+              resize
+            >
+  Lorem, ipsum.
+  
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quae praesentium neque voluptate accusamus dicta molestias nulla deserunt delectus cum quos, magni totam aspernatur tempora numquam atque, quam libero cumque?
+  
+  Lorem, ipsum.
+  
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quae praesentium neque voluptate accusamus dicta molestias nulla deserunt delectus cum quos, magni totam aspernatur tempora numquam atque, quam libero cumque?
+  
+  Lorem, ipsum.
+  
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quae praesentium neque voluptate accusamus dicta molestias nulla deserunt delectus cum quos, magni totam aspernatur tempora numquam atque, quam libero cumque?</textarea
+            >
+            <div class="agree-box">
+              <label for="agreeB"
+                ><input type="checkbox" name="agree" id="agreeB" /> 개인정보
+                취급방침에 동의 합니다.</label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-area">
+        <input
+          type="submit"
+          class="agree-btn"
+          value="약관동의"
+          onclick="agreeChecked()"
+        />
+        <a href="index.html"><button class="main-btn">메인으로</button></a>
+      </div>
+    </main>
+    <!-- main -->
+    <!-- footer -->
+    <footer id="footer">
+      <div class="footer_wrap">
+        <div class="footer_bottom">
+          <div class="footer-top">
+            <div class="bottom_logo">
+              <img
+                src="../../resources/img/logo.png"
+                alt="사이트로고"
+                class="logo"
+              />
+            </div>
+          </div>
+          <div class="bottom_address">
+            <address class="site_address">
+              주소: 대전광역시 중구 중앙로 121번길 20 (선화동 41) 2층<br />
+              <a href="mailto:"
+                ><i class="fa-regular fa-envelope"></i> &nbsp; 이메일
+                abcd@naver.com
+              </a>
+              <a href="tel:042-222-2402"
+                ><i class="fa-solid fa-phone"></i> &nbsp; 대표 전화
+                010-1234-5678</a
+              >
+            </address>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- footer -->
+  </body>
+  <script src="../../resources/js/nav.js"></script>
+  <script src="../../resources/js/agree.js"></script>
+  <!-- 제작할 페이지의 스크립트 -->
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>class Method</title>
+  </head>
+  <style>
+    .wrapper * {
+      display: block;
+      border: 2px solid lightgray;
+      color: lightgray;
+      padding: 5px;
+      margin: 15px;
+    }
+    .wrapper {
+      width: 500px;
+    }
+    .big {
+      font-size: 200%;
+      color: blue;
+      font-weight: bold;
+    }
+    .back {
+      background-color: yellow;
+    }
+  </style>
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <body>
+    <div class="wrapper">
+      <ul>
+        ul
+        <li class="start">li class="start"</li>
+        <li class="my">li class="my"</li>
+        <li>li</li>
+        <li class="my">li class="my"</li>
+        <li class="stop">li class="stop"</li>
+        <li>li</li>
+        <li>li</li>
+        <li>li</li>
+      </ul>
+    </div>
+    <button id="addClassBtn">클래스추가버튼</button>
+    <button id="hasClassBtn">클래스확인버튼</button>
+    <button id="removeClassBtn">클래스삭제버튼</button>
+    <button id="toggleClassBtn">클래스토글버튼</button>
+  </body>
+  <script>
+    $("button").on("click", function () {
+      const btnId = $(this).prop("id");
+      if (btnId.search("add") == 0) {
+        // 클래스추가버튼 눌렀을 때
+        $("li:last").addClass("big back");
+      } else if (btnId.search("has") == 0) {
+        alert($("li:last").hasClass("big"));
+        // 클래스확인버튼 눌렀을 때
+      } else if (btnId.search("remove") == 0) {
+        // 클래스삭제버튼 눌렀을 때
+        $("li:last").removeClass("big back");
+      } else {
+        // 클래스토글버튼 눌렀을 때
+        $("li:last").toggleClass("big back");
+      }
+    });
+  </script>
+</html>

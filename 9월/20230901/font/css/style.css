@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Diphylleia&display=swap');
+
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DOSPilgiMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/DOSPilgiMedium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.title{
+    font-family: 'Diphylleia', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    /* text-decoration: underline;
+    text-decoration: dashed;
+    text-decoration: line-through;
+    text-decoration: wavy; 글자의 꾸밈 */
+    /* letter-spacing: 10px; 자간 조절 */
+    /* line-height: 100%; 행간 조절 */
+    /* white-space: nowrap; 줄바꿈없이 나열 */
+}
+
+.sweet{
+    font-family: 'SUITE-Regular';
+    text-decoration: wavy;
+    letter-spacing: -10px;
+}
+
+.dos{
+    font-family: 'DOSPilgiMedium';
+    font-weight: 900;
+}

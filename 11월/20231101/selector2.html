@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>이 문단에는 <span> 스팬</span> 엘리먼트가 있다</p>
+    <div>
+      이 디비전에도 <span>스팬</span> 엘리먼트가 있다
+      <p>디비젼의 내부 문단의 <span>스팬</span>엘리먼트이다</p>
+      <div>
+        <p>
+          내부 디비젼의 다시 문단 속 아주
+          <strong>깊은곳에</strong>
+          <em>숨어있는</em>
+          <span>스팬</span> 엘리먼트도 있다
+        </p>
+      </div>
+    </div>
+  </body>
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <script>
+    $("span").css("backgroundColor", "yellow");
+    $("div span").css("border", "3px solid red");
+    $("div > span").css("border", "3px solid blue");
+  </script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // 주어진 문자열의 홀수번째 문자는 대문자로, 짝수번째 문자는 소문자로 변경
+    // "try hello world"
+    const str = "try hello world";
+    // function solution(s) {
+    //   let answer = "";
+    //   let words = s.split(" ");
+
+    //   for (let i = 0; i < words.length; i++) {
+    //     for (let j = 0; j < words[i].length; j++) {
+    //       if (j % 2 === 0) {
+    //         answer += words[i][j].toUpperCase();
+    //       } else {
+    //         answer += words[i][j].toLowerCase();
+    //       }
+    //     }
+    //     if (i < words.length - 1) {
+    //       answer += " ";
+    //     }
+    //   }
+    //   return answer;
+    // }
+
+    function toUpperLowerCase(string) {
+      console.log(string);
+      let result = "";
+      for (let i = 0; i < string.length; i++) {
+        string.charAt(i);
+        if (i % 2 == 0) {
+          // result += string[i].toUpperCase();
+          result += string.charAt(i).toUpperCase();
+        } else {
+          // result += string[i].toLowerCase();
+          result += string.charAt(i).toLowerCase();
+        }
+        // result += i % 2 == 0 ? string[i].toUpperCase : string[i].toLowerCase;
+      }
+      return result;
+    }
+    // toUpperLowerCase();
+    document.write(`1번 문제 : ${toUpperLowerCase(str)}`);
+    document.write("<hr>");
+    // 문자열의 길이가 4 혹은 6 이고, 숫자로만 구성돼있는지 확인해주는 함수
+    // "a234" => false / "1234" => true
+
+    let str2 = "a12345";
+    let str3 = "1234";
+    // function checkStr(t) {
+    //   return t.length === 4 || t.length === 6
+    //     ? t == parseInt(t)
+    //       ? true
+    //       : false
+    //     : false;
+    // }
+
+    function checkStr(s) {
+      // if (s.length === 4 || s.length === 6) {
+      //   if (s.replace(/[0-9]/g, "").length == 0) {
+      //     return true;
+      //   } else {
+      //     return false;
+      //   }
+      // } else {
+      //   return false;
+      // }
+      return (
+        (s.length === 4 || s.length === 6) &&
+        s.replace(/[0-9]/g, "").length == 0
+      );
+    }
+    document.write(`2번 문제 : ${checkStr(str2)}<br>`);
+    document.write(`2번 문제 : ${checkStr(str3)}`);
+  </script>
+</html>

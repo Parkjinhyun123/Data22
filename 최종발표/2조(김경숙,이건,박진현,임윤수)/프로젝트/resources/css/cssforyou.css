@@ -1,0 +1,138 @@
+.foryou-lg-container {
+  /* display: flex; */
+  width: 60%;
+  margin: 0 auto;
+  border-radius: 16px;
+  margin-top: 100px;
+}
+/* 여기서부터 복사 */
+.head_list h3 {
+  margin-bottom: 20px;
+}
+
+.head_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.head_list {
+  width: 25%;
+  gap: 8px;
+  border: 1px solid #f2c301;
+  border-radius: 8px;
+  margin-left: 10%;
+  /* padding: 16px; */
+}
+
+.head_intro {
+  width: 40%;
+}
+
+.list_name_wrapper {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.intro_tb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #f2c301;
+  border-radius: 8px;
+}
+
+.intro_img_wrapper {
+  height: 200px;
+}
+
+table tr:first-child {
+  background-color: #f2c301;
+  border-radius: 6px 6px 0 0;
+  color: #4b4b4b;
+}
+
+.tb_img {
+  width: 100%;
+  background-color: #4b4b4b;
+  /* position: relative; */
+}
+
+.tb_img img {
+  width: 80%;
+  height: 100%;
+  /* position: absolute; */
+  top: 0;
+  right: 10%;
+}
+
+table tr {
+  width: max-content;
+}
+
+table tr:nth-child(3) td:first-child,
+table tr:nth-child(4) td:first-child,
+table tr:nth-child(5) td:first-child {
+  background-color: #f2c301;
+  color: #4b4b4b;
+  width: 30%;
+}
+
+table tr:last-child td:first-child {
+  border-radius: 0 0 0 6px;
+}
+
+table th,
+table td {
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 8px;
+}
+/* 여기까지 복사 */
+.foryou-lg-sidebar {
+  display: block;
+}
+.foryou-lg-content {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  flex-direction: column;
+  padding: 16px;
+}
+.foryou-lg-content-item {
+  border: 2px solid #f2c301;
+  border-radius: 8px;
+  width: 100%;
+  padding: 32px;
+  cursor: pointer;
+}
+.foryou-lg-content-item h2 {
+  color: #fff;
+}
+.foryou-lg-content-item > p {
+  padding: 0;
+  color: #fff;
+}
+.foryou-lg-content-item img {
+  width: 100%;
+}
+.for-box-you {
+  display: none;
+}
+.for-modal {
+  display: block;
+}
+
+@media screen and (max-width: 1024px) {
+  .head_continer {
+    justify-content: space-between;
+  }
+
+  .head_list {
+    width: 40%;
+    margin-left: 0;
+  }
+
+  .intro_tb {
+    margin-right: 30%;
+  }
+}

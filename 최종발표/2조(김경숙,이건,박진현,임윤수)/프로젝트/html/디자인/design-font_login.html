@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design | font</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../resources/css/nav.css" />
+    <link rel="stylesheet" href="../../resources/css/design.css" />
+    <link rel="icon" href="../../resources/img/사이트 파비콘.png" />
+    <!-- 제작할 페이지의 CSS 링크 -->
+  </head>
+  <body>
+    <!-- header -->
+    <header id="header">
+      <nav class="navigation">
+        <div class="nav_left">
+          <div class="site">
+            <a href="../../index.html" class="site_name">
+              <img
+                src="../../resources/img/logo.png"
+                alt="사이트로고"
+                class="site_logo"
+              />
+              <!-- 로고 결정시 아래 div 제거후 사용 -->
+              <span>복습하자</span>
+            </a>
+          </div>
+          <ul class="gnb">
+            <li class="gmain">
+              <a href="#">
+                <div class="item">당신을 위한</div>
+              </a>
+              <ul class="gsub">
+                <li><a href="../당신을위한/html_login.html">HTML</a></li>
+                <li><a href="../당신을위한/css_for_you_login.html">CSS</a></li>
+                <li>
+                  <a href="../당신을위한/Javascript_login.html">JavaScript</a>
+                </li>
+              </ul>
+            </li>
+            <li class="gmain">
+              <a href="#">
+                <div class="item">디자인</div>
+              </a>
+              <ul class="gsub">
+                <li><a href="design-color_login.html">Color</a></li>
+                <li><a href="design-font_login.html">Font</a></li>
+                <li><a href="design-icon_login.html">Icon </a></li>
+              </ul>
+            </li>
+            <li class="gmain">
+              <a href="../유용한자료/real_login.html">
+                <div class="item">유용한자료</div>
+              </a>
+            </li>
+            <li class="gmain">
+              <a href="../예제/example_login.html">
+                <div class="item">예제</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="account">
+          <a href="../멤버/myPageLogin.html" class="login"> 마이페이지 </a>
+          <span class="middot"> &middot; </span>
+          <input
+            type="button"
+            class="log-out"
+            id="log-out"
+            value="로그아웃"
+            onclick="logOut_btn()"
+          />
+        </div>
+        <div class="hamburger-button">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+    <!-- header -->
+
+    <!-- main -->
+    <main id="main">
+      <img
+        src="../../resources/img/상단배경.jpg"
+        style="filter: invert(90)"
+        height="500px"
+        alt=""
+      />
+      <!-- 모달시작 -->
+      <div class="modal">
+        <div class="modal_body">
+          <div class="modal_top">
+            <h2>로그아웃하시겠습니까?</h2>
+          </div>
+          <div class="modal_btn_body">
+            <input
+              type="button"
+              class="modal_btn"
+              value="예"
+              id="modalTrue"
+              onclick="log_out()"
+            />
+            <input
+              type="button"
+              class="modal_btn"
+              value="아니요"
+              id="modalFalse"
+              onclick="log_out_cancle()"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- 모달종료 -->
+
+      <div id="DContainer">
+        <!-- 사이드바 -->
+        <div class="sidecontainer">
+          <div class="sideLeftBar">
+            <h2>
+              <img src="../../resources/image-design/icon_genre.svg" alt="" />
+              디자인
+            </h2>
+            <hr />
+            <div class="sideMain">
+              <span class="sideMainSpan">
+                <li class="dItem">
+                  <a href="design-color_login.html"> Color </a>
+                </li>
+                <ol class="subDMain">
+                  <li class="subDCFIMain">
+                    <div class="SSMain"><a href="#1">색의 3속성</a></div>
+                    <ul class="subDCFList">
+                      <li>색상</li>
+                      <li>명도</li>
+                      <li>채도</li>
+                    </ul>
+                  </li>
+                  <li class="subDCFIMain">
+                    <div class="SSMain"><a href="#2">색의 기본모드</a></div>
+                    <ul class="subDCFList">
+                      <li>RGB 모드</li>
+                      <li>CMYK 모드</li>
+                      <li>Lad 모드</li>
+                      <li>GrayScale 모드</li>
+                    </ul>
+                  </li>
+                  <li class="subDCFIMain">
+                    <div class="SSMain">
+                      <a href="#3">색상 선택시 주의점</a>
+                    </div>
+                    <ul class="subDCFList">
+                      <li>컬러조합</li>
+                      <li>유사대비</li>
+                      <li>보색대비</li>
+                      <li>명도대비</li>
+                      <li>특정주제색상</li>
+                      <li>색상계획</li>
+                      <li>색의 의미 및 상징</li>
+                    </ul>
+                  </li>
+                  <li class="subDCFIMain">
+                    <div class="SSMain"><a href="#4">색의 의미와 상징</a></div>
+                  </li>
+                </ol></span
+              >
+            </div>
+            <div class="sideMain selected">
+              <span class="sideMainSpan">
+                <li class="dItem">
+                  <a href="design-font_login.html"> Font </a>
+                </li>
+                <ol class="subDMain">
+                  <li class="subDCFIMain">
+                    <div class="SSMain">
+                      <a href="#5">영문 서체의 기본 분류</a>
+                    </div>
+                    <ul class="subDCFList select">
+                      <li>세리프</li>
+                      <li>산세리프</li>
+                      <li>블랙레터</li>
+                      <li>스크립트</li>
+                    </ul>
+                  </li>
+                  <li class="subDCFIMain">
+                    <div class="SSMain">
+                      <a href="#6">한글 서체의 기본 분류</a>
+                    </div>
+                    <ul class="subDCFList">
+                      <li>명조체</li>
+                      <li>궁서체</li>
+                      <li>바탕체</li>
+                      <li>돋움체</li>
+                      <li>굴림체</li>
+                    </ul>
+                  </li>
+                  <li class="subDCFIMain">
+                    <div class="SSMain"><a href="#7">가독성</a></div>
+                  </li>
+                </ol></span
+              >
+            </div>
+            <div class="sideMain">
+              <span class="sideMainSpan">
+                <li class="dItem">
+                  <a href="design-icon_login.html"> ICON </a>
+                </li>
+                <ol class="subDMain">
+                  <li class="subDCFIMain">
+                    <div class="SSMain"><a href="#8">픽토그램</a></div>
+                  </li>
+                  <li class="subDCFIMain">
+                    <div class="SSMain"><a href="#9">이모티콘</a></div>
+                    <ul class="subDCFList">
+                      <li>카오모지</li>
+                      <li>이모지</li>
+                    </ul>
+                  </li>
+                </ol></span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- 사이드바 종료 -->
+
+        <div class="DBoxContainer">
+          <div class="designBox">
+            <h1><strong>Font</strong></h1>
+            <p>
+              서체는 모양과 굵기에 따라 수업싱 많은 종류들로 넘쳐난다. 디자인을
+              하면서 서체를 선택하는 순간마다 선택의 고민을 하지 않을 수 없다.
+              다음에서 서체의 종류을 알아보고 서체를 선택할 때 정보를 가장 잘
+              표현할 수 있는 서체를 선택하자.
+            </p>
+          </div>
+
+          <div class="designBox">
+            <h3 id="5"><a href="">1. 영문 서체의 기본 분류</a></h3>
+            <br />
+            <ol class="designFont1">
+              <li class="fontList">
+                <strong>세리프(Serif):</strong>
+                <p>
+                  글자의 획 끝 부분에서 돌출되어 튀어나온 부분을 말한다.
+                  로마시대 석공이 글자의 모양을 더 아름답게 표현하고자 글자의
+                  끝부분을 세리프로 끝맺음해 장식하는 것에서 유래되었다.
+                  로만체로도 불리며, 가독성이 뛰어나며 본문용으로 가장 선호된다.
+                </p>
+                <div class="imgFont">
+                  <figure class="imgFontM">
+                    <img
+                      src="../../resources/image-design/Serif.svg"
+                      alt="세리프"
+                    />
+                  </figure>
+                </div>
+              </li>
+              <br /><br />
+              <li class="fontList">
+                <strong>산세리프(Sans Serif): </strong>
+                <p>
+                  불어의 ‘없다’를 뜻하는 Sans가 결합되어 세리프가 없는 글자를
+                  말하며 ‘고딕’이라고도 불린다. 장식적인 요소를 제거한 활자체로
+                  깔끔하고 간결한 것이 특징으로, 본문용보다 제목용에 적합하다.
+                </p>
+                <div class="imgFont">
+                  <figure class="imgFontM">
+                    <img
+                      src="../../resources/image-design/Sans.svg"
+                      alt="산세리프"
+                    />
+                  </figure>
+                </div>
+              </li>
+              <br /><br />
+              <li class="fontList">
+                <strong>블랙레터(흑자체): </strong>
+                <p>
+                  블록이라고도 부르며 중세에 유행했던 장식성 강한 필기체 양식을
+                  근간으로 한 글꼴. 최초의 인쇄본 구텐베르크 성경에 활자로
+                  사용된 서체이며, 활판 인쇄 초기에 유럽의 필사본을 바탕으로
+                  제작된 활자체에 기반을 둔 글자의 분류이다. 끝이 넓적한 펜으로
+                  써서 두꺼운 수직 획과 각이 진 글자 모양, 속공간이 중세
+                  건축물의 뽀족한 창과 닮은 것이 특징이다.
+                </p>
+                <div class="imgFont">
+                  <figure class="imgFontM">
+                    <img
+                      src="../../resources/image-design/블랙레터.webp"
+                      alt="블랙레터"
+                    />
+                  </figure>
+                </div>
+              </li>
+              <br /><br />
+              <li class="fontList">
+                <strong>스크립트: </strong>
+                <p>
+                  손글씨를 모방해 만들어진 글꼴. 필기체와 비슷한 느낌이 나도록
+                  개발된 서체로 글자들이 연결되어 보이는 것과 우아한 곡선미가
+                  특징이다. 연결되는 라인이 많아서 복잡하나 화려하고 장식적으로
+                  활용하면 고급스러운 매력을 얻을 수 있다.
+                </p>
+                <div class="imgFont">
+                  <figure class="imgFontM">
+                    <img
+                      src="../../resources/image-design/스크립트체.jfif"
+                      alt="스크립트"
+                    />
+                  </figure>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="designBox">
+            <h3 id="6"><a href="">2. 한글 서체의 기본 분류</a></h3>
+            <br />
+            <ol class="designFont2">
+              <li class="fontList">
+                <strong>명조체: </strong>
+                <p>
+                  중국 명나라 시대에 서예체로 유행했던 한자 '해서체'의 특징을
+                  본떠 인쇄용으로 꾸민 활자체. <br />글자의 가로선은 수평으로
+                  가늘게 나타내되 끝 부분을 삼각형으로 나타내고, 세로선은 일정한
+                  굵기로 아주 굵게 나타냈으며, 좌향 사향선은 점점 가늘게 우향
+                  사향선은 점점 굵어지게 나타냈다.
+                </p>
+                <div class="imgFont">
+                  <figure class="imgFontM">
+                    <img
+                      src="../../resources/image-design/명조체3.png"
+                      alt="명조체"
+                    />
+                  </figure>
+                  <figure class="imgFontM">
+                    <img
+                      src="../../resources/image-design/명조체2.jfif"
+                      alt="명조체"
+                    />
+                  </figure>
+                  <figure class="imgFontM">
+                    <img
+                      src="../../resources/image-design/명조체1.jpg"
+                      alt="명조체"
+                    />
+                  </figure>
+                </div>
+              </li>
+              <br /><br />
+              <li class="fontList">
+                <strong>궁서체: </strong>
+                <p>
+                  훈민정음 창제 당시 한글 모양은 붓으로 그대로 재현할 수 없었고,
+                  붓의 특성과 한자쓰기의 영향으로 흘림체로 변화해 만들어진
+                  서체가 궁서체다. '궁중 서체'의 줄임말.<br />
+                  붓글씨에서 유래했기 때문에, 분위기가 무척 엄숙하고 무거운
+                  느낌을 준다. 궁서체는 어디까지나 한글 서체이기 때문에, 한자
+                  궁서체는 원칙적으로 존재하지 않는다. <br />
+                  다만 해서체가 궁서체와 비슷한 분위기라 국한혼용문에는 한글
+                  궁서체와 한자 해서체를 함께 쓰는 경우가 많다. 흘림서체와
+                  반흘림체, 정자체가 있다.
+                </p>
+                <div class="imgFont">
+                  <figure class="imgFontM">
+                    <img
+                      src="../../resources/image-design/궁서체.svg"
+                      alt="궁서체"
+                    />
+                  </figure>
+                </div>
+              </li>
+              <br /><br />
+              <li class="fontList">
+                <strong>한글 바탕체: </strong>
+                <p>
+                  조선조 여인들이 다듬어 온 궁체 중에서 '해서체'를 기본으로
+                  정리한 글꼴. <br />
+                  그동안 명조체라 불리어왔지만 붓으로 썼다는 사실 이외에는
+                  한글이 명나라 한자 글꼴(명조체)과 아무런 관련이 없으므로 이는
+                  어울리지 않다는 의견으로 ‘바탕체’로 이름이 변경되었다. <br />
+                  내리긋는 획은 굵고 건너긋는 획은 가늘어 균형이 잡혀서 읽기
+                  쉬우므로 많이 사용되고 있다. 본문에 가장 많이 쓰여 책이나
+                  문헌의 바탕이 되는 글꼴이라는 의미로 붙여진 명칭이다.
+                </p>
+                <div class="imgFont">
+                  <figure class="imgFontM">
+                    <img
+                      src="../../resources/image-design/바탕체.svg"
+                      alt="바탕체"
+                    />
+                  </figure>
+                </div>
+              </li>
+              <br /><br />
+              <li class="fontList">
+                <strong>돋움체</strong>
+                <p>
+                  돋보임 효과가 큰 성격을 지녔고, 1920년에 등장해 1930년에
+                  광범위하게 사용되기 시작했다. <br />고딕체로 통용되었으나
+                  고딕체는 로마자 알파벡의 글자체 이름에서 유래되어 일본에
+                  전해진 것이 그대로 우리에게 도입된 것이다. <br />광고 제목, 책
+                  표제, 본문 제목 등의 용도로 사용하였으며, 1991년
+                  문화체육부에서는 ‘한글 고딕체’를 우리말로 표현한 ‘돋움체’로
+                  지정하였다. <br />
+                  1960년대 사진 식자 판짜기 네모틀에 맞춰 만들어진 활자꼴로
+                  줄기의 부리가 미세하게 있으나 대개 가로줄기와 세로줄기의
+                  굵기가 거의 같으면 수직, 수평으로 이루어 진다. <br />
+                  각종 표지판, 신문, 서적 등의 돋보임용으로 가장 많이 쓰이고
+                  있다.
+                </p>
+                <div class="imgFont">
+                  <figure class="imgFontM">
+                    <img
+                      src="../../resources/image-design/돋움체.svg"
+                      alt="돋움체"
+                    />
+                  </figure>
+                </div>
+              </li>
+              <br /><br />
+              <li class="fontList">
+                <strong>굴림체</strong>
+                <p>
+                  굴림체는 큐닉스컴퓨터와 한양시스템(현 한양정보통신)에서
+                  제작하여 Windows에 탑재된 둥근고딕(나루체) 계열의 글꼴로,
+                  글꼴형의 기원은 일본어를 표기하는 둥근고딕형 서체를 한글
+                  타이포그래피에 적용하면서 탄생했다. <br />
+                  본래 굴림체는 디자인적 심미성을 목적으로 탑재된 서체가 아니라,
+                  PC의 태동기 시절 누구나 스크린 너머의 글자를 잘 읽을 수 있도록
+                  하는 데 주안을 두고 선택된 것이다. <br />
+                  디자인 계통이 아닌 분야에서 업무 관련 발표나 유인물, 문서 등을
+                  제작할 때는 기본 글꼴이라는 이유로 압도적으로 많이 쓰이는
+                  서체이다.
+                </p>
+                <div class="imgFont">
+                  <figure class="imgFontM">
+                    <img
+                      src="../../resources/image-design/돋움체.svg"
+                      alt="돋움체"
+                    />
+                  </figure>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="designBox">
+            <h3 id="7"><a href="">3. 가독성</a></h3>
+            <br />
+            <ol class="designFont3">
+              <li class="fontList">
+                <strong>형태가 복잡한 폰트: </strong>
+                <p>
+                  복잡한 형태의 폰트나 필기체의 경우 정보를 읽기 전에 폰트의
+                  형태에 집중이 되기 때문에 정보를 읽는데 방해를 받게 된다.
+                </p>
+              </li>
+              <li class="fontList">
+                <strong>알파벳의 대문자: </strong>
+                <p>
+                  영어로 표기된 경우 대문자만 사용하면 잘 읽히지 않는다. 대,
+                  소문자를 함께 사용해야 가독성이 좋다.
+                </p>
+              </li>
+              <li class="fontList">
+                <strong>기울기: </strong>
+                <p>되도록 글자는 수평으로 배역하는 것이 좋다.</p>
+              </li>
+              <li class="fontList">
+                <strong>이탤릭(오블리크) 서체:</strong>
+                <p>
+                  글자의 기울기를 준 이탤릭 서체는 가도겅을 떨어뜨리므로 많은
+                  양의 텍스트에서는 피하고, 강조를 하는 곳에 조심스럽게 써야
+                  한다.
+                </p>
+              </li>
+              <li class="fontList">
+                <strong>글자 두께:</strong>
+                <p>
+                  많은 양의 텍스트를 두꺼운 글꼴로 사용하면 지면이 전체적으로
+                  어둡고 답답하다. 반대로 지나치게 가는 글꼴은 가독성을
+                  떨어뜨린다. 두꺼운 글꼴은 제목이나 강조하는 곳에, 본문은 중간
+                  두께의 글꼴로 함께 사용하여 글자의 위계를 잡아주는 것이 좋다.
+                </p>
+              </li>
+              <li class="fontList">
+                <strong>글자 색:</strong>
+                <p>
+                  글자의 색은 검정이 가장 안정적이며 가독성이 높다. 색이 있는
+                  면적 위의 흰 글꼴은 마치 글자가 반짝이는 섬광처럼 보여 눈이
+                  부시고 피로하게 된다. 연한 배경이나 흰 배경 위에 검은 글자가
+                  가장 높은 대비를 가져오며 잘 읽힌다. 또한 색상이 있는 글자보다
+                  검은 글자가 더 잘 읽히므로 색 글자를 쓸 때는 주의!
+                </p>
+              </li>
+              <li class="fontList">
+                <strong>글자의 너비(자폭) 조절:</strong>
+                <p>
+                  글자를 지면에 억지로 넣기 위해 폭을 심하게 줄이거나 늘리면
+                  글자가 일그러져 가독성이 떨어진다. 자폭을 조절할 경우 10%
+                  이하로 조절해야 한다.
+                </p>
+              </li>
+              <li class="fontList">
+                <strong>글자 사이(자간, Tracking):</strong>
+                <p>
+                  글자 사이 간격을 ‘자간’ 이란 한다. 글자 사이는 너무 좁거나
+                  넓으면 가독성을 방해하므로 적정 간격을 선택해야 한다. 보통
+                  한글 자간은 살짝 줄여주는 것을 추천한다.
+                </p>
+              </li>
+              <li class="fontList">
+                <strong>글줄 사이(행간, Leading):</strong>
+                <p>
+                  행간도 가독성을 결정짓는 중요한 요소다. 글줄 사이는 글자
+                  크기에서 +3~5pt 사이가 적당하다. 그러나 글꼴의 형태에 따라
+                  행간을 조절하는 범위도 다르므로 시작적으로 적정한 글줄 간격을
+                  찾아야 한다.
+                </p>
+              </li>
+              <li class="fontList">
+                <strong>숫자의 정렬 방식:</strong>
+                <p>
+                  숫자로 구성된 데이터의 경우 숫자의 배열 방식에 매우 주의해야
+                  한다.
+                </p>
+                <ul>
+                  <li>소수점이 있는 경우: 소수점 정렬(소수점 기준)</li>
+                  <li>단위가 있는 경우: 우측 정렬/ 오른끝 맞추기</li>
+                  <li>단위가 없는 경우: 가운데 정렬</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- main -->
+    <!-- footer -->
+    <footer id="footer">
+      <div class="footer_wrap">
+        <div class="footer_bottom">
+          <div class="footer-top">
+            <div class="bottom_logo">
+              <img
+                src="../../resources/img/logo.png"
+                alt="사이트 로고"
+                class="logo"
+              />
+            </div>
+          </div>
+          <div class="bottom_address">
+            <address class="site_address">
+              주소: 대전광역시 중구 중앙로 121번길 20 (선화동 41) 2층<br />
+              <a href="mailto:"
+                ><i class="fa-regular fa-envelope"></i> &nbsp; 이메일
+                abcd@naver.com
+              </a>
+              <a href="tel:042-222-2402"
+                ><i class="fa-solid fa-phone"></i> &nbsp; 대표 전화
+                010-1234-5678</a
+              >
+            </address>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- footer 종료-->
+  </body>
+  <script src="../../resources/js/nav.js"></script>
+  <script src="../../resources/js/design.js"></script>
+</html>

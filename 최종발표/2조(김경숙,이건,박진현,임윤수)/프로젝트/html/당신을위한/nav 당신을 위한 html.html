@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigation</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="resources/css/nav 당신을위한 html.css" />
+    <!-- 제작할 페이지의 CSS 링크 -->
+  </head>
+  <body>
+    <!-- header -->
+    <header id="header">
+      <nav class="navigation">
+        <div class="nav_left">
+          <div class="site">
+            <a href="index.html" class="site_name">
+              <!-- <img src="" alt="" class="site_logo"> -->
+              <!-- 로고 결정시 아래 div 제거후 사용 -->
+              <div class="site_logo"></div>
+              <span>홈페이지</span>
+              <small>부제</small>
+            </a>
+          </div>
+          <ul class="gnb">
+            <li class="gmain">
+              <a href="">
+                <div class="item">당신을 위한</div>
+              </a>
+              <ul class="gsub">
+                <li><a href="">HTML</a></li>
+                <li><a href="">CSS</a></li>
+                <li><a href="">JavaScript</a></li>
+              </ul>
+            </li>
+            <li class="gmain">
+              <a href="">
+                <div class="item">디자인</div>
+              </a>
+              <ul class="gsub">
+                <li><a href="">Color</a></li>
+                <li><a href="">Font</a></li>
+                <li><a href="">Icon </a></li>
+              </ul>
+            </li>
+            <li class="gmain">
+              <a href="">
+                <div class="item">유용한자료</div>
+              </a>
+              <ul class="gsub">
+                <li><a href="">123</a></li>
+              </ul>
+            </li>
+            <li class="gmain">
+              <a href="">
+                <div class="item">예제</div>
+              </a>
+            </li>
+            <li class="gmain">
+              <a href="">
+                <div class="item">자유게시판</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="account">
+          <a href="mypage.html" class="login"> 마이페이지 </a>
+          <span class="middot"> &middot; </span>
+          <input
+            type="button"
+            class="log-out"
+            id="log-out"
+            value="로그아웃"
+            onclick="logOut_btn()"
+          />
+        </div>
+        <div class="hamburger-button">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+    <!-- header -->
+    <!-- main -->
+    <main>
+        <div class="container">
+            <div class="title">
+                <h1>당신을 위한</h1>
+            </div>
+            <div class="content">
+                <div class="main-body">
+                    <h2 class="main-title">html이란</h2>
+                    <div class="main-box1">
+                        <p>HTML은 웹 개발에서 매우 중요한 언어입니다. 파이썬은 웹 개발 분야에서도 사용되기 때문에 HTML을 이해하고 있다면 파이썬 웹 개발에서도 도움이 됩니다. 파이썬 웹 프레임워크에서 HTML 템플릿을 사용하여 웹 애플리케이션을 구축할 수 있습니다. 또한, 파이썬의 BeautifulSoup 라이브러리는 HTML과 XML과 같은 마크업 언어를 파싱하는 데에 사용됩니다. 따라서 HTML을 이해하고 있다면, 파이썬 웹 개발에서 유용하게 사용할 수 있습니다.</p>
+                    </div>
+                    <div class="main-box2">
+                        <table class="box2-table1">
+                            <h1>HTML 기본 정의 및 특징</h1>
+                            <tr>
+                                <td class="box2-title">태그</td>
+                                <td class="box2-title">정의 및 특징</td>
+                            </tr>
+                            <tr>
+                                <td>!DOCTYPE html</td>
+                                <td>웹 문서의 유형을 html로 지정 합니다.</td>
+                            </tr>
+                            <tr>
+                                <td>html <br /> head , meta</td>
+                                <td>모든 html 태그들의 최상위 태그 <br /> 메타 데이터 입력 합니다. </td>
+                            </tr>
+                            <tr>
+                                <td>title</td>
+                                <td>문서의 제목</td>
+                            </tr>
+                            <tr>
+                                <td>body</td>
+                                <td>문서의 본문, 여기에 내용을 나타냅니다.</td>
+                            </tr>
+                            <tr>
+                                <td>h1~h6</td>
+                                <td>h1부터 글씨 크기가 큰 순서대로 점차 작아집니다.</td>
+                            </tr>
+                            <tr>
+                                <td>p</td>
+                                <td>p태그는 주로 설명 및 내용을 적을때 사용합니다.</td>
+                            </tr>
+                        </table>
+                        <span class="img-span">태그 예시 이미지</span>
+                        <img src="resources/image/html 기본 태그.PNG" alt="">
+
+                        <br />
+                        <h1>HTML 문서 구조 태그</h1>
+                        <table class="box2-table2">
+                            <tr>
+                                <td class="box2-title">태그</td>
+                                <td class="box2-title">정의 및 특징</td>
+                            </tr>
+                            <tr>
+                                <td>header</td>
+                                <td>헤더 영역을 정함니다.</td>
+                            </tr>
+                            <tr>
+                                <td>main</td>
+                                <td>메인 영역을 정함니다.</td>
+                            </tr>
+                            <tr>
+                                <td>section</td>
+                                <td>콘텐츠 영역을 정함니다.</td>
+                            </tr>
+                            <tr>
+                                <td>aside</td>
+                                <td>사이드 바 영역을 정합니다.</td>
+                            </tr>
+                            <tr>
+                                <td>footer</td>
+                                <td>푸터 영역을 정합니다.</td>
+                            </tr>
+                            <tr>
+                                <td>nav</td>
+                                <td>비게이션 영역, <br />
+                                    문서 내 다른 위치, 다른 문서로 연결할 때 사용합니다.</td>
+                            </tr>
+                            <tr>
+                                <td>article</td>
+                                <td>독립적인 콘텐츠를 사용할 때 사용합니다.</td>
+                            </tr>
+                            <tr>
+                                <td>section</td>
+                                <td>독립적인 콘텐츠를 사용할 때 사용합니다.</td>
+                            </tr>
+                            <tr>
+                                <td>div</td>
+                                <td>여러 소스 묶을수 있습니다.</td>
+                              </tr>
+                              <tr>
+                                  <td>figure</td>
+                                  <td>삽화나 다이어그램, 사진 등과 같이 문서의 주요 흐름과는 독립적인 콘텐츠를 <br /> 정의할 때 사용합니다.</td>
+                              </tr>
+                        </table>
+                        <table class="box2-table3">
+                          <h1>목록 생성/입력 태그</h1>
+                          <tr>
+                            <td class="box2-title">태그</td>
+                            <td class="box2-title">정의 및 특징</td>
+                          </tr>
+                          <tr>
+                            <td>li</td>
+                            <td>li는 여러 태그를 이용해 목록을 생성합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>ol</td>
+                            <td>목록을 나타냅니다. 보통 숫자 목록으로 표현합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>ul</td>
+                            <td>정렬되지 않은 목록을 나타냅니다. 보통 불릿으로 표현합니다.</td>
+                          </tr>
+                        </table>
+                        <table class="box2-table4">
+                          <h1>표 만드는 태그</h1>
+                          <tr>
+                            <td class="box2-title">태그</td>
+                            <td class="box2-title">정의 및 특징</td>
+                          </tr>
+                          <tr>
+                            <td>table</td>
+                            <td>테이블 안에 표 만드는 태그 사용합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>caption</td>
+                            <td>표 제목을 만드는데 사용합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>tr</td>
+                            <td>테이블에서 셀들로 이루어진 하나의 행을 정의할 때 사용합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>td</td>
+                            <td>셀 삽입할때 사용합니다. </td>
+                          </tr>
+                          <tr>
+                            <td>th</td>
+                            <td>셀 삽입할때 사용합니다(진하게 표시됩니다.)</td>
+                          </tr>
+                          <tr>
+                            <td>thead</td>
+                            <td>표 중 제목, 여러 페이지에 걸쳐 고정 가능합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>tbody</td>
+                            <td>표 중 본문을 정의 합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>tfoot</td>
+                            <td>표 중 요약, 여러 페이지에 걸쳐 고정 가능합니다.</td>
+                          </tr>
+                        </table>
+                        <table class="box2-table5">
+                          <h1>이미지 삽입하는 태그</h1>
+                          <tr>
+                            <td class="box2-title">태그</td>
+                            <td class="box2-title">정의 및 특징</td>
+                          </tr>
+                          <tr>
+                            <td>img</td>
+                            <td>이미지 삽입 할 수 있는 태그입니다.</td>
+                          </tr>
+                          <tr>
+                            <td>src=</td>
+                            <td>이미지 파일 경로를 정합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>alt=</td>
+                            <td>이미지 대체용 텍스트를 띄웁니다.</td>
+                          </tr>
+                        </table>
+                        <table class="box2-table6">
+                          <h1>하이퍼링크 삽입하는 태그</h1>
+                          <tr>
+                            <td class="box2-title">태그</td>
+                            <td class="box2-title">정의 및 특징</td>
+                          </tr>
+                          <tr>
+                            <td>a</td>
+                            <td>하이퍼 링크 삽입합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>href=</td>
+                            <td>링크 주소를 입력하는 태그입니다.</td>
+                          </tr>
+                          <tr>
+                            <td>target="_blank"</td>
+                            <td>새 탭에서 열수 있습니다.</td>
+                          </tr>
+                        </table>
+                        <table class="box2-table7">
+                          <h1>사용자로부터 입력을 받을 수 있는 입력 태그</h1>
+                          <tr>
+                            <td class="box2-title">태그</td>
+                            <td class="box2-title">정의 및 특징</td>
+                          </tr>
+                          <tr>
+                            <td>input</td>
+                            <td> 태그는 사용자로부터 입력을 받을 수 있는 입력 필드(input filed)를 정의할 때 사용합니다  <br /> input 요소는 사용자가 데이터를 입력할 수 있는 입력 필드를 선언하기 위해 form 요소 내부에서 사용됩니다.</td>
+                          </tr>
+                          <tr>
+                            <td>type=</td>
+                            <td>typs 속성의 기본값은 "text"이며
+                              input 요소의 <br /> 필수 속성은 아니지만
+                              명시하는것이 좋습니다.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>type=text</td>
+                            <td>한 줄 텍스트를 입력할수 있는 필드를 정의 합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>type=password</td>
+                            <td>비밀 번호를 입력할수 있는 필드를 정의 합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>type=search</td>
+                            <td>검색을 입력할수 있는 필드를 정의 합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>type=url</td>
+                            <td>"URL"은 주소를 입력할수 있는 필드를 정의 합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>type=email</td>
+                            <td>이메일 주소를 입력할수 있는 필드를 정의 합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>type=tel</td>
+                            <td>전화번호를 만들수 있는 필드를 정의 합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>type=checkbox</td>
+                            <td>체크 박스를 만들수 있습니다.</td>
+                          </tr>
+                          <tr>
+                            <td>type=radio</td>
+                            <td>서로 연관된 옵션들의 집합을 보통 하나의 라디오 버튼 그룹으로 나타내며 <br /> 그룹 내의 라디오 버튼은 오직 하나만이 선택될 수 있습니다.</td>
+                          </tr>
+                          <tr>
+                            <td>type=number</td>
+                            <td>숫자를 입력할 수 있는 입력 필드를 정의합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>type=range</td>
+                            <td> 슬라이드 바를 조정하여 범위 내의 숫자를 선택할 수 있는 입력 필드를 정의합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>type=date</td>
+                            <td> 날짜를 선택할 수 있는 입력 필드를 정의합니다. <br>
+                            입력 결과에는 년도(year), 월(month), 일(day)이 포함되지만, 시간은 포함되지 않습니다.
+                            </td>
+                          <tr>
+                            <td>type=month</td>
+                            <td> 날짜를 선택할 수 있는 입력 필드를 정의합니다. <br>
+                            입력 결과에는 년도(year), 월(month)이 포함되지만 일(day), 시간은 포함되지 않습니다.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>type=week</td>
+                            <td> 날짜를 선택할 수 있는 입력 필드를 정의합니다. <br>
+                            입력 결과에는 년도(year), 주 가 포함되지만 월(month), 일(day), 시간은 포함되지 않습니다.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>type=time</td>
+                            <td> 시간을 선택할 수 있는 입력 필드를 정의합니다. <br>
+                              이 속성값에는 시(time)와 분(minute)이 포함되며, 오전/오후를 반드시 선택해야만 입력 필드의 유효성 검사를 통과할 수 있습니다.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>type=datetime-local</td>
+                            <td> 날짜와 시간을 선택할 수 있는 입력 필드를 정의합니다. <br>
+                              이 속성값에는 년도(year), 월(month), 일(day)과 시간이 포함됩니다. <br>
+                              단, 시간을 입력할 때는 오전/오후를 반드시 선택해야만 입력 필드의 유효성 검사를 통과할 수 있습니다.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>type=submit</td>
+                            <td> 서버의 폼 핸들러(form handler)로 폼 데이터(form date)를 전송하는 제출 버튼(submit button)을 정의합니다.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>type=reset</td>
+                            <td>  모든 폼(form) 요소의 값을 초깃값으로 되돌리는 리셋 버튼(reset button)을 정의합니다.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>type=image</td>
+                            <td>텍스트가 아닌 이미지 형태로 된 제출 버튼을 생성하며, 이때 해당 이미지의 경로는 src 속성에 명시됩니다.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>type=button</td>
+                            <td>주로 자바스크립트와 함께 스크립트를 활성화시키기 위해 사용되는 클릭할 수 있는 버튼을 정의합니다.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>type=file</td>
+                            <td>업로드할 파일을 선택할 수 있는 입력 필드와 “파일 선택” 버튼을 정의합니다.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>type=hidden</td>
+                            <td>사용자에게는 보이지 않는 숨겨진 입력 필드를 정의합니다.
+                            </td>
+                          </tr>               
+                        </table>
+                        <table class="box2-table8">
+                          <h1>type안에 있는 태그 속성</h1>
+                          <h3>text, password와 같이 쓰이는 속성들</h3>
+                          <tr>
+                            <td class="box2-title">태그</td>
+                            <td class="box2-title">정의 및 특징</td>
+                          </tr>
+                          <tr>
+                            <td>size=</td>
+                            <td>size 속성은 input 요소의 너비를 문자수 단위로 명시합니다.
+                            </td>
+                          </tr>               
+                          <tr>
+                            <td>value=</td>
+                            <td>text 필드에 보여줄 내용, password에서 사용 안합니다
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>maxlength=</td>
+                            <td>maxlength 속성은 input 요소에 입력할 수 있는 최대 문자수를 명시합니다.
+                            </td>
+                          </tr>
+                        </table>
+                        <table class="box2-table9">
+                          <h3>checkbox, radio와 같이 쓰이는 속성들</h3>
+                          <tr>
+                            <td class="box2-title">태그</td>
+                            <td class="box2-title">정의 및 특징</td>
+                          </tr>
+                          <tr>
+                            <td>value=</td>
+                            <td>value 속성은 체크박스의 value 속성 값을 설정하거나 반환합니다.</td>
+                          </tr>
+                          <tr>
+                            <td>checked=</td>
+                            <td>체크박스가 처음부터 체크된 상태로 나타내는 특성입니다</td>
+                          </tr>
+                          <tr>
+                            <td>name=</td>
+                            <td>radio 전용 <br>
+                              여러 옵션의 공통 이름을 나타냅니다.</td>
+                          </tr>
+                        </table>
+                        <table class="box2-table10">
+                          <h3>number, range와 같이 쓰이는 속성들</h3>
+                          <tr>
+                            <td class="box2-title">태그</td>
+                            <td class="box2-title">정의 및 특징</td>
+                          </tr>
+                          <tr>
+                            <td>min=</td>
+                            <td>최소값(기본값 0)을 나타냅니다.</td>
+                          </tr>
+                          <tr>
+                            <td>max=</td>
+                            <td>최대값(기본값 100)을 나타냅니다.</td>
+                          </tr>
+                          <tr>
+                            <td>step=</td>
+                            <td>조정할 단위값(기본값 1)을 나타냅니다.</td>
+                          </tr>
+                          <tr>
+                            <td>value=</td>
+                            <td>초기값을 나타냅니다.</td>
+                          </tr>
+                        </table>
+                        <table class="box2-table11">
+                          <h3>submit, reset와 같이 쓰이는 속성들 <br> (이 속성들은 버튼입니다.)</h3>
+                          <tr>
+                            <td class="box2-title">태그</td>
+                            <td class="box2-title">정의 및 특징</td>
+                          </tr>
+                          <tr>
+                            <td>value=</td>
+                            <td>버튼에 표시할 내용을 나타냅니다.</td>
+                          </tr>
+                        </table>
+                        <table class="box2-table12">
+                          <h3>button과 같이 쓰이는 속성들</h3>
+                          <tr>
+                            <td class="box2-title">태그</td>
+                            <td class="box2-title">정의 및 특징</td>
+                          </tr>
+                          <tr>
+                            <td>value=</td>
+                            <td>버튼에 표시할 내용을 나타냅니다.</td>
+                          </tr>
+                          <tr>
+                            <td>onclick=</td>
+                            <td>클릭 시 실행할 JS함수를 나타냅니다.</td>
+                          </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+   <!-- main -->
+   <main id="main">
+    <!-- 모달시작 -->
+    <div class="modal">
+      <div class="modal_body">
+        <div class="modal_top">
+          <h2>로그아웃하시겠습니까?</h2>
+        </div>
+        <div class="modal_btn_body">
+          <input
+            type="button"
+            class="modal_btn"
+            value="예"
+            id="modalTrue"
+            onclick="log_out()"
+          />
+          <input
+            type="button"
+            class="modal_btn"
+            value="아니요"
+            id="modalFalse"
+            onclick="log_out_cancle()"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- 모달종료 -->
+    <!-- 여기 아래로 만든 컨텐츠 복붙할것 -->
+  </main>
+  <!-- main -->
+  <!-- footer -->
+  <footer id="footer">
+    <div class="footer_wrap">
+      <div class="footer_bottom">
+        <div class="footer-top">
+          <div class="bottom_logo">
+            <img src="resources/image/4.jpg" alt="사이트 로고" class="logo" />
+          </div>
+          <div class="inquiry">
+            <!-- 문의 페이지로 변경 -->
+            <a href="#" class="footer-btn"> 문의하기</a>
+          </div>
+        </div>
+        <div class="bottom_address">
+          <address class="site_address">
+            주소: 대전광역시 중구 중앙로 121번길 20 (선화동 41) 2층<br />
+            <a href="mailto:"
+              ><i class="fa-regular fa-envelope"></i> &nbsp; 이메일
+              abcd@naver.com
+            </a>
+            <a href="tel:042-222-2402"
+              ><i class="fa-solid fa-phone"></i> &nbsp; 대표 전화
+              010-1234-5678</a
+            >
+          </address>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- footer -->
+</body>
+<script src="resources/js/nav.js"></script>
+<!-- 제작할 페이지의 스크립트 -->
+</html>

@@ -1,0 +1,36 @@
+.swiper {
+    width: 600px;
+    height: 300px;
+  }
+
+  .swiper-slide.first{
+    background-color: red;
+    background-image: url(https://images.unsplash.com/photo-1694987035544-b6d89a4af424?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyM3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60);
+    background-size: cover;
+  }
+
+  .swiper-slide.first:hover{
+    transform: scale(1.5);
+  }
+
+  .swiper-slide.second{
+    background-color: green;
+  }
+
+  .swiper-slide.third{
+    background-color: blue;
+  }
+
+  .swiper-pagination-bullet-active{
+    background-color: black;
+    border: 1px solid white;
+    width: 50px;
+    border-radius: 5px;
+    mix-blend-mode: difference;
+  }
+
+  .swiper-pagination-bullet{
+    background-color: black;
+    border: 1px solid white;
+  }
+

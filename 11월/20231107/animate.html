@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../resources/js/jquery-3.6.4.js"></script>
+  </head>
+  <body>
+    <div
+      style="
+        background-color: yellow;
+        width: 200px;
+        height: 200px;
+        position: absolute;
+      "
+      id="div"
+    >
+      div
+    </div>
+  </body>
+  <script>
+    $("#div").on("click", function () {
+      //   $("#div").animate({
+      //     left: "250px",
+      //   });
+      //   $("#div").animate({
+      //     left: "300px",
+      //     opacity: "0.5",
+      //     height: "500px",
+      //     width: "500px",
+      //   });
+      $("#div").animate({
+        height: "600px",
+        opacity: "0.3",
+      });
+      $("#div").animate({
+        height: "200px",
+        opacity: "0.8",
+      });
+      $("#div").animate({
+        height: "900px",
+        opacity: "0.9",
+        fontSize: "40px",
+      });
+      $("#div").animate({
+        height: "100px",
+        opacity: "0.1",
+        fontSize: "80px",
+      });
+    });
+  </script>
+</html>

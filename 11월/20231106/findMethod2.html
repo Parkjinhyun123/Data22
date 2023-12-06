@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>find Method2</title>
+  </head>
+  <style>
+    .wrapper * {
+      display: block;
+      border: 2px solid lightgray;
+      color: lightgray;
+      padding: 5px;
+      margin: 15px;
+    }
+  </style>
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <body>
+    <div class="wrapper">
+      body div
+      <div style="width: 300px">
+        div
+        <ul>
+          ul
+          <li>
+            li
+            <span id="span1">span</span>
+          </li>
+        </ul>
+      </div>
+      <div style="width: 300px">
+        div
+        <ul>
+          ul
+          <li>
+            li
+            <span id="span2">span</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script>
+    // $("#span1").parent().css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+    // $("#span1").parents("li").css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+    // $("#span1").parentsUntil("div").css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+
+    // $("#span1").closest("div").css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+
+    // $(".wrapper > div").find("li").css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+
+    $("#span1").closest("div.wrapper").find("#span2").css({
+      color: "red",
+      border: "2px solid red",
+    });
+
+    $("#span2").parents(".wrapper > div").siblings().find("#span1").css({
+      color: "blue",
+      border: "2px solid blue",
+    });
+  </script>
+</html>

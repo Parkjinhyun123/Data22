@@ -1,0 +1,404 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #212212;
+  color: #fff;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  word-break: keep-all;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+li {
+  list-style: none;
+}
+
+/* main */
+#main > img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+/* 모달 */
+.modal {
+  position: fixed;
+  display: none;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  align-items: stretch;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal_body {
+  position: absolute;
+  top: 50%;
+  width: 400px;
+  height: 200px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  background-color: #212212;
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  border: 3px solid #f2c301;
+  transform: translateY(-50%);
+}
+
+.modal_top h2 {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.modal_btn_body {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.modal_btn {
+  padding: 4px 8px;
+  width: 25%;
+  border: none;
+  background-color: #f2c301;
+  color: #212212;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.modal_btn:active {
+  box-shadow: inset 0 0 0 3px rgba(34, 36, 38, 0.5);
+}
+/* 모달종료 */
+
+/* 디자인 메인 시작 */
+#DContainer {
+  width: 100%;
+  margin: 30px auto;
+  padding: 5rem;
+  display: flex;
+  gap: 3rem;
+}
+
+#DContainer li {
+  list-style: decimal;
+  margin-left: -0px;
+}
+
+#DContainer li li {
+  list-style: disc;
+}
+
+#DContainer a {
+  color: #212212;
+}
+
+/* 사이드 좌측 바 */
+.sideLeftBar {
+  width: 200px;
+  padding: 30px;
+  background-color: #f2c301;
+  color: #212212;
+  position: sticky;
+  border-radius: 16px;
+  text-align: center;
+  top: 120px; /* 지정된 위치 */
+}
+
+/* sticky=일반적인 문서의 흐름을 타다 지정위치에 닿으면 그 자리에 고정  */
+/* fixed=화면에 별도고정. 변동 없음 */
+
+.sideLeftBar h2 {
+  font-weight: bold;
+  padding-top: 30px;
+  text-align: center;
+}
+
+.sideLeftBar h2 img {
+  width: 35px;
+  filter: opacity(0.5) drop-shadow(0 0 0 red) saturate(1000%);
+}
+
+.sideMain {
+  display: block;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+}
+
+.sideMain .subDMain {
+  display: none;
+}
+
+.sideMain.selected .subDMain {
+  display: block;
+}
+
+.sideMainSpan {
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+}
+
+.dItem {
+  display: flex;
+  gap: 8px;
+  padding: 8px 24px;
+  list-style: none;
+  font-weight: 800;
+  font-size: 25px;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.subDMain {
+  text-align: left;
+}
+
+.subDMain > a {
+  height: 100%;
+}
+
+.subDCFIMain {
+  padding-bottom: 10px;
+  position: relative;
+}
+
+.subDCFList {
+  display: none;
+  padding: 8px 10px;
+}
+
+.subDCFIMain.select .subDCFList {
+  display: block;
+}
+
+.SSMain {
+  font-weight: 700;
+}
+
+.subDCFList a:hover {
+  font-weight: 700;
+}
+
+/* 사이드 좌측 바 종료 */
+/* 디자인 */
+.DBoxContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.designBox {
+  width: 90%;
+  min-width: 500px;
+  background-color: #dddddd;
+  color: #212212;
+  border-radius: 2rem;
+  padding: 2.5rem;
+  margin-bottom: 3rem;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+.designBox h3 a {
+  background-color: #f2c301;
+  color: #212212;
+  padding: 8px 20px;
+  border-radius: 3rem;
+  font-weight: bold;
+}
+
+.designBox img {
+  object-fit: cover;
+  width: 100%;
+  max-width: 850px;
+}
+
+figure {
+  text-align: center;
+}
+
+.design-mode.dr {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 20px;
+  padding: 10px;
+}
+
+.design-mean {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  gap: 20px;
+  padding: 10px;
+}
+
+.color-meaning {
+  display: flex;
+}
+
+.mean {
+  width: 50px;
+  height: 50px;
+  margin: 1rem;
+}
+
+.mean.red {
+  background-color: red;
+}
+
+.mean.org {
+  background-color: orange;
+}
+
+.mean.yellow {
+  background-color: rgb(255, 238, 0);
+}
+
+.mean.green {
+  background-color: green;
+}
+
+.mean.blue {
+  background-color: blue;
+}
+
+.mean.purple {
+  background-color: purple;
+}
+
+.mean.pink {
+  background-color: pink;
+}
+
+.mean.brown {
+  background-color: rgb(129, 51, 48);
+}
+
+.mean.white {
+  background-color: white;
+  border: 1px solid black;
+}
+
+.mean.gray {
+  background-color: gray;
+}
+
+.mean.black {
+  background-color: rgb(22, 22, 22);
+}
+
+.mean.down {
+  filter: sepia(20%) brightness(90%) saturate(50%);
+}
+
+.mean.up {
+  filter: brightness(120%) saturate(130%);
+}
+
+.fontList img {
+  background-color: white;
+  padding: 1rem;
+}
+
+.icon-pics {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  gap: 10px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.imgFont,
+.d-color,
+.icon-textcom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  object-fit: cover;
+  padding-right: 2rem;
+}
+
+.imgFontM {
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.icon-pic img {
+  width: 100%;
+}
+
+.icon-textconM {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  background-color: white;
+  padding: 2rem;
+  margin: 4rem auto;
+  border-radius: 1rem;
+  font-size: 30px;
+  min-width: 380px;
+}
+
+.icon-textcon p {
+  margin-bottom: 0;
+}
+
+/* 메인 종료 */
+
+@media screen and (min-width: 1201px) {
+  /* 칼라 종료 */
+
+  .icon-pics {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .icon-pic {
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  /* 칼라 */
+  .design-mode.dr {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .design-mean {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .icon-pics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .icon-pic {
+    width: 150px;
+  }
+
+  .color-meaning {
+    display: flex;
+    justify-content: center;
+  }
+}
