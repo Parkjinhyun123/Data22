@@ -46,7 +46,7 @@
     // add();
     // add();
 
-    // 4.
+    // 4. 내부함수를 리턴하여 외부함수내의 counter 변수를 사용할 수 있도록 변경. 외부함수는 한번 실행후 사라지기 때문에 외부에서 접근 불가능함(==폐쇄상태)
     const add = (function () {
       let counter = 0;
       return function () {
