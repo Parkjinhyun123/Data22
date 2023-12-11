@@ -1,6 +1,9 @@
-function Button({ children, onClick }) {
+import "./Button.css";
+
+function Button({ children, onClick, className }) {
+  const classNames = `Button ${className}`;
   return (
-    <button className="App-button" onClick={onClick}>
+    <button className={classNames} onClick={onClick}>
       {children}
     </button>
   );
