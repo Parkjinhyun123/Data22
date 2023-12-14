@@ -15,10 +15,8 @@ body {
   width: 5vmin;
   height: 100%;
   background-color: cornsilk;
-  /* 가로 */
   transform-origin: 0 100%;
 
   /* 세로 */
-  /* -webkit-transform-origin-y: 0;
-  -moz-transform-origin: 0 0; */
+  /* -webkit-transform-origin-y: 0; */
 }

@@ -1,16 +1,15 @@
 import { motion } from "framer-motion";
 
 export function Event() {
-  //   function onUpdate(lastest) {
-  //     console.log(lastest.x);
-  //   }
+  function onUpdate(latest) {
+    console.log(latest.x);
+  }
   function onStart() {
     console.log("Animation started");
   }
   function onComplete() {
     console.log("Animation completed");
   }
-
   return (
     <>
       <div className="container">

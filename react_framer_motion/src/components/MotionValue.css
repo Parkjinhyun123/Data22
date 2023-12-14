@@ -4,13 +4,11 @@
   background: linear-gradient(90deg, #d0e, #91f);
   position: relative;
 }
-
 .wrapper {
   position: fixed;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
-
 .scrollBar {
   width: 100px;
   height: 300px;
