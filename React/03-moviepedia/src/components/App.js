@@ -2,6 +2,8 @@ import { getDatas } from "../firebase";
 // import mockItems from "../mock.json";
 import ReviewList from "./ReviewList";
 import { useEffect, useState } from "react";
+import ReviewForm from "./ReviewForm";
+import "./ReviewForm.css";
 
 const LIMIT = 5;
 
@@ -9,6 +11,9 @@ function App() {
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState("createdAt");
   const [lq, setLq] = useState({});
+  const [isLoading, setIsLoding] = useState(false);
+  const [loadingError, setLoadingError] = useState(null);
+  const [hasNext, setHasNext] = useState(false);
 
   // sort 함수에 아무런 arguments도 전달하지 않을 때는 기본적으로 유니코드에 정의된 문자열 순서에 따라 정렬된다.
   // ==> compareFunction가 생략될 경우, 배열의 모든 요소들은 문자열 취급되며, 유니코드값 순서대로 정렬된다는 의미이다.
@@ -41,19 +46,41 @@ function App() {
     setItems(nextItems);
   };
 
-  const handleLoad = async (lq) => {
-    const { reviews, lastQuery } = await getDatas("movie", order, LIMIT, lq);
-    if (lq === undefined) {
+  // try {
+  //   // 실행할 코드
+  // } catch (error) {
+  //   // 오류 발생시 에러처리에 대한 내용실행
+  // } finally {
+  //   // 오류 유무와 관계없이 무조건 실행
+  // }
+
+  const handleLoad = async (options) => {
+    // console.log(lq);
+    let result;
+    try {
+      setIsLoding(true);
+      setLoadingError(null);
+      result = await getDatas("movie", options);
+    } catch (error) {
+      console.error(error);
+      setLoadingError(error);
+      return;
+    } finally {
+      setIsLoding(false);
+    }
+
+    const { reviews, lastQuery } = result;
+    if (options.lq === undefined) {
       setItems(reviews);
     } else {
       setItems((prevItems) => [...prevItems, ...reviews]);
     }
     setLq(lastQuery);
-    console.log(reviews);
+    setHasNext(lastQuery);
   };
 
   const handleLoadMore = () => {
-    handleLoad(lq);
+    handleLoad({ order, lq, limit: LIMIT });
   };
 
   // useEffect는 arguments로 콜백함수와 배열을 넘겨준다.
@@ -61,7 +88,7 @@ function App() {
   // react는 [] 안에 있는 값들을 앞에서 기억한 값이랑 비교한다.
   // 비교해서 다른 경우에만 콜백함수를 실행한다.(그 전에는  콜백함수를 등록만 해놓음)
   useEffect(() => {
-    handleLoad();
+    handleLoad({ order, lq: undefined, limit: LIMIT });
   }, [order]);
 
   return (
@@ -70,8 +97,24 @@ function App() {
         <button onClick={handleNewestClick}>최신순</button>
         <button onClick={handleBestClick}>베스트순</button>
       </div>
+      <ReviewForm />
       <ReviewList items={items} onDelete={handleDelete} />
-      <button onClick={handleLoadMore}>더보기</button>
+      {
+        // 에러가 있을 시 나타낼 요쇼, 텍스트를 출력
+        // 조건부 연산자
+        // AND : 앞에 나오는 값이 true이면 렌더링 &&
+        // OR : 앞에 나오는 값이 false 이면 렌더링 ||
+        // truthy falsy
+        // falsy ==> null, NaN, "" ,undefined
+
+        // loadingError !== null ? <span>{loadingError.message}</span> :""
+        loadingError?.message && <span>{loadingError.message}</span>
+      }
+      {hasNext && (
+        <button onClick={handleLoadMore} disabled={isLoading}>
+          더보기
+        </button>
+      )}
     </div>
   );
 }
