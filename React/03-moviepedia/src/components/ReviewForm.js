@@ -1,37 +1,47 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
+import FileInput from "./FileInput";
+import RatingInput from "./RatingInput";
 
 function ReviewForm() {
   const [values, setValues] = useState({
     title: "",
     rating: 0,
     content: "",
+    imgUrl: null,
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setValues(name.value);
+  const handleChange = (name, value) => {
+    setValues((prevValue) => ({ ...prevValue, [name]: value }));
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    handleChange(name, value);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   return (
     <form className="ReviewForm" onSubmit={handleSubmit}>
-      <input type="file" accept="image/png, image/jpg" />
+      <FileInput name="imgUrl" value={values.imgUrl} onChange={handleChange} />
       <input
         type="text"
-        name="name"
-        onChange={handleChange}
+        name="title"
+        onChange={handleInputChange}
         value={values.title}
       />
-      <input
-        type="text"
+      <RatingInput
+        type="number"
         name="rating"
         value={values.rating}
         onChange={handleChange}
       />
-      <textarea value={values.content} name="content" onChange={handleChange} />
+      <textarea
+        value={values.content}
+        name="content"
+        onChange={handleInputChange}
+      />
       <button type="submit">확인</button>
     </form>
   );
