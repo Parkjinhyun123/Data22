@@ -4,6 +4,7 @@
 
 .Rating-star {
   color: slategray;
+  transition: all 0.3s;
 }
 
 .Rating-star.selected {
