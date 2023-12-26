@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import FileInput from "./FileInput";
 import RatingInput from "./RatingInput";
+import useTranslate from "../Hooks/useTranslate";
 
 const INITIAL_VALUES = {
   title: "",
@@ -9,38 +10,65 @@ const INITIAL_VALUES = {
   imgUrl: null,
 };
 
-function ReviewForm({ onSubmit, onSubmitSucess }) {
-  const [values, setValues] = useState(INITIAL_VALUES);
+function ReviewForm({
+  onSubmit,
+  onSubmitSuccess,
+  initialValues = INITIAL_VALUES,
+  initialPreview,
+  onCancel,
+}) {
+  const [values, setValues] = useState(initialValues);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittingError, setSubmittingError] = useState(null);
+  const t = useTranslate();
 
   const handleChange = (name, value) => {
-    setValues((prevValue) => ({ ...prevValue, [name]: value }));
+    setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     handleChange(name, value);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const formData = {
+      title: values.title,
+      content: values.content,
+      imgUrl: values.imgUrl,
+      rating: values.rating,
+    };
+
     try {
-      const { review } = await onSubmit("movie", values);
-      onSubmitSucess(review);
+      setSubmittingError(null);
+      setIsSubmitting(true);
+      const { review } = await onSubmit("movie", formData);
+      onSubmitSuccess(review);
     } catch (error) {
+      setSubmittingError(error);
       return;
     } finally {
+      setIsSubmitting(false);
     }
     setValues(INITIAL_VALUES);
   };
 
   return (
     <form className="ReviewForm" onSubmit={handleSubmit}>
-      <FileInput name="imgUrl" value={values.imgUrl} onChange={handleChange} />
+      <FileInput
+        name="imgUrl"
+        value={values.imgUrl}
+        initialPreview={initialPreview}
+        onChange={handleChange}
+      />
       <input
         type="text"
         name="title"
-        onChange={handleInputChange}
         value={values.title}
+        onChange={handleInputChange}
+        placeholder={t("title placeholder")}
       />
       <RatingInput
         type="number"
@@ -49,11 +77,16 @@ function ReviewForm({ onSubmit, onSubmitSucess }) {
         onChange={handleChange}
       />
       <textarea
-        value={values.content}
         name="content"
+        value={values.content}
         onChange={handleInputChange}
+        placeholder={t("content placeholder")}
       />
-      <button type="submit">확인</button>
+      {onCancel && <button onClick={onCancel}>{t("cancel button")}</button>}
+      <button type="submit" disabled={isSubmitting}>
+        {t("confirm button")}
+      </button>
+      {submittingError?.message && <div>{submittingError.message}</div>}
     </form>
   );
 }

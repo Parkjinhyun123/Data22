@@ -20,6 +20,7 @@ import {
   ref,
   uploadBytes,
   getDownloadURL,
+  deleteObject,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js";
 
 const firebaseConfig = {
@@ -81,8 +82,16 @@ async function getDatas(collectionName, options) {
   return { reviews, lastQuery };
 }
 
-async function deleteDatas(collectionName, docId) {
-  await deleteDoc(doc(db, collectionName, docId));
+async function deleteDatas(collectionName, docId, imgUrl) {
+  const storage = getStorage();
+  try {
+    const deleteRef = ref(storage, imgUrl);
+    await deleteObject(deleteRef);
+    await deleteDoc(doc(db, collectionName, docId));
+  } catch (error) {
+    return false;
+  }
+  return false;
 }
 
 async function addDatas(collectionName, formData) {
@@ -104,6 +113,43 @@ async function addDatas(collectionName, formData) {
     const review = { docId: doc.id, ...docSnap.data() };
     return { review };
   }
+}
+
+async function updateDatas(collectionName, formData, docId, imgUrl) {
+  const docRef = await doc(db, collectionName, docId);
+  const time = new Date().getTime();
+
+  const updateFormData = {
+    title: formData.title,
+    content: formData.content,
+    rating: formData.rating,
+    updateAt: time,
+  };
+
+  // 사진 파일을 변경했을 때
+  if (formData.imgUrl !== null) {
+    // 사진파일 업로드 및 업로드한 파일 경로 가져오기
+    const uuid = crypto.randomUUID();
+    const path = `movie/${uuid}`;
+    const url = await uploadImage(path, formData.imgUrl);
+
+    // 기존사진 삭제하기
+    const storage = getStorage();
+    try {
+      const deleteRef = ref(storage, imgUrl);
+      await deleteObject(deleteRef);
+    } catch (error) {
+      return null;
+    }
+
+    // 가져온 사진 경로 updateInfoObj의 imgUrl 에 셋팅하기
+    updateFormData.imgUrl = url;
+  }
+  // 문서 필드 데이터 수정
+  await updateDoc(docRef, updateFormData);
+  const docData = await getDoc(docRef);
+  const review = { docId: docData.id, ...doc.data() };
+  return { review };
 }
 
 async function uploadImage(path, imgFile) {
@@ -142,4 +188,5 @@ export {
   deleteDoc,
   updateDoc,
   deleteDatas,
+  updateDatas,
 };
