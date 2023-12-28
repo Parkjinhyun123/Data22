@@ -5,6 +5,7 @@ const Input = styled.input`
   padding: 16px;
   border-radius: 4px;
   outline: none;
+
   &:focus {
     border-color: #7760b4;
   }
