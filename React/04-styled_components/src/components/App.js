@@ -31,10 +31,10 @@ function App() {
           <li>8. 스타일 재사용: CSS함수</li>
         </Link>
         <Link to="09">
-          <li>9. 다이나믹 스타일링</li>
+          <li>9. 연습4</li>
         </Link>
         <Link to="10">
-          <li>10. 다이나믹 스타일링</li>
+          <li>10. 로그인 화면 구현</li>
         </Link>
       </ul>
       <Outlet />
