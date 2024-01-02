@@ -25,7 +25,7 @@ function Footer() {
         </ul>
         <div className={styles.icons}>
           <div className={styles.logo}>
-            <span>DW</span> Os
+            <span>DW</span> OS
           </div>
           <div className={styles.sns}>
             <img src={facebookIcon} alt="facebook icon" />
