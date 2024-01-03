@@ -2,6 +2,7 @@
   padding: 20px 0 53px;
   color: #878787;
   background-color: #494949;
+  z-index: 1;
 }
 
 .links {
@@ -44,9 +45,9 @@
 }
 
 .logo {
-  font-family: 'SBAggroB';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff')
-    format('woff');
+  font-family: "SBAggroB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff")
+    format("woff");
   font-weight: 550;
   font-style: normal;
   font-size: 20px;
