@@ -5,7 +5,6 @@ import Footer from "./Footer";
 import "./App.font.css";
 
 function App() {
-  console.log(styles);
   return (
     <>
       <Nav className={styles.nav} />

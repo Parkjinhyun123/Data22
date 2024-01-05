@@ -4,6 +4,9 @@ import HomePage from "./pages/HomePage";
 import QuestionListPage from "./pages/QuestionListPage";
 import CourseListPage from "./pages/CourseListPage";
 import CoursePage from "./pages/CouresPage";
+import Login from "./components/Login";
+import Logout from "./components/Logout";
+import WishlistPage from "./pages/WishlistPage";
 
 function Main() {
   return (
@@ -18,6 +21,9 @@ function Main() {
           <Route path="questions">
             <Route index element={<QuestionListPage />} />
           </Route>
+          <Route path="login" element={<Login />} />
+          <Route path="logout" element={<Logout />} />
+          <Route path="wishlist" element={<WishlistPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -14,6 +14,9 @@ import {
   limit,
   startAfter,
   exists,
+  where,
+  arrayUnion,
+  arrayRemove,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 import {
   getStorage,
@@ -89,6 +92,44 @@ async function getDatas(collectionName, options) {
   return { reviews, lastQuery };
 }
 
+async function getData(collectionName, fieldName, condition, value) {
+  const docQuery = query(
+    collection(db, collectionName),
+    where(fieldName, condition, value)
+  );
+
+  const querySnapshot = await getDocs(docQuery);
+  const data = querySnapshot.docs.map((doc) => ({
+    docId: doc.id,
+    ...doc.data(),
+  }));
+
+  return data.length === 1 ? data[0] : data;
+}
+
+async function getMember(values) {
+  const { id, password } = values;
+  const docQuery = query(collection(db, "member"), where("id", "==", id));
+  let message;
+  let memberObj = {};
+
+  const querySnapshot = await getDocs(docQuery);
+  if (querySnapshot.docs.length !== 0) {
+    const memberData = querySnapshot.docs.map((doc) => ({
+      docId: doc.id,
+      ...doc.data(),
+    }))[0];
+    if (memberData.password == password) {
+      memberObj = memberData;
+    } else {
+      message = "비밀번호가 일치하지 않습니다.";
+    }
+  } else {
+    message = "일치하는 아이디가 없습니다.";
+  }
+  return { memberObj, message };
+}
+
 async function deleteDatas(collectionName, docId, imgUrl) {
   const storage = getStorage();
   try {
@@ -122,41 +163,26 @@ async function addDatas(collectionName, formData) {
   }
 }
 
-async function updateDatas(collectionName, formData, docId, imgUrl) {
-  const docRef = await doc(db, collectionName, docId);
-  const time = new Date().getTime();
-
-  const updateFormData = {
-    title: formData.title,
-    content: formData.content,
-    rating: formData.rating,
-    updateAt: time,
-  };
-
-  // 사진 파일을 변경했을 때
-  if (formData.imgUrl !== null) {
-    // 사진파일 업로드 및 업로드한 파일 경로 가져오기
-    const uuid = crypto.randomUUID();
-    const path = `movie/${uuid}`;
-    const url = await uploadImage(path, formData.imgUrl);
-
-    // 기존사진 삭제하기
-    const storage = getStorage();
-    try {
-      const deleteRef = ref(storage, imgUrl);
-      await deleteObject(deleteRef);
-    } catch (error) {
-      return null;
+async function updateDatas(collectionName, docId, upadateData, options) {
+  const docRef = doc(db, collectionName, docId);
+  try {
+    if (options) {
+      if (options.type == "ADD") {
+        await updateDoc(docRef, {
+          [options.fieldName]: arrayUnion(upadateData),
+        });
+      } else if (options.type === "DELETE") {
+        await updateDoc(docRef, {
+          [options.fieldName]: arrayRemove(upadateData),
+        });
+      }
+    } else {
+      await updateDoc(docRef, upadateData);
     }
-
-    // 가져온 사진 경로 updateInfoObj의 imgUrl 에 셋팅하기
-    updateFormData.imgUrl = url;
+    return true;
+  } catch (error) {
+    return false;
   }
-  // 문서 필드 데이터 수정
-  await updateDoc(docRef, updateFormData);
-  const docData = await getDoc(docRef);
-  const review = { docId: docData.id, ...doc.data() };
-  return { review };
 }
 
 async function uploadImage(path, imgFile) {
@@ -196,4 +222,6 @@ export {
   updateDoc,
   deleteDatas,
   updateDatas,
+  getMember,
+  getData,
 };
