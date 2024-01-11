@@ -1,0 +1,120 @@
+* {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.true {
+  color: green;
+}
+
+.false {
+  color: red;
+}
+
+input {
+  width: 54%;
+  padding: 8px;
+  margin: 8px;
+  /* border-radius: 8px; */
+  /* border: 50%; */
+  outline: none;
+  border-color: #d9d9d9;
+  box-shadow: none;
+}
+
+input::placeholder {
+  font-size: 12px;
+  color: rgba(128, 128, 128, 0.7);
+}
+
+#password,
+#passwordConfirm {
+  width: 70%;
+}
+
+.mail {
+  width: 20%;
+}
+
+.member-btn {
+  width: 100px;
+  background-color: #1c1b1f;
+  color: #fff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+label {
+  font-weight: bold;
+  margin: 8px;
+}
+
+select {
+  width: 20%;
+  padding: 8px;
+  margin: 8px;
+}
+
+.headWrapper > h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.headWrapper-sum {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+h3 > .sign-num {
+  width: 40px;
+  height: 40px;
+  background-color: #ffc26f;
+  text-align: center;
+  border-radius: 50%;
+  line-height: 2;
+}
+
+h3 > div:nth-child(2) {
+  background-color: #ff9b50;
+}
+
+.submitBtn {
+  width: 20%;
+}
+
+.btn_wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+h2,
+h3 {
+  text-align: center;
+  margin: 8px;
+}
+
+.form {
+  border-top: 1px solid #ff9b50;
+  padding: 16px;
+}
+
+th,
+td {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.459);
+}
+
+th {
+  text-align: left;
+  width: 20%;
+}
+
+td {
+  width: 70%;
+}
