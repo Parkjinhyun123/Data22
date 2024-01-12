@@ -179,8 +179,9 @@ function SingUp() {
       <h3>정보입력</h3>
       <div className="headWrapper">
         <h3>
-          <div className="sign-num">1</div> - <div className="sign-num">2</div>{" "}
-          - <div className="sign-num">3</div>
+          <div className="sign-num">1</div> -{" "}
+          <div className="sign-num now">2</div> -{" "}
+          <div className="sign-num">3</div>
         </h3>
         <div className="headWrapper-sum">
           <div> 약관동의 </div>

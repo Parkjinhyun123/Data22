@@ -6,6 +6,7 @@ import SingUpPh from "./Account/SignUpPh";
 import Map from "./map/Map";
 import Terms from "./Account/Terms";
 import LoginPage from "./login/LoginPage";
+import JoinComplete from "./Account/JoinComplete";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       {/* <SingUpPh></SingUpPh> */}
       {/* <Map></Map> */}
       {/* <Terms></Terms> */}
-      <LoginPage></LoginPage>
+      {/* <LoginPage></LoginPage> */}
+      <JoinComplete></JoinComplete>
     </>
   );
 }
