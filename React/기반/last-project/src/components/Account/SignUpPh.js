@@ -15,6 +15,28 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
+const HosBtn = styled.button`
+  width: 135px;
+  border: none;
+  background-color: #d9d9d9;
+  color: #fff;
+  padding: 8px 16px;
+  font-weight: bold;
+  margin: 8px;
+  cursor: pointer;
+`;
+
+const PhBtn = styled.button`
+  width: 135px;
+  border: none;
+  background-color: #ff9b50;
+  color: #fff;
+  padding: 8px 16px;
+  font-weight: bold;
+  margin: 8px;
+  cursor: pointer;
+`;
+
 const CancleBtn = styled.button`
   border: none;
   cursor: pointer;
@@ -129,18 +151,6 @@ function SingUp() {
     let result;
     result = "";
     for (let i = 0; i < value.length && i < numberLength; i++) {
-      switch (i) {
-        case 3:
-          result += "-";
-          break;
-        case 7:
-          result += "-";
-          break;
-
-        default:
-          break;
-      }
-
       result += value[i];
     }
 
@@ -175,7 +185,7 @@ function SingUp() {
 
   return (
     <Container>
-      <h2> Pet Owner Join </h2>
+      <h2> Pet Partnership Join </h2>
       <h3>정보입력</h3>
       <div className="headWrapper">
         <h3>
@@ -187,6 +197,10 @@ function SingUp() {
           <div> 정보입력 </div>
           <div> 가입완료 </div>
         </div>
+      </div>
+      <div className="choicePartner">
+        <HosBtn>병원</HosBtn>
+        <PhBtn>약국</PhBtn>
       </div>
       <table>
         <div className="form">
@@ -211,16 +225,6 @@ function SingUp() {
                 value="중복확인"
               />
               <p className={`${isId} ? 'true' : "false"`}> {idMessage} </p>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <div className="form-el">
-                <label htmlFor="name">이름</label>
-              </div>
-            </th>
-            <td>
-              <input id="name" name="name" />
             </td>
           </tr>
           <tr>
@@ -266,26 +270,11 @@ function SingUp() {
           <tr>
             <th scope="row">
               <div className="form-el">
-                <label htmlFor="nickname">닉네임</label> <br />
+                <label htmlFor="name">약국명</label>
               </div>
             </th>
             <td>
-              <input
-                id="nickname"
-                name="nickname"
-                value={nickName}
-                onChange={onChangeName}
-                placeholder="닉네임은 2글자 이상 5글자 이하로 입력해주세요."
-              />
-              <input
-                type="button"
-                className="member-btn"
-                id="nick_ajax"
-                value="중복확인"
-              />
-              <p className={`${isNickName} ? "true" : "false"`}>
-                {nameMessage}
-              </p>
+              <input id="name" name="name" />
             </td>
           </tr>
           <tr>
@@ -330,7 +319,7 @@ function SingUp() {
           </tr>
           <tr>
             <th scope="row">
-              <label htmlFor="phone">연락처</label>
+              <label htmlFor="phone">대표 연락처</label>
             </th>
             <td>
               <input
@@ -340,13 +329,6 @@ function SingUp() {
                 ref={phoneRef}
                 onChange={handlePhone}
               />
-              <input
-                type="button"
-                className="member-btn"
-                id="nick_ajax"
-                value="본인인증"
-              />
-              <p className={`${isPhone} ? "true" : "false`}>{phoneMessage}</p>
             </td>
           </tr>
           <tr>
@@ -355,6 +337,19 @@ function SingUp() {
             </th>
             <td>
               <Adress />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <label htmlFor="partner">사업자 등록증</label>
+            </th>
+            <td>
+              <input
+                type="file"
+                id="file"
+                name="file"
+                style={{ color: "rgba(0,0,0,0.5)" }}
+              />
             </td>
           </tr>
           <br />

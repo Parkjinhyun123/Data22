@@ -1,19 +1,21 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import styled from "styled-components";
-import "./App.css";
 import SingUp from "./Account/SignUp";
+import SingUpHos from "./Account/SignUpHos";
+import SingUpPh from "./Account/SignUpPh";
 import Map from "./map/Map";
-import CursorTest from "./CursorTest";
 import Terms from "./Account/Terms";
+import LoginPage from "./login/LoginPage";
 
 function App() {
   return (
     <>
-      <SingUp></SingUp>
+      {/* <SingUp></SingUp> */}
+      {/* <SingUpHos></SingUpHos> */}
+      {/* <SingUpPh></SingUpPh> */}
       {/* <Map></Map> */}
-      {/* <CursorTest></CursorTest> */}
       {/* <Terms></Terms> */}
+      <LoginPage></LoginPage>
     </>
   );
 }

@@ -61,7 +61,7 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
 }
 
 .headWrapper-sum {
@@ -103,6 +103,11 @@ h3 {
 .form {
   border-top: 1px solid #ff9b50;
   padding: 16px;
+  width: 100%;
+}
+
+table {
+  margin: 0 auto;
 }
 
 th,
@@ -117,4 +122,10 @@ th {
 
 td {
   width: 70%;
+}
+
+.choicePartner {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
 }

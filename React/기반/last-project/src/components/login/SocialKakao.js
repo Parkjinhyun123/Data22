@@ -1,29 +1,19 @@
 import KakaoLogin from "react-kakao-login";
 
-const SocialKakao =()=>{
+const SocialKakao = () => {
+  const Rest_api_key = "dccfcf3a80c138c5fb9f44656f9b6bb6"; //REST API KEY
+  const redirect_uri = "http://localhost:3000/auth"; //Redirect URI
+  // oauth 요청 URL
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
+  const handleLogin = () => {
+    window.location.href = kakaoURL;
+  };
 
-    const kakaoClientId = '12960e8f1d627ea898d565f3b8ab8afb'
-    const kakaoOnSuccess = async (data)=>{
-      	console.log(data)
-        const idToken = data.response.access_token  // 엑세스 토큰 백엔드로 전달
-    }
-    const kakaoOnFailure = (error) => {
-        console.log(error);
-    };
+  return (
+    <>
+      <button onClick={handleLogin}>카카오 로그인</button>
+    </>
+  );
+};
 
-    let code = new URL(window.location.href);
-
-    const code_params = code.searchParams.get('code')
-
-    return(
-        <>
-          <KakaoLogin
-              token={kakaoClientId}
-              onSuccess={kakaoOnSuccess}
-              onFail={kakaoOnFailure}
-          />
-        </>
-    )
-}
-
-export default SocialKakao
+export default SocialKakao;
