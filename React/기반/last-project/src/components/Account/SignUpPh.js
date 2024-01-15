@@ -3,7 +3,6 @@ import Adress from "./Adress";
 import { addDatas, getDatas } from "../../api/firebase";
 import "./SignUp.css";
 import { styled } from "styled-components";
-import ButtonImg from "../../assets/버튼.png";
 
 const Container = styled.div`
   display: flex;
@@ -359,16 +358,7 @@ function SingUp() {
               취소
             </CancleBtn>
             <SignBtn type="submit" className="submitBtn" onClick={handleSubmit}>
-              가입하기 &nbsp;
-              <img
-                src={ButtonImg}
-                alt="button icon"
-                style={{
-                  width: "20px",
-                  position: "absolute",
-                  marginLeft: "4px",
-                }}
-              />
+              가입하기
             </SignBtn>
           </div>
         </div>

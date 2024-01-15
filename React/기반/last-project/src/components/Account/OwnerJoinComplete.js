@@ -52,18 +52,7 @@ function JoinComplete() {
           <br /> 로그인 후 모든 서비스를 이용할 수 있습니다.
         </p>
         <div className="welcome-btn">
-          <LoginBtn>
-            로그인 &nbsp;
-            <img
-              src={ButtonImg}
-              alt="button icon"
-              style={{
-                width: "20px",
-                position: "absolute",
-                marginLeft: "4px",
-              }}
-            />
-          </LoginBtn>
+          <LoginBtn>로그인</LoginBtn>
         </div>
       </div>
     </Container>

@@ -1,4 +1,6 @@
 import KakaoLogin from "react-kakao-login";
+import { styled } from "styled-components";
+import KakaoLogo from "../../assets/kakao logo.png";
 
 const SocialKakao = () => {
   const Rest_api_key = "dccfcf3a80c138c5fb9f44656f9b6bb6"; //REST API KEY
@@ -9,9 +11,28 @@ const SocialKakao = () => {
     window.location.href = kakaoURL;
   };
 
+  const btn_wrapper = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+  `;
+
+  const KakaoBtn = styled.button`
+    background-color: #f7e600;
+    width: 100%;
+    border: none;
+    height: 50px;
+    cursor: pointer;
+  `;
+
   return (
     <>
-      <button onClick={handleLogin}>카카오 로그인</button>
+      <btn_wrapper>
+        <KakaoBtn onClick={handleLogin}>
+          {" "}
+          <img src={KakaoLogo} />
+          Kakao로 로그인
+        </KakaoBtn>
+      </btn_wrapper>
     </>
   );
 };

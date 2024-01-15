@@ -364,16 +364,7 @@ function SingUp() {
               취소
             </CancleBtn>
             <SignBtn type="submit" className="submitBtn" onClick={handleSubmit}>
-              가입하기 &nbsp;
-              <img
-                src={ButtonImg}
-                alt="button icon"
-                style={{
-                  width: "20px",
-                  position: "absolute",
-                  marginLeft: "4px",
-                }}
-              />
+              가입하기
             </SignBtn>
           </div>
         </div>

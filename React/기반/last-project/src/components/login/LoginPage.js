@@ -1,28 +1,42 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import SocialKakao from "./SocialKakao";
+import SocialNaver from "./SocialNaver";
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  height: 100vh;
   padding: 16px;
   flex-direction: column;
   background-color: #f8ebd8;
   margin: 0 auto;
+  box-sizing: border-box;
 `;
 
 const LoginBtnWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 100%;
+  width: 231px;
+  gap: 8px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const InputArea = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+`;
+
+const LoginBtn = styled.button`
+  height: 50px;
+  background-color: #1c1b1f;
+  color: #fff;
+  border: none;
 `;
 
 function Login() {
@@ -64,10 +78,11 @@ function Login() {
           />
         </InputArea>
         <LoginBtnWrapper>
-          <button type="button" onClick={onClickLogin}>
+          <LoginBtn type="button" onClick={onClickLogin}>
             로그인
-          </button>
+          </LoginBtn>
           <SocialKakao></SocialKakao>
+          <SocialNaver></SocialNaver>
         </LoginBtnWrapper>
       </div>
     </Container>
