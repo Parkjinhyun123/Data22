@@ -1,9 +1,10 @@
 import { useRef, useState } from "react";
 import Adress from "./Adress";
-import { addDatas, getDatas } from "../../api/firebase";
+import { addDatas, getDatas, idDatas, nickDatas } from "../../api/firebase";
 import "./SignUp.css";
 import { styled } from "styled-components";
 import ButtonImg from "../../assets/버튼.png";
+import gold from "../../assets/gold.cur";
 
 const Container = styled.div`
   display: flex;
@@ -44,6 +45,7 @@ const SignBtn = styled.button`
 function SingUp() {
   const [id, setId] = useState("");
   const [nickName, setNickName] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [email, setEmail] = useState("");
@@ -66,6 +68,8 @@ function SingUp() {
   const [isEmail, setIsEmail] = useState(false);
   const [isPhone, setIsPhone] = useState(false);
 
+  const email2Ref = useRef(null);
+
   const onChangeId = (e) => {
     const currentId = e.target.value;
     setId(currentId);
@@ -79,16 +83,50 @@ function SingUp() {
     }
   };
 
-  const onChangeName = (e) => {
+  const handleAjax = () => {
+    let isExist = 0;
+    idDatas("member", id).then((result) => {
+      isExist = result;
+      if (isExist == 0) {
+        alert("사용가능한 아이디 입니다.");
+        setIsId(true);
+      } else if (isExist != 0) {
+        setIdMessage("중복된 아이디 입니다.");
+        setIsId(false);
+      }
+    });
+  };
+
+  const onChangeNickName = (e) => {
     const currentName = e.target.value;
     setNickName(currentName);
 
     if (currentName.length < 2 || currentName.length > 5) {
       setIsNickName(false);
+      setNameMessage("사용불가능한 닉네임 입니다.");
     } else {
       setNameMessage("사용가능한 닉네임 입니다.");
       setIsNickName(true);
     }
+  };
+
+  const handleNickAjax = () => {
+    let isExist = 0;
+    nickDatas("member", nickName).then((result) => {
+      isExist = result;
+      if (isExist == 0) {
+        alert("사용가능한 닉네임 입니다.");
+        setIsNickName(true);
+      } else if (isExist != 0) {
+        setNameMessage("중복된 닉네임 입니다.");
+        setIsNickName(false);
+      }
+    });
+  };
+
+  const onChangeName = (e) => {
+    const curentName = e.target.value;
+    setName(curentName);
   };
 
   const onChangePassword = (e) => {
@@ -149,28 +187,38 @@ function SingUp() {
     setPhone(e.target.value);
   };
 
-  const self = document.querySelector("#email2");
   const handleMailChange = (e) => {
-    setMail2(e.target.value);
-    if (e.target.value !== "other") {
-      self.value = e.target.value;
-      self.disabled = true;
+    const selectedValue = e.target.value;
+
+    setMail2(selectedValue);
+
+    const self = email2Ref.current;
+
+    if (selectedValue === "other") {
+      // "직접입력"이 선택된 경우
+      if (self) {
+        self.disabled = false;
+        self.value = "";
+      }
     } else {
-      self.value = "";
-      self.disabled = false;
+      // 다른 옵션이 선택된 경우
+      if (self) {
+        self.value = e.target.value; // 기본값 또는 이전 값으로 초기화
+        self.disabled = true;
+      }
     }
   };
 
   const handleSubmit = () => {
-    const memberInfo = {
+    addDatas("member", {
       memberId: id,
+      memberName: name,
       memberPass: password,
       memberNickName: nickName,
       memberPhone: phone,
-      memberMail: mail,
+      memberMail: email,
       memberMail2: mail2,
-    };
-    addDatas("member", memberInfo);
+    });
   };
 
   return (
@@ -210,6 +258,7 @@ function SingUp() {
                 className="member-btn"
                 id="id_ajax"
                 value="중복확인"
+                onClick={handleAjax}
               />
               <p className={`${isId} ? 'true' : "false"`}> {idMessage} </p>
             </td>
@@ -221,7 +270,7 @@ function SingUp() {
               </div>
             </th>
             <td>
-              <input id="name" name="name" />
+              <input id="name" name="name" onChange={onChangeName} />
             </td>
           </tr>
           <tr>
@@ -275,7 +324,7 @@ function SingUp() {
                 id="nickname"
                 name="nickname"
                 value={nickName}
-                onChange={onChangeName}
+                onChange={onChangeNickName}
                 placeholder="닉네임은 2글자 이상 5글자 이하로 입력해주세요."
               />
               <input
@@ -283,6 +332,7 @@ function SingUp() {
                 className="member-btn"
                 id="nick_ajax"
                 value="중복확인"
+                onClick={handleNickAjax}
               />
               <p className={`${isNickName} ? "true" : "false"`}>
                 {nameMessage}
@@ -310,7 +360,8 @@ function SingUp() {
                 className="mail"
                 id="email2"
                 title="이메일 주소 직접입력"
-                disabled
+                disabled={mail2 !== "other"}
+                ref={email2Ref}
               />
               &nbsp;
               <select

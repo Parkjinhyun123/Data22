@@ -87,6 +87,8 @@ function SingUp() {
   const [isEmail, setIsEmail] = useState(false);
   const [isPhone, setIsPhone] = useState(false);
 
+  const email2Ref = useRef(null);
+
   const onChangeId = (e) => {
     const currentId = e.target.value;
     setId(currentId);
@@ -115,8 +117,7 @@ function SingUp() {
   const onChangePassword = (e) => {
     const currentPassword = e.target.value;
     setPassword(currentPassword);
-    const passwordRegExp =
-      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+    const passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
     if (!passwordRegExp.test(currentPassword)) {
       setPasswordMessage("사용불가능한 비밀번호입니다.");
       setIsPassword(false);
@@ -158,15 +159,25 @@ function SingUp() {
     setPhone(e.target.value);
   };
 
-  const self = document.querySelector("#email2");
   const handleMailChange = (e) => {
-    setMail2(e.target.value);
-    if (e.target.value !== "other") {
-      self.value = e.target.value;
-      self.disabled = true;
+    const selectedValue = e.target.value;
+
+    setMail2(selectedValue);
+
+    const self = email2Ref.current;
+
+    if (selectedValue === "other") {
+      // "직접입력"이 선택된 경우
+      if (self) {
+        self.disabled = false;
+        self.value = "";
+      }
     } else {
-      self.value = "";
-      self.disabled = false;
+      // 다른 옵션이 선택된 경우
+      if (self) {
+        self.value = e.target.value; // 기본값 또는 이전 값으로 초기화
+        self.disabled = true;
+      }
     }
   };
 
@@ -188,9 +199,7 @@ function SingUp() {
       <h3>정보입력</h3>
       <div className="headWrapper">
         <h3>
-          <div className="sign-num">1</div> -{" "}
-          <div className="sign-num now">2</div> -{" "}
-          <div className="sign-num">3</div>
+          <div className="sign-num">1</div> - <div className="sign-num now">2</div> - <div className="sign-num">3</div>
         </h3>
         <div className="headWrapper-sum">
           <div> 약관동의 </div>
@@ -211,19 +220,8 @@ function SingUp() {
               </div>
             </th>
             <td>
-              <input
-                id="id"
-                name="id"
-                value={id}
-                onChange={onChangeId}
-                placeholder="4-12사이 대소문자 또는 숫자만 입력해 주세요."
-              />
-              <input
-                type="button"
-                className="member-btn"
-                id="id_ajax"
-                value="중복확인"
-              />
+              <input id="id" name="id" value={id} onChange={onChangeId} placeholder="4-12사이 대소문자 또는 숫자만 입력해 주세요." />
+              <input type="button" className="member-btn" id="id_ajax" value="중복확인" />
               <p className={`${isId} ? 'true' : "false"`}> {idMessage} </p>
             </td>
           </tr>
@@ -234,17 +232,8 @@ function SingUp() {
               </div>
             </th>
             <td>
-              <input
-                id="password"
-                name="password"
-                value={password}
-                type="password"
-                onChange={onChangePassword}
-                placeholder="숫자,영문자,특수문자 조합으로 8자리 이상 입력해주세요."
-              />
-              <p className={`${isPassword} ? 'true' : 'false'`}>
-                {passwordMessage}
-              </p>
+              <input id="password" name="password" value={password} type="password" onChange={onChangePassword} placeholder="숫자,영문자,특수문자 조합으로 8자리 이상 입력해주세요." />
+              <p className={`${isPassword} ? 'true' : 'false'`}>{passwordMessage}</p>
             </td>
           </tr>
           <tr>
@@ -262,9 +251,7 @@ function SingUp() {
                 placeholder="숫자,영문자,특수문자 조합으로 8자리 이상 입력해주세요."
                 onChange={onChangePasswordConfirm}
               />
-              <p className={`${isPasswordConfirm} ? "true" : "false"`}>
-                {passwordConfirmMessage}
-              </p>
+              <p className={`${isPasswordConfirm} ? "true" : "false"`}>{passwordConfirmMessage}</p>
             </td>
           </tr>
           <tr>
@@ -284,29 +271,11 @@ function SingUp() {
               </div>
             </th>
             <td>
-              <input
-                id="email"
-                name="name"
-                className="mail"
-                value={email}
-                onChange={onChangeEmail}
-              />
+              <input id="email" name="name" className="mail" value={email} onChange={onChangeEmail} />
               @
-              <input
-                type="text"
-                name="email2"
-                className="mail"
-                id="email2"
-                title="이메일 주소 직접입력"
-                disabled
-              />
+              <input type="text" name="email2" className="mail" id="email2" title="이메일 주소 직접입력" disabled={mail2 !== "other"} ref={email2Ref} />
               &nbsp;
-              <select
-                name="tmp_mail"
-                id="tmp_mail"
-                onChange={handleMailChange}
-                value={mail2}
-              >
+              <select name="tmp_mail" id="tmp_mail" onChange={handleMailChange} value={mail2}>
                 <option value="">선택하세요</option>
                 <option value="naver.com">naver.com</option>
                 <option value="daum.net">daum.net</option>
@@ -322,13 +291,7 @@ function SingUp() {
               <label htmlFor="phone">대표 연락처</label>
             </th>
             <td>
-              <input
-                id="phone"
-                name="phone"
-                value={phone}
-                ref={phoneRef}
-                onChange={handlePhone}
-              />
+              <input id="phone" name="phone" value={phone} ref={phoneRef} onChange={handlePhone} />
             </td>
           </tr>
           <tr>
@@ -344,12 +307,7 @@ function SingUp() {
               <label htmlFor="partner">사업자 등록증</label>
             </th>
             <td>
-              <input
-                type="file"
-                id="file"
-                name="file"
-                style={{ color: "rgba(0,0,0,0.5)" }}
-              />
+              <input type="file" id="file" name="file" style={{ color: "rgba(0,0,0,0.5)" }} />
             </td>
           </tr>
           <br />

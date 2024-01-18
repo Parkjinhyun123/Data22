@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import SocialKakao from "./SocialKakao";
 import SocialNaver from "./SocialNaver";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { getMember } from "../../api/firebase";
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100vh;
   padding: 16px;
@@ -19,7 +22,8 @@ const LoginBtnWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 231px;
+  width: 300px;
+  height: 50;
   gap: 8px;
   position: absolute;
   left: 50%;
@@ -29,61 +33,101 @@ const LoginBtnWrapper = styled.div`
 const InputArea = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
+  gap: 8px;
+  width: 300px;
+  margin-bottom: 30px;
 `;
 
 const LoginBtn = styled.button`
   height: 50px;
+  font-size: 16px;
   background-color: #1c1b1f;
   color: #fff;
   border: none;
 `;
 
+const LoginInput = styled.input`
+  width: 100%;
+  margin: 0;
+  border: 2px solid #d9d9d9;
+`;
+
+const LoginBottom = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 8px;
+
+  & > a {
+    text-decoration: none;
+    color: #c5c5c1;
+  }
+`;
+
 function Login() {
-  const [inputId, setInputId] = useState("");
-  const [inputPw, setInputPw] = useState("");
+  const { state } = useLocation();
+  const navigate = useNavigate();
+  const [values, setValues] = useState({
+    id: "",
+    password: "",
+  });
 
-  // input data 의 변화가 있을 때마다 value 값을 변경해서 useState 해준다
-  const handleInputId = (e) => {
-    setInputId(e.target.value);
+  const handleValueChange = (e) => {
+    const { name, value } = e.target;
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
   };
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-  const handleInputPw = (e) => {
-    setInputPw(e.target.value);
-  };
-
-  // login 버튼 클릭 이벤트
-  const onClickLogin = () => {
-    console.log("click login");
+    const { memberObj, message } = await getMember(values);
+    if (message === undefined) {
+      localStorage.setItem("member", JSON.stringify(memberObj));
+      // alert("로그인에 성공했습니다.");
+      // window.location.href = "/";
+      // setMember(memberObj);
+      navigate(state ? state : "/");
+    } else {
+      console.log("ㅇㅇ");
+      alert(message);
+    }
   };
 
   return (
     <Container>
       <div>
-        <h2>Login</h2>
-        <InputArea>
-          <input
-            type="text"
-            name="input_id"
-            value={inputId}
-            onChange={handleInputId}
-            placeholder="아이디"
-          />
-          <input
-            type="password"
-            name="input_pw"
-            value={inputPw}
-            onChange={handleInputPw}
-            placeholder="비밀번호"
-          />
-        </InputArea>
-        <LoginBtnWrapper>
-          <LoginBtn type="button" onClick={onClickLogin}>
-            로그인
-          </LoginBtn>
-          <SocialKakao></SocialKakao>
-          <SocialNaver></SocialNaver>
-        </LoginBtnWrapper>
+        <h2 style={{ margin: "30px" }}>Login</h2>
+        <form onSubmit={handleLogin}>
+          <InputArea>
+            <LoginInput
+              type="text"
+              name="input_id"
+              onChange={handleValueChange}
+              placeholder="아이디"
+            />
+            <LoginInput
+              type="password"
+              name="input_pw"
+              onChange={handleValueChange}
+              placeholder="비밀번호"
+            />
+          </InputArea>
+          <LoginBtnWrapper>
+            <LoginBtn type="submit">로그인</LoginBtn>
+            <SocialNaver></SocialNaver>
+            <SocialKakao></SocialKakao>
+            <LoginBottom>
+              <Link to="/">
+                <p>회원가입</p>
+              </Link>
+              <Link to="/">아이디 비밀번호 찾기</Link>
+            </LoginBottom>
+          </LoginBtnWrapper>
+        </form>
       </div>
     </Container>
   );

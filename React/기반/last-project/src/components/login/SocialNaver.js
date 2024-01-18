@@ -1,8 +1,32 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useState } from "react";
+import { styled } from "styled-components";
+import NaverLogo from "../../assets/naver logo.png";
+const { naver } = window;
+
+const NaverIdLogin = styled.div`
+  display: none;
+`;
+
+const NaverLoginBtn = styled.button`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #06bd34;
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 16px;
+  color: #fff;
+`;
+
 function Naver() {
   const [user, setUser] = useState(null);
 
+  const naverRef = useRef();
   const { naver } = window;
 
   const naverLogin = new naver.LoginWithNaverId({
@@ -37,6 +61,11 @@ function Naver() {
     console.log("init!");
     getUser();
   }, []);
+
+  const handleNaverLogin = () => {
+    naverRef.current.children[0].click();
+  };
+
   return (
     <div>
       {user ? (
@@ -53,7 +82,12 @@ function Naver() {
       ) : (
         // 네이버 로그인 버튼
         <div>
-          <div id="naverIdLogin"></div>
+          <NaverIdLogin ref={naverRef} id="naverIdLogin" />
+          <NaverLoginBtn onClick={handleNaverLogin}>
+            <img src={NaverLogo} alt="네이버 로그인 아이콘" />
+            Naver 로 로그인
+            <div></div>
+          </NaverLoginBtn>
         </div>
       )}
     </div>

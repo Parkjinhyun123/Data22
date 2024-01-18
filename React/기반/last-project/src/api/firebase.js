@@ -27,12 +27,12 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCz-3p4dUy0CM7KVWCFARW1cg0YYTnW538",
-  authDomain: "dwos-c4269.firebaseapp.com",
-  projectId: "dwos-c4269",
-  storageBucket: "dwos-c4269.appspot.com",
-  messagingSenderId: "106161025804",
-  appId: "1:106161025804:web:c483b75ee0c27edbe30f29",
+  apiKey: "AIzaSyARawYxbOyLKnEWMlPSatqIULiZhn5ZDN0",
+  authDomain: "hospetal-f595a.firebaseapp.com",
+  projectId: "hospetal-f595a",
+  storageBucket: "hospetal-f595a.appspot.com",
+  messagingSenderId: "41843789723",
+  appId: "1:41843789723:web:07d3d1aaf16f0bd24b9b3e",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -107,9 +107,50 @@ async function getData(collectionName, fieldName, condition, value) {
   return data.length === 1 ? data[0] : data;
 }
 
+export const getLastId = async () => {
+  try {
+    const querySnapshot = await getDocs(
+      query(collection(db, "member"), orderBy("id", "desc"), limit(1))
+    );
+    const lastDoc = querySnapshot.docs[0];
+
+    return lastDoc.data().id;
+  } catch (error) {
+    console.error("Error in getLastId:", error);
+    throw error;
+  }
+};
+
+const addDatas = async (collectionName, data) => {
+  try {
+    const docRef = await addDoc(collection(db, collectionName), data);
+    console.log("Document written with ID: ", docRef.id);
+  } catch (error) {
+    console.error("Error adding document: ", error);
+    throw error;
+  }
+};
+
+async function idDatas(collectionName, checkId) {
+  const Snapshot = await getDocs(
+    query(collection(db, collectionName), where("memberId", "==", checkId))
+  );
+  return Snapshot.size;
+}
+
+async function nickDatas(collectionName, nickName) {
+  const Snapshot = await getDocs(
+    query(
+      collection(db, collectionName),
+      where("memberNickName", "==", nickName)
+    )
+  );
+  return Snapshot.size;
+}
+
 async function getMember(values) {
   const { id, password } = values;
-  const docQuery = query(collection(db, "member"), where("id", "==", id));
+  const docQuery = query(collection(db, "member"), where("memberId", "==", id));
   let message;
   let memberObj = {};
 
@@ -142,27 +183,6 @@ async function deleteDatas(collectionName, docId, imgUrl) {
   return false;
 }
 
-async function addDatas(collectionName, formData) {
-  const uuid = crypto.randomUUID();
-  const path = `movie/${uuid}`;
-  const lastId = (await getLastId(collectionName)) + 1;
-  const time = new Date().getTime();
-  //  파일을 저장하고 url을 받아온다.
-  const url = await uploadImage(path, formData.imgUrl);
-
-  formData.id = lastId;
-  formData.creadtedAt = time;
-  formData.updatedAt = time;
-  formData.imgUrl = url;
-
-  const result = await addDoc(collection(db, collectionName), formData);
-  const docSnap = await getDoc(result);
-  if (docSnap.exists) {
-    const review = { docId: doc.id, ...docSnap.data() };
-    return { review };
-  }
-}
-
 async function updateDatas(collectionName, docId, upadateData, options) {
   const docRef = doc(db, collectionName, docId);
   try {
@@ -185,29 +205,6 @@ async function updateDatas(collectionName, docId, upadateData, options) {
   }
 }
 
-async function uploadImage(path, imgFile) {
-  const storage = getStorage();
-  const imageRef = ref(storage, path);
-
-  //File 객체를 스토리지에 저장
-  await uploadBytes(imageRef, imgFile);
-
-  //  저장한 File의 url을 받아온다
-  const url = await getDownloadURL(imageRef);
-  return url;
-}
-
-async function getLastId(collectionName) {
-  const docQuery = query(
-    collection(db, collectionName),
-    orderBy("id", "desc"),
-    limit(1)
-  );
-  const lastDoc = await getDocs(docQuery);
-  const lastId = lastDoc.docs[0].data().id;
-  return lastId;
-}
-
 export {
   db,
   getDocs,
@@ -224,4 +221,6 @@ export {
   updateDatas,
   getMember,
   getData,
+  idDatas,
+  nickDatas,
 };
