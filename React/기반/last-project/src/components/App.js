@@ -7,6 +7,8 @@ import Map from "./map/Map";
 import Terms from "./Account/Terms";
 import LoginPage from "./login/LoginPage";
 import OwnerJoinComplete from "./Account/OwnerJoinComplete";
+import FindId from "./login/FindId";
+import FindPass from "./login/FindPass";
 
 function App() {
   return (
@@ -16,7 +18,9 @@ function App() {
       {/* <SingUpPh></SingUpPh> */}
       {/* <Map></Map> */}
       {/* <Terms></Terms> */}
-      <LoginPage></LoginPage>
+      {/* <LoginPage></LoginPage> */}
+      {/* <FindId></FindId> */}
+      <FindPass></FindPass>
       {/* <OwnerJoinComplete></OwnerJoinComplete> */}
     </>
   );

@@ -21,6 +21,7 @@ const NaverLoginBtn = styled.button`
   align-items: center;
   padding: 8px 16px;
   color: #fff;
+  cursor: pointer;
 `;
 
 function Naver() {

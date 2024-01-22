@@ -46,12 +46,22 @@ const LoginBtn = styled.button`
   background-color: #1c1b1f;
   color: #fff;
   border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #ffc26f;
+    font-weight: bold;
+  }
 `;
 
 const LoginInput = styled.input`
   width: 100%;
   margin: 0;
-  border: 2px solid #d9d9d9;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  &:focus {
+    background-color: #f9f9f9;
+    border: 1.5px solid #666;
+  }
 `;
 
 const LoginBottom = styled.div`
@@ -63,6 +73,9 @@ const LoginBottom = styled.div`
   & > a {
     text-decoration: none;
     color: #c5c5c1;
+    &:hover {
+      color: #ffc26f;
+    }
   }
 `;
 

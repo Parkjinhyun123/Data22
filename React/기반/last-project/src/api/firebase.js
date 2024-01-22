@@ -171,17 +171,90 @@ async function getMember(values) {
   return { memberObj, message };
 }
 
-async function deleteDatas(collectionName, docId, imgUrl) {
-  const storage = getStorage();
-  try {
-    const deleteRef = ref(storage, imgUrl);
-    await deleteObject(deleteRef);
-    await deleteDoc(doc(db, collectionName, docId));
-  } catch (error) {
-    return false;
+async function findId(memberName, memberMail, memberMail2, memberPhone) {
+  const docQuery = query(
+    collection(db, "member"),
+    where("memberName", "==", memberName),
+    where("memberMail", "==", memberMail),
+    where("memberMail2", "==", memberMail2),
+    where("memberPhone", "==", memberPhone)
+  );
+  const querySnapshot = await getDocs(docQuery);
+  const memberData = querySnapshot.docs.map((doc) => doc.data());
+
+  if (memberData.length > 0) {
+    const memberId = memberData[0].memberId;
+    return memberId;
+  } else {
+    return "일치하는 회원 정보가 없습니다.";
   }
-  return false;
 }
+
+// 구분선
+async function changePassword(memberId, newMemberPass) {
+  const docQuery = collection(db, "member");
+  const queryRef = query(docQuery, where("memberId", "==", memberId));
+
+  const querySnapshot = await getDocs(queryRef);
+  const memberDocs = querySnapshot.docs;
+
+  if (memberDocs.length > 0) {
+    const memberDoc = memberDocs[0];
+    const memberRef = doc(db, "member", memberDoc.id);
+    await updateDoc(memberRef, { memberPass: newMemberPass });
+    return "회원 비밀번호가 변경되었습니다.";
+  } else {
+    return "일치하는 회원 정보가 없습니다.";
+  }
+}
+
+async function findPass(
+  memberId,
+  memberName,
+  memberMail,
+  memberMail2,
+  memberPhone,
+  newMemberPass
+) {
+  const docQuery = collection(db, "member");
+  let queryRef = docQuery;
+
+  if (memberId !== undefined) {
+    queryRef = query(queryRef, where("memberId", "==", memberId));
+  }
+  if (memberName !== undefined) {
+    queryRef = query(queryRef, where("memberName", "==", memberName));
+  }
+  if (memberMail !== undefined) {
+    queryRef = query(queryRef, where("memberMail", "==", memberMail));
+  }
+  if (memberMail2 !== undefined) {
+    queryRef = query(queryRef, where("memberMail2", "==", memberMail2));
+  }
+  if (memberPhone !== undefined) {
+    queryRef = query(queryRef, where("memberPhone", "==", memberPhone));
+  }
+
+  const querySnapshot = await getDocs(queryRef);
+  const memberData = querySnapshot.docs.map((doc) => doc.data());
+  console.log(memberData);
+
+  if (memberData.length > 0) {
+    const foundMemberId = memberData[0].memberId;
+    console.log(foundMemberId);
+
+    if (newMemberPass !== undefined) {
+      // 변경된 비밀번호를 changePassword 함수로 전달하여 비밀번호를 업데이트합니다.
+      const result = await changePassword(foundMemberId, newMemberPass);
+      return result;
+    } else {
+      return foundMemberId;
+    }
+  } else {
+    return "일치하는 회원 정보가 없습니다.";
+  }
+}
+// 구분선
 
 async function updateDatas(collectionName, docId, upadateData, options) {
   const docRef = doc(db, collectionName, docId);
@@ -217,10 +290,11 @@ export {
   doc,
   deleteDoc,
   updateDoc,
-  deleteDatas,
   updateDatas,
   getMember,
   getData,
   idDatas,
   nickDatas,
+  findId,
+  findPass,
 };

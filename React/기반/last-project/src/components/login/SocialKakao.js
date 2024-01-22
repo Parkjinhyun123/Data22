@@ -12,6 +12,7 @@ const KakaoLoginBtn = styled.button`
   justify-content: space-around;
   align-items: center;
   padding: 8px 16px;
+  cursor: pointer;
 `;
 
 const SocialKakao = () => {
