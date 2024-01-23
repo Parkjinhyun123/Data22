@@ -4,6 +4,7 @@ import SocialKakao from "./SocialKakao";
 import SocialNaver from "./SocialNaver";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getMember } from "../../api/firebase";
+import "../Account/SignUp.css";
 
 const Container = styled.div`
   display: flex;
@@ -75,6 +76,7 @@ const LoginBottom = styled.div`
     color: #c5c5c1;
     &:hover {
       color: #ffc26f;
+      font-weight: bold;
     }
   }
 `;
@@ -134,10 +136,8 @@ function Login() {
             <SocialNaver></SocialNaver>
             <SocialKakao></SocialKakao>
             <LoginBottom>
-              <Link to="/">
-                <p>회원가입</p>
-              </Link>
-              <Link to="/">아이디 비밀번호 찾기</Link>
+              <Link to="/Account/ChoiceAccount">회원가입</Link>
+              <Link to="/findId">아이디 비밀번호 찾기</Link>
             </LoginBottom>
           </LoginBtnWrapper>
         </form>

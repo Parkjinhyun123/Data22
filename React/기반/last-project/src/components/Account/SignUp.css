@@ -19,7 +19,7 @@ input {
   /* border-radius: 8px; */
   /* border: 50%; */
   outline: none;
-  border-color: #d9d9d9;
+  border: 1px solid #d9d9d9;
   box-shadow: none;
 }
 
@@ -108,20 +108,22 @@ h3 {
 
 table {
   margin: 0 auto;
+  border-collapse: collapse;
 }
 
-th,
-td {
+tr {
   border-bottom: 1px solid rgba(128, 128, 128, 0.459);
 }
 
 th {
   text-align: left;
   width: 20%;
+  padding: 16px;
 }
 
 td {
   width: 70%;
+  padding: 16px;
 }
 
 .choicePartner {

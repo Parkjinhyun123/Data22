@@ -17,6 +17,46 @@ const Container = styled.div`
   box-sizing: border-box;
 `;
 
+const Table = styled.table`
+  border-top: 3px solid #ff9b50;
+  border-bottom: 3px solid #ff9b50;
+`;
+
+const Input = styled.input`
+  border: 1px solid #d9d9d9;
+  &:focus {
+    background-color: #f9f9f9;
+    border: 1.5px solid #666;
+  }
+`;
+
+const MailInput = styled(Input)`
+  width: 25%;
+`;
+
+const Select = styled.select`
+  border: 1px solid #d9d9d9;
+  color: #d9d9d9;
+`;
+
+const BtnWrapper = styled.div`
+  display: flex;
+  gap: 16px;
+`;
+
+const FindIdBtn = styled.button`
+  border: none;
+  background-color: #000;
+  color: #fff;
+  padding: 8px 32px;
+  margin-top: 32px;
+  cursor: pointer;
+  &:hover {
+    font-weight: bold;
+    background-color: #ff9b50;
+  }
+`;
+
 function FindId() {
   const [mail2, setMail2] = useState("");
   const [email, setEmail] = useState("");
@@ -114,10 +154,12 @@ function FindId() {
     <Container>
       <div>
         <h2 style={{ margin: "30px" }}>Forgot your ID?</h2>
-        <p>회원 가입 시 입력한 정보를 입력해주세요.</p>
+        <p style={{ marginBottom: "50px" }}>
+          회원 가입 시 입력한 정보를 입력해주세요.
+        </p>
       </div>
       <div>
-        <table className="join-area">
+        <Table className="join-area">
           <colgroup>
             <col data-member-form="th" style={{ width: "20%" }} />
             <col data-member-form="td" style={{ width: "80%" }} />
@@ -128,7 +170,7 @@ function FindId() {
                 <label htmlFor="name">이름</label>
               </th>
               <td>
-                <input
+                <Input
                   type="text"
                   id="name"
                   title="이름"
@@ -143,7 +185,7 @@ function FindId() {
                 <label htmlFor="email">이메일</label>
               </th>
               <td>
-                <input
+                <MailInput
                   type="text"
                   name="email"
                   id="email"
@@ -151,7 +193,7 @@ function FindId() {
                   onChange={onChangeEmail}
                 />
                 @
-                <input
+                <MailInput
                   type="text"
                   name="email2"
                   id="email2"
@@ -159,18 +201,19 @@ function FindId() {
                   disabled={mail2 !== "other"}
                   ref={email2Ref}
                 />
-                <select
+                <Select
                   name="tmp_mail"
                   id="tmp_mail"
                   onChange={handleMailChange}
+                  style={{ width: "25%" }}
                 >
-                  <option value="choice">선택하세요</option>
+                  <option value="">선택하세요</option>
                   <option value="naver.com">naver.com</option>
                   <option value="daum.net">daum.net</option>
                   <option value="hanmail.net">hanmail.net</option>
                   <option value="gmail.com">gmail.com</option>
                   <option value="other">직접입력</option>
-                </select>
+                </Select>
               </td>
             </tr>
             <tr>
@@ -178,7 +221,7 @@ function FindId() {
                 <label htmlFor="phone">연락처</label>
               </th>
               <td>
-                <input
+                <Input
                   id="phone"
                   name="phone"
                   value={phone}
@@ -188,7 +231,7 @@ function FindId() {
               </td>
             </tr>
           </tbody>
-        </table>
+        </Table>
       </div>
       <Modal
         open={memberIdModalOpen}
@@ -196,7 +239,12 @@ function FindId() {
         memberId={memberId}
         isError={isError}
       />
-      <button onClick={handleFindId}>아이디 찾기</button>
+      <BtnWrapper>
+        <FindIdBtn onClick={handleFindId}>아이디 찾기</FindIdBtn>
+        <Link to="/findPass">
+          <FindIdBtn>비밀번호 찾기</FindIdBtn>
+        </Link>
+      </BtnWrapper>
     </Container>
   );
 }

@@ -17,6 +17,47 @@ const Container = styled.div`
   box-sizing: border-box;
 `;
 
+const Table = styled.table`
+  border-top: 3px solid #ff9b50;
+  border-bottom: 3px solid #ff9b50;
+`;
+
+const Input = styled.input`
+  border: 1px solid #d9d9d9;
+  &:focus {
+    background-color: #f9f9f9;
+    border: 1.5px solid #666;
+  }
+`;
+
+const MailInput = styled(Input)`
+  width: 25%;
+`;
+
+const Select = styled.select`
+  border: 1px solid #d9d9d9;
+  width: 25%;
+  color: #d9d9d9;
+`;
+
+const BtnWrapper = styled.div`
+  display: flex;
+  gap: 16px;
+`;
+
+const FindIdBtn = styled.button`
+  border: none;
+  background-color: #000;
+  color: #fff;
+  padding: 8px 32px;
+  margin-top: 32px;
+  cursor: pointer;
+  &:hover {
+    font-weight: bold;
+    background-color: #ff9b50;
+  }
+`;
+
 function FindPass() {
   const [mail2, setMail2] = useState("");
   const [email, setEmail] = useState("");
@@ -116,7 +157,7 @@ function FindPass() {
         setMemberPassModalOpen(false);
       }
     } else {
-      alert("모든 값을 입력해주세요.");
+      alert("빈칸없이 입력해주세요.");
       setMemberPassModalOpen(false);
     }
   };
@@ -129,10 +170,12 @@ function FindPass() {
     <Container>
       <div>
         <h2 style={{ margin: "30px" }}>Forgot your PW?</h2>
-        <p>회원 가입 시 입력한 정보를 입력해주세요.</p>
+        <p style={{ marginBottom: "50px" }}>
+          회원 가입 시 입력한 정보를 입력해주세요.
+        </p>
       </div>
       <div>
-        <table className="join-area">
+        <Table className="join-area">
           <colgroup>
             <col data-member-form="th" style={{ width: "20%" }} />
             <col data-member-form="td" style={{ width: "80%" }} />
@@ -145,7 +188,7 @@ function FindPass() {
                 </div>
               </th>
               <td>
-                <input id="id" name="id" value={id} onChange={onChangeId} />
+                <Input id="id" name="id" value={id} onChange={onChangeId} />
               </td>
             </tr>
             <tr>
@@ -153,7 +196,7 @@ function FindPass() {
                 <label htmlFor="name">이름</label>
               </th>
               <td>
-                <input
+                <Input
                   type="text"
                   id="name"
                   title="이름"
@@ -168,7 +211,7 @@ function FindPass() {
                 <label htmlFor="email">이메일</label>
               </th>
               <td>
-                <input
+                <MailInput
                   type="text"
                   name="email"
                   id="email"
@@ -176,7 +219,7 @@ function FindPass() {
                   onChange={onChangeEmail}
                 />
                 @
-                <input
+                <MailInput
                   type="text"
                   name="email2"
                   id="email2"
@@ -184,7 +227,7 @@ function FindPass() {
                   disabled={mail2 !== "other"}
                   ref={email2Ref}
                 />
-                <select
+                <Select
                   name="tmp_mail"
                   id="tmp_mail"
                   onChange={handleMailChange}
@@ -195,7 +238,7 @@ function FindPass() {
                   <option value="hanmail.net">hanmail.net</option>
                   <option value="gmail.com">gmail.com</option>
                   <option value="other">직접입력</option>
-                </select>
+                </Select>
               </td>
             </tr>
             <tr>
@@ -203,7 +246,7 @@ function FindPass() {
                 <label htmlFor="phone">연락처</label>
               </th>
               <td>
-                <input
+                <Input
                   id="phone"
                   name="phone"
                   value={phone}
@@ -213,7 +256,7 @@ function FindPass() {
               </td>
             </tr>
           </tbody>
-        </table>
+        </Table>
       </div>
       <Modal
         open={memberPassModalOpen}
@@ -221,7 +264,12 @@ function FindPass() {
         isError={isError}
         memberId={memberId}
       />
-      <button onClick={handleChangePass}>비밀번호 변경하기</button>
+      <BtnWrapper>
+        <FindIdBtn onClick={handleChangePass}>비밀번호 변경하기</FindIdBtn>
+        <Link to="/findId">
+          <FindIdBtn>아이디 찾기</FindIdBtn>
+        </Link>
+      </BtnWrapper>
     </Container>
   );
 }
