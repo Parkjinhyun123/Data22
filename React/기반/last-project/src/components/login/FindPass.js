@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { changeMemberPass, findId, findPass } from "../../api/firebase";
+import { Link } from "react-router-dom";
+import { findPass } from "../../api/firebase";
 import Modal from "../Account/ModalPass";
 
 const Container = styled.div`
@@ -37,7 +37,6 @@ const MailInput = styled(Input)`
 const Select = styled.select`
   border: 1px solid #d9d9d9;
   width: 25%;
-  color: #d9d9d9;
 `;
 
 const BtnWrapper = styled.div`
@@ -62,11 +61,6 @@ function FindPass() {
   const [mail2, setMail2] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [values, setValues] = useState({
-    id: "",
-    password: "",
-  });
-  const [idFound, setIdFound] = useState(false);
   const email2Ref = useRef(null);
   const phoneRef = useRef();
   const [memberName, setMemberName] = useState("");
@@ -169,8 +163,8 @@ function FindPass() {
   return (
     <Container>
       <div>
-        <h2 style={{ margin: "30px" }}>Forgot your PW?</h2>
-        <p style={{ marginBottom: "50px" }}>
+        <h2 style={{ margin: "30px", fontSize: "42px" }}>Forgot your PW?</h2>
+        <p style={{ marginBottom: "50px", textAlign: "center" }}>
           회원 가입 시 입력한 정보를 입력해주세요.
         </p>
       </div>

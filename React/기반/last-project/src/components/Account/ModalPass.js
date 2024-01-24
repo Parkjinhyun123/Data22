@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { styled } from "styled-components";
 import "./Modal.css";
 import closeImg from "../../assets/icon-close.png";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { findPass } from "../../api/firebase";
+import "./Modal.css";
 
 function Modal({ open, onClose, isError, memberId }) {
   const [password, setPassword] = useState("");
@@ -12,6 +12,7 @@ function Modal({ open, onClose, isError, memberId }) {
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState("");
   const [isPassword, setIsPassword] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+  const navigate = useNavigate();
 
   if (!open) {
     return null;
@@ -37,7 +38,7 @@ function Modal({ open, onClose, isError, memberId }) {
     if (password !== currentPasswordConfirm) {
       setPasswordConfirmMessage("비밀번호가 일치하지 않습니다.");
       setIsPasswordConfirm(false);
-    } else if (password == currentPasswordConfirm) {
+    } else if (password === currentPasswordConfirm) {
       setPasswordConfirmMessage("비밀번호가 일치합니다.");
       setIsPasswordConfirm(true);
     }
@@ -54,7 +55,12 @@ function Modal({ open, onClose, isError, memberId }) {
           undefined,
           password
         );
-        alert("비밀번호가 변경되었습니다.");
+        const confirmResult = window.confirm(
+          "비밀번호가 변경되었습니다. 로그인 페이지로 이동하시겠습니까?"
+        );
+        if (confirmResult) {
+          navigate("/");
+        }
       } catch (error) {
         console.log(error);
       }
@@ -84,7 +90,12 @@ function Modal({ open, onClose, isError, memberId }) {
                   <tr>
                     <th scope="row">
                       <div className="form-el">
-                        <label htmlFor="password">비밀번호</label>
+                        <label
+                          htmlFor="password"
+                          style={{ fontSize: "16px", padding: "0" }}
+                        >
+                          비밀번호
+                        </label>
                       </div>
                     </th>
                     <td>
@@ -104,7 +115,12 @@ function Modal({ open, onClose, isError, memberId }) {
                   <tr>
                     <th scope="row">
                       <div className="form-el">
-                        <label htmlFor="passwordConfirm">비밀번호 확인</label>
+                        <label
+                          htmlFor="passwordConfirm"
+                          style={{ fontSize: "16px", padding: "0" }}
+                        >
+                          비밀번호 확인
+                        </label>
                       </div>
                     </th>
                     <td>
@@ -122,7 +138,13 @@ function Modal({ open, onClose, isError, memberId }) {
                     </td>
                   </tr>
                 </table>
-                <button onClick={handleChangePassword}>비밀번호 변경</button>
+                <button
+                  className="find-pass"
+                  onClick={handleChangePassword}
+                  style={{ margin: "20px" }}
+                >
+                  비밀번호 변경
+                </button>
               </>
             )}
           </div>

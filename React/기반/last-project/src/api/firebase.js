@@ -149,24 +149,28 @@ async function nickDatas(collectionName, nickName) {
 }
 
 async function getMember(values) {
-  const { id, password } = values;
+  const { input_id: id, input_pw: password } = values;
   const docQuery = query(collection(db, "member"), where("memberId", "==", id));
-  let message;
-  let memberObj = {};
+  let message = "";
+  let memberObj = null;
+  console.log(values);
 
   const querySnapshot = await getDocs(docQuery);
-  if (querySnapshot.docs.length !== 0) {
-    const memberData = querySnapshot.docs.map((doc) => ({
-      docId: doc.id,
-      ...doc.data(),
-    }))[0];
-    if (memberData.password == password) {
+  console.log(querySnapshot);
+  if (!querySnapshot.empty && querySnapshot.docs[0]) {
+    // 수정된 부분
+    const memberData = querySnapshot.docs[0].data();
+    if (
+      memberData &&
+      memberData.hasOwnProperty("memberId") &&
+      memberData.hasOwnProperty("memberPass") &&
+      memberData.memberId === id &&
+      memberData.memberPass === password
+    ) {
       memberObj = memberData;
-    } else {
-      message = "비밀번호가 일치하지 않습니다.";
+      message = null;
     }
-  } else {
-    message = "일치하는 아이디가 없습니다.";
+    console.log(memberData);
   }
   return { memberObj, message };
 }

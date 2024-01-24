@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { findId } from "../../api/firebase";
 import Modal from "../Account/ModalId";
 
@@ -36,7 +36,6 @@ const MailInput = styled(Input)`
 
 const Select = styled.select`
   border: 1px solid #d9d9d9;
-  color: #d9d9d9;
 `;
 
 const BtnWrapper = styled.div`
@@ -61,11 +60,7 @@ function FindId() {
   const [mail2, setMail2] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [values, setValues] = useState({
-    id: "",
-    password: "",
-  });
-  const [idFound, setIdFound] = useState(false);
+
   const email2Ref = useRef(null);
   const phoneRef = useRef();
   const [memberName, setMemberName] = useState("");
@@ -121,6 +116,16 @@ function FindId() {
   };
 
   const handleFindId = async () => {
+    if (
+      memberName.trim() === "" ||
+      email.trim() === "" ||
+      mail2.trim() === "" ||
+      phone.trim() === ""
+    ) {
+      alert("빈 칸을 모두 입력해주세요!");
+      return;
+    }
+
     try {
       const memberId = await findId(
         memberName,
@@ -139,10 +144,8 @@ function FindId() {
       }
 
       setMemberIdModalOpen(true);
-      // 원하는 작업 수행
     } catch (error) {
       console.error("회원 ID 찾기 오류:", error);
-      // 오류 처리
     }
   };
 
@@ -153,8 +156,8 @@ function FindId() {
   return (
     <Container>
       <div>
-        <h2 style={{ margin: "30px" }}>Forgot your ID?</h2>
-        <p style={{ marginBottom: "50px" }}>
+        <h2 style={{ margin: "30px", fontSize: "42px" }}>Forgot your ID?</h2>
+        <p style={{ marginBottom: "50px", textAlign: "center" }}>
           회원 가입 시 입력한 정보를 입력해주세요.
         </p>
       </div>

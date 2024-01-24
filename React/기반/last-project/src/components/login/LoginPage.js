@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import SocialKakao from "./SocialKakao";
 import SocialNaver from "./SocialNaver";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getMember } from "../../api/firebase";
 import "../Account/SignUp.css";
+import SocialGoogle from "./SocialGoogle";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const Container = styled.div`
   display: flex;
@@ -85,8 +87,8 @@ function Login() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const [values, setValues] = useState({
-    id: "",
-    password: "",
+    input_id: "", // 수정된 필드명
+    input_pw: "", // 수정된 필드명
   });
 
   const handleValueChange = (e) => {
@@ -96,18 +98,30 @@ function Login() {
       [name]: value,
     }));
   };
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
     const { memberObj, message } = await getMember(values);
-    if (message === undefined) {
+    if (message === "") {
+      if (memberObj !== null) {
+        if (
+          values.input_id === memberObj.memberId &&
+          values.input_pw === memberObj.memberPass
+        ) {
+          // 로컬 스토리지에 memberObj 저장
+          navigate(state ? state : "/");
+        } else {
+          alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+        }
+      } else {
+        console.log(memberObj);
+        alert("로그인 실패: 일치하는 아이디가 없습니다.");
+      }
+    } else if (message === null) {
       localStorage.setItem("member", JSON.stringify(memberObj));
-      // alert("로그인에 성공했습니다.");
-      // window.location.href = "/";
-      // setMember(memberObj);
-      navigate(state ? state : "/");
+      alert("로그인 성공");
     } else {
-      console.log("ㅇㅇ");
       alert(message);
     }
   };
@@ -115,7 +129,7 @@ function Login() {
   return (
     <Container>
       <div>
-        <h2 style={{ margin: "30px" }}>Login</h2>
+        <h2 style={{ margin: "30px", fontSize: "42px" }}>Login</h2>
         <form onSubmit={handleLogin}>
           <InputArea>
             <LoginInput
@@ -135,6 +149,9 @@ function Login() {
             <LoginBtn type="submit">로그인</LoginBtn>
             <SocialNaver></SocialNaver>
             <SocialKakao></SocialKakao>
+            <GoogleOAuthProvider clientId="41843789723-sgafn18v02hjtmrfcdladehsf8hhq1tt.apps.googleusercontent.com">
+              <SocialGoogle></SocialGoogle>
+            </GoogleOAuthProvider>
             <LoginBottom>
               <Link to="/Account/ChoiceAccount">회원가입</Link>
               <Link to="/findId">아이디 비밀번호 찾기</Link>

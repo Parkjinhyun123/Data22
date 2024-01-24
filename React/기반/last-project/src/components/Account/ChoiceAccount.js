@@ -3,7 +3,8 @@ import ButtonImg from "../../assets/버튼.png";
 import SocialKakaoSimple from "./../login/SocialKakaoSimple";
 import SocialNaverSimple from "./../login/SocialNaverSimple";
 import { Link } from "react-router-dom";
-import AppleLogo from "../../assets/Apple logo_r.png";
+import SocialGoogleSimple from "../login/SocialGoogleSimple";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const Container = styled.div`
   display: flex;
@@ -26,8 +27,11 @@ const ContentBox = styled.div`
 
 const Content = styled.div`
   border: 2px solid #000;
-  padding: 16px;
+  padding: 32px;
   text-align: center;
+  & > * {
+    padding: 16px;
+  }
 `;
 
 const ImgWrapper = styled.div`
@@ -66,7 +70,7 @@ const SocialBtnArea = styled.div`
 function ChoiceAccount() {
   return (
     <Container>
-      <h1 style={{ margin: "30px" }}>Join</h1>
+      <h1 style={{ margin: "30px", fontSize: "42px" }}>Join</h1>
       <ContentBox>
         <Content>
           <h2>펫오너</h2>
@@ -84,9 +88,11 @@ function ChoiceAccount() {
           <SocialArea>
             <p>SNS로 간편 가입하기</p>
             <SocialBtnArea>
-              <img src={AppleLogo} style={{ width: "25px", height: "25px" }} />
               <SocialKakaoSimple />
               <SocialNaverSimple />
+              <GoogleOAuthProvider clientId="41843789723-sgafn18v02hjtmrfcdladehsf8hhq1tt.apps.googleusercontent.com">
+                <SocialGoogleSimple />
+              </GoogleOAuthProvider>
             </SocialBtnArea>
           </SocialArea>
         </Content>
@@ -100,7 +106,7 @@ function ChoiceAccount() {
           <ImgWrapper>
             <img src={ButtonImg} alt="임시 이미지" />
           </ImgWrapper>
-          <Link to="/SignUpHos">
+          <Link to="/TermsHos">
             <SignInBtn> 펫 병원&middot;약국 가입 </SignInBtn>
           </Link>
         </Content>

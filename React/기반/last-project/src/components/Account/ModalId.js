@@ -1,5 +1,4 @@
 import React from "react";
-import { styled } from "styled-components";
 import "./Modal.css";
 import closeImg from "../../assets/icon-close.png";
 import { Link } from "react-router-dom";
@@ -31,8 +30,11 @@ function Modal({ open, onClose, memberId, isError }) {
                 <p>회원님의 아이디는</p>
                 <p className="find">{memberId}</p>
                 <p>입니다.</p>
-                <Link to="/" className="find-pass">
+                <Link to="/findPass" className="find-pass">
                   비밀번호 찾기
+                </Link>
+                <Link to="/" className="find-pass">
+                  로그인 하기
                 </Link>
               </>
             )}

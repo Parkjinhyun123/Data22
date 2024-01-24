@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import "./SignUp.css";
-import ButtonImg from "../../assets/버튼.png";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ const LoginBtn = styled.button`
 function JoinComplete() {
   return (
     <Container>
-      <h2> Pet Owner Join </h2>
+      <h2 style={{ fontSize: "42px" }}> Pet Owner Join </h2>
       <h3>가입완료</h3>
       <div className="headWrapper">
         <h3>
@@ -52,7 +52,9 @@ function JoinComplete() {
           <br /> 로그인 후 모든 서비스를 이용할 수 있습니다.
         </p>
         <div className="welcome-btn">
-          <LoginBtn>로그인</LoginBtn>
+          <Link to="/">
+            <LoginBtn>로그인</LoginBtn>
+          </Link>
         </div>
       </div>
     </Container>

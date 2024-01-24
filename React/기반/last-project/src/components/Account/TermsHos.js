@@ -84,7 +84,7 @@ function Terms() {
 
   const handleLinkClick = (e) => {
     if (!isCheckedService || !isCheckedOther) {
-      e.preventDefault();
+      e.preventDefault(); // 링크 클릭 동작 막기
       if (!isCheckedService) {
         alert("이용약관에 동의해주세요.");
       }
@@ -96,7 +96,7 @@ function Terms() {
 
   return (
     <Container>
-      <h2 style={{ fontSize: "42px" }}> Pet Owner Join </h2>
+      <h2 style={{ fontSize: "42px" }}> Pet Partnership Join </h2>
       <h3>정보입력</h3>
       <div className="headWrapper">
         <h3>
@@ -197,7 +197,7 @@ function Terms() {
           <Link to="/">취소</Link>
         </Btn>
         <OkBtn>
-          <Link to="/SignUp" onClick={handleLinkClick}>
+          <Link to="/SignUpHos" onClick={handleLinkClick}>
             다음 단계로
           </Link>
         </OkBtn>

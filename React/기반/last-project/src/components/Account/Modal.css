@@ -74,6 +74,10 @@
   /* background-color: tomato; */
 }
 
+.modal-contentBox > * {
+  padding: 16px;
+}
+
 .modal-imgBox figure {
   background-color: aliceblue;
   height: 440px;

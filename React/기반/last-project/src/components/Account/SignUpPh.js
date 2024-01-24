@@ -1,8 +1,9 @@
 import { useRef, useState } from "react";
 import Adress from "./Adress";
-import { addDatas, getDatas } from "../../api/firebase";
+import { addDatas, idDatas } from "../../api/firebase";
 import "./SignUp.css";
 import { styled } from "styled-components";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -40,52 +41,51 @@ const CancleBtn = styled.button`
   border: none;
   cursor: pointer;
   background-color: #1c1b1f;
-  color: #fff;
+
   padding: 8px 16px;
   &:active,
   &:focus {
     outline: none;
     box-shadow: none;
   }
+  & > a {
+    color: #fff;
+    text-decoration: none;
+  }
 `;
 const SignBtn = styled.button`
   border: none;
   background-color: #ff9b50;
-  color: #fff;
   padding: 8px 16px;
   font-weight: bold;
-  margin-right: 8px;
   cursor: pointer;
   &:active,
   &:focus {
     outline: none;
   }
+  & > a {
+    color: #fff;
+    text-decoration: none;
+  }
 `;
 
-function SingUp() {
+function SignUpPh() {
   const [id, setId] = useState("");
-  const [nickName, setNickName] = useState("");
+  const [partnerName, setPartnerName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [mail, setMail] = useState("");
   const [mail2, setMail2] = useState("");
   const phoneRef = useRef();
 
   const [idMessage, setIdMessage] = useState("");
-  const [nameMessage, setNameMessage] = useState("");
   const [passwordMessage, setPasswordMessage] = useState("");
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState("");
-  const [emailMessage, setEmailMessage] = useState("");
-  const [phoneMessage, setPhoneMessage] = useState("");
 
   const [isId, setIsId] = useState(false);
-  const [isNickName, setIsNickName] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
-  const [isEmail, setIsEmail] = useState(false);
-  const [isPhone, setIsPhone] = useState(false);
 
   const email2Ref = useRef(null);
 
@@ -102,22 +102,31 @@ function SingUp() {
     }
   };
 
-  const onChangeName = (e) => {
-    const currentName = e.target.value;
-    setNickName(currentName);
-
-    if (currentName.length < 2 || currentName.length > 5) {
-      setIsNickName(false);
+  const handleAjax = () => {
+    if (id.trim() === "") {
+      setIdMessage("아이디를 입력해주세요.");
+      setIsId(false);
+      alert("아이디를 입력해주세요.");
     } else {
-      setNameMessage("사용가능한 닉네임 입니다.");
-      setIsNickName(true);
+      let isExist = 0;
+      idDatas("member", id).then((result) => {
+        isExist = result;
+        if (isExist === 0) {
+          alert("사용 가능한 아이디 입니다.");
+          setIsId(true);
+        } else if (isExist !== 0) {
+          setIdMessage("중복된 아이디 입니다.");
+          setIsId(false);
+        }
+      });
     }
   };
 
   const onChangePassword = (e) => {
     const currentPassword = e.target.value;
     setPassword(currentPassword);
-    const passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+    const passwordRegExp =
+      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
     if (!passwordRegExp.test(currentPassword)) {
       setPasswordMessage("사용불가능한 비밀번호입니다.");
       setIsPassword(false);
@@ -133,10 +142,15 @@ function SingUp() {
     if (password !== currentPasswordConfirm) {
       setPasswordConfirmMessage("비밀번호가 일치하지 않습니다.");
       setIsPasswordConfirm(false);
-    } else if (password == currentPasswordConfirm) {
+    } else if (password === currentPasswordConfirm) {
       setPasswordConfirmMessage("비밀번호가 일치합니다.");
       setIsPasswordConfirm(true);
     }
+  };
+
+  const onChangePartner = (e) => {
+    const currentPartner = e.target.value;
+    setPartnerName(currentPartner);
   };
 
   const onChangeEmail = (e) => {
@@ -182,12 +196,37 @@ function SingUp() {
   };
 
   const handleSubmit = () => {
+    if (id.trim() === "") {
+      alert("아이디를 입력해주세요.");
+      return;
+    }
+    if (partnerName.trim() === "") {
+      alert("업체명 입력해주세요.");
+      return;
+    }
+    if (password.trim() === "") {
+      alert("비밀번호를 입력해주세요.");
+      return;
+    }
+    if (passwordConfirm.trim() === "") {
+      alert("비밀번호 확인을 입력해주세요.");
+      return;
+    }
+    if (email.trim() === "") {
+      alert("이메일을 입력해주세요.");
+      return;
+    }
+    if (phone.trim() === "") {
+      alert("전화번호를 입력해주세요.");
+      return;
+    }
+
     const memberInfo = {
       memberId: id,
       memberPass: password,
-      memberNickName: nickName,
+      partnerName: partnerName,
       memberPhone: phone,
-      memberMail: mail,
+      memberMail: email,
       memberMail2: mail2,
     };
     addDatas("member", memberInfo);
@@ -195,11 +234,13 @@ function SingUp() {
 
   return (
     <Container>
-      <h2> Pet Partnership Join </h2>
+      <h2 style={{ fontSize: "42px" }}> Pet Partnership Join </h2>
       <h3>정보입력</h3>
       <div className="headWrapper">
         <h3>
-          <div className="sign-num">1</div> - <div className="sign-num now">2</div> - <div className="sign-num">3</div>
+          <div className="sign-num">1</div> -{" "}
+          <div className="sign-num now">2</div> -{" "}
+          <div className="sign-num">3</div>
         </h3>
         <div className="headWrapper-sum">
           <div> 약관동의 </div>
@@ -208,7 +249,9 @@ function SingUp() {
         </div>
       </div>
       <div className="choicePartner">
-        <HosBtn>병원</HosBtn>
+        <Link to="/SignUpHos">
+          <HosBtn>병원</HosBtn>
+        </Link>
         <PhBtn>약국</PhBtn>
       </div>
       <table>
@@ -220,8 +263,19 @@ function SingUp() {
               </div>
             </th>
             <td>
-              <input id="id" name="id" value={id} onChange={onChangeId} placeholder="4-12사이 대소문자 또는 숫자만 입력해 주세요." />
-              <input type="button" className="member-btn" id="id_ajax" value="중복확인" />
+              <input
+                id="id"
+                name="id"
+                value={id}
+                onChange={onChangeId}
+                placeholder="4-12사이 대소문자 또는 숫자만 입력해 주세요."
+              />
+              <input
+                type="button"
+                className="member-btn"
+                id="id_ajax"
+                value="중복확인"
+              />
               <p className={`${isId} ? 'true' : "false"`}> {idMessage} </p>
             </td>
           </tr>
@@ -232,8 +286,17 @@ function SingUp() {
               </div>
             </th>
             <td>
-              <input id="password" name="password" value={password} type="password" onChange={onChangePassword} placeholder="숫자,영문자,특수문자 조합으로 8자리 이상 입력해주세요." />
-              <p className={`${isPassword} ? 'true' : 'false'`}>{passwordMessage}</p>
+              <input
+                id="password"
+                name="password"
+                value={password}
+                type="password"
+                onChange={onChangePassword}
+                placeholder="숫자,영문자,특수문자 조합으로 8자리 이상 입력해주세요."
+              />
+              <p className={`${isPassword} ? 'true' : 'false'`}>
+                {passwordMessage}
+              </p>
             </td>
           </tr>
           <tr>
@@ -251,7 +314,9 @@ function SingUp() {
                 placeholder="숫자,영문자,특수문자 조합으로 8자리 이상 입력해주세요."
                 onChange={onChangePasswordConfirm}
               />
-              <p className={`${isPasswordConfirm} ? "true" : "false"`}>{passwordConfirmMessage}</p>
+              <p className={`${isPasswordConfirm} ? "true" : "false"`}>
+                {passwordConfirmMessage}
+              </p>
             </td>
           </tr>
           <tr>
@@ -261,7 +326,12 @@ function SingUp() {
               </div>
             </th>
             <td>
-              <input id="name" name="name" />
+              <input
+                id="name"
+                name="name"
+                value={partnerName}
+                onChange={onChangePartner}
+              />
             </td>
           </tr>
           <tr>
@@ -271,11 +341,30 @@ function SingUp() {
               </div>
             </th>
             <td>
-              <input id="email" name="name" className="mail" value={email} onChange={onChangeEmail} />
+              <input
+                id="email"
+                name="name"
+                className="mail"
+                value={email}
+                onChange={onChangeEmail}
+              />
               @
-              <input type="text" name="email2" className="mail" id="email2" title="이메일 주소 직접입력" disabled={mail2 !== "other"} ref={email2Ref} />
+              <input
+                type="text"
+                name="email2"
+                className="mail"
+                id="email2"
+                title="이메일 주소 직접입력"
+                disabled={mail2 !== "other"}
+                ref={email2Ref}
+              />
               &nbsp;
-              <select name="tmp_mail" id="tmp_mail" onChange={handleMailChange} value={mail2}>
+              <select
+                name="tmp_mail"
+                id="tmp_mail"
+                onChange={handleMailChange}
+                value={mail2}
+              >
                 <option value="">선택하세요</option>
                 <option value="naver.com">naver.com</option>
                 <option value="daum.net">daum.net</option>
@@ -283,7 +372,6 @@ function SingUp() {
                 <option value="gmail.com">gmail.com</option>
                 <option value="other">직접입력</option>
               </select>
-              <p className={`${isEmail} ? "true" : "false`}>{emailMessage}</p>
             </td>
           </tr>
           <tr>
@@ -291,7 +379,13 @@ function SingUp() {
               <label htmlFor="phone">대표 연락처</label>
             </th>
             <td>
-              <input id="phone" name="phone" value={phone} ref={phoneRef} onChange={handlePhone} />
+              <input
+                id="phone"
+                name="phone"
+                value={phone}
+                ref={phoneRef}
+                onChange={handlePhone}
+              />
             </td>
           </tr>
           <tr>
@@ -307,16 +401,21 @@ function SingUp() {
               <label htmlFor="partner">사업자 등록증</label>
             </th>
             <td>
-              <input type="file" id="file" name="file" style={{ color: "rgba(0,0,0,0.5)" }} />
+              <input
+                type="file"
+                id="file"
+                name="file"
+                style={{ color: "rgba(0,0,0,0.5)", backgroundColor: "#fff" }}
+              />
             </td>
           </tr>
           <br />
           <div className="btn_wrapper">
-            <CancleBtn className="submitBtn" onClick={handleSubmit}>
-              취소
+            <CancleBtn className="submitBtn">
+              <Link to="/">취소</Link>
             </CancleBtn>
             <SignBtn type="submit" className="submitBtn" onClick={handleSubmit}>
-              가입하기
+              <Link to="/PartnerJoinComplete">가입하기 </Link>
             </SignBtn>
           </div>
         </div>
@@ -325,4 +424,4 @@ function SingUp() {
   );
 }
 
-export default SingUp;
+export default SignUpPh;
