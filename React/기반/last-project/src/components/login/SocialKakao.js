@@ -2,6 +2,7 @@ import KakaoLogin from "react-kakao-login";
 import { styled } from "styled-components";
 import KakaoLogo from "../../assets/kakao logo.png";
 import { useEffect, useState } from "react";
+import { addDatas } from "../../api/firebase";
 
 const KakaoLoginBtn = styled.button`
   background-color: #f7e600;
@@ -28,31 +29,35 @@ const SocialKakao = () => {
   };
   const kakaoLogin = async () => {
     await Kakao.Auth.login({
-      success(res) {
+      success: async (res) => {
         console.log(res);
         Kakao.Auth.setAccessToken(res.access_token);
         console.log("카카오 로그인 성공");
 
         Kakao.API.request({
           url: "/v2/user/me",
-          success(res) {
+          success: async (res) => {
             console.log("카카오 인가 요청 성공");
             setIsLogin(true);
             const kakaoAccount = res.kakao_account;
-            localStorage.setItem("email", kakaoAccount.email);
-            localStorage.setItem(
-              "profileImg",
-              kakaoAccount.profile.profile_image_url
-            );
+            const data = {
+              nickname: kakaoAccount.profile.nickname,
+            };
+            alert(`돌아오신 것을 환영합니다! ${data.nickname} 님`);
+            try {
+              await addDatas("socialmember", data);
+            } catch (error) {
+              console.log("Firebase 데이터 저장 에러:", error);
+            }
             localStorage.setItem("nickname", kakaoAccount.profile.nickname);
           },
-          fail(error) {
-            console.log(error);
+          fail: (error) => {
+            console.log("카카오 인가 요청 실패:", error);
           },
         });
       },
-      fail(error) {
-        console.log(error);
+      fail: (error) => {
+        console.log("카카오 로그인 실패:", error);
       },
     });
   };
@@ -61,8 +66,6 @@ const SocialKakao = () => {
     Kakao.Auth.logout((res) => {
       console.log(Kakao.Auth.getAccessToken());
       console.log(res);
-      localStorage.removeItem("email");
-      localStorage.removeItem("profileImg");
       localStorage.removeItem("nickname");
       setUser(null);
     });

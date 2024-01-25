@@ -38,7 +38,6 @@ const SignBtn = styled.button`
   padding: 8px 16px;
   font-weight: bold;
   margin-right: 8px;
-  cursor: pointer;
   &:active,
   &:focus {
     outline: none;
@@ -128,12 +127,15 @@ function SignUp() {
       alert("닉네임을 입력해주세요.");
     } else {
       let isExist = 0;
-      nickDatas("member", nickName).then((result) => {
-        isExist = result;
+      Promise.all([
+        nickDatas("member", nickName),
+        nickDatas("socialmember", nickName),
+      ]).then(([memberResult, socialMemberResult]) => {
+        isExist = memberResult + socialMemberResult;
         if (isExist === 0) {
           alert("사용 가능한 닉네임 입니다.");
           setIsNickName(true);
-        } else if (isExist !== 0) {
+        } else {
           setNameMessage("중복된 닉네임 입니다.");
           setIsNickName(false);
         }
@@ -254,6 +256,16 @@ function SignUp() {
       }
     }
   };
+
+  const handleCancelCheck = () => {
+    const result = window.confirm(
+      "입력한 정보가 사라집니다 정말 가입을 취소하시겠습니까?"
+    );
+    if (result) {
+      window.location.href = "/";
+    }
+  };
+
   return (
     <Container>
       <h2 style={{ fontSize: "42px" }}> Pet Owner Join </h2>
@@ -293,7 +305,10 @@ function SignUp() {
                 value="중복확인"
                 onClick={handleAjax}
               />
-              <p className={`${isId} ? 'true' : "false"`}> {idMessage} </p>
+              <p className={`${isId} ? 'true' : "false"`}>
+                {" "}
+                &nbsp;{idMessage}{" "}
+              </p>
             </td>
           </tr>
           <tr>
@@ -322,7 +337,7 @@ function SignUp() {
                 placeholder="숫자,영문자,특수문자 조합으로 8자리 이상 입력해주세요."
               />
               <p className={`${isPassword} ? 'true' : 'false'`}>
-                {passwordMessage}
+                &nbsp;{passwordMessage}
               </p>
             </td>
           </tr>
@@ -342,7 +357,7 @@ function SignUp() {
                 onChange={onChangePasswordConfirm}
               />
               <p className={`${isPasswordConfirm} ? "true" : "false"`}>
-                {passwordConfirmMessage}
+                &nbsp;{passwordConfirmMessage}
               </p>
             </td>
           </tr>
@@ -368,7 +383,7 @@ function SignUp() {
                 onClick={handleNickAjax}
               />
               <p className={`${isNickName} ? "true" : "false"`}>
-                {nameMessage}
+                &nbsp;{nameMessage}
               </p>
             </td>
           </tr>
@@ -442,7 +457,7 @@ function SignUp() {
           </tr>
           <br />
           <div className="btn_wrapper">
-            <CancleBtn className="submitBtn" onClick={handleSubmit}>
+            <CancleBtn className="submitBtn" onClick={handleCancelCheck}>
               <Link to="/">취소</Link>
             </CancleBtn>
             <SignBtn type="submit" className="submitBtn" onClick={handleSubmit}>

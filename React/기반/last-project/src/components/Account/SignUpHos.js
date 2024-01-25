@@ -233,6 +233,15 @@ function SignUpHos() {
     addDatas("member", memberInfo);
   };
 
+  const handleCancelCheck = () => {
+    const result = window.confirm(
+      "입력한 정보가 사라집니다 정말 가입을 취소하시겠습니까?"
+    );
+    if (result) {
+      window.location.href = "/";
+    }
+  };
+
   return (
     <Container>
       <h2 style={{ fontSize: "42px" }}> Pet Partnership Join </h2>
@@ -413,7 +422,7 @@ function SignUpHos() {
           </tr>
           <br />
           <div className="btn_wrapper">
-            <CancleBtn className="submitBtn">
+            <CancleBtn className="submitBtn" onClick={handleCancelCheck}>
               <Link to="/">취소</Link>
             </CancleBtn>
 

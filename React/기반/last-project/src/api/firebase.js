@@ -129,6 +129,10 @@ const addDatas = async (collectionName, data) => {
     console.error("Error adding document: ", error);
     throw error;
   }
+  Object.keys(data).forEach((field) => {
+    console.log(`${field}: ${data[field]}`);
+  });
+  console.log("전달된 데이터:", data);
 };
 
 async function idDatas(collectionName, checkId) {
@@ -140,11 +144,21 @@ async function idDatas(collectionName, checkId) {
 
 async function nickDatas(collectionName, nickName) {
   const Snapshot = await getDocs(
-    query(
-      collection(db, collectionName),
-      where("memberNickName", "==", nickName)
-    )
+    query(collection(db, collectionName), where("nickname", "==", nickName))
   );
+
+  if (Snapshot.empty) {
+    // nickname으로 조회된 결과가 없을 경우 memberNickName으로 조회
+    const MemberSnapshot = await getDocs(
+      query(
+        collection(db, collectionName),
+        where("memberNickName", "==", nickName)
+      )
+    );
+
+    return MemberSnapshot.size;
+  }
+
   return Snapshot.size;
 }
 

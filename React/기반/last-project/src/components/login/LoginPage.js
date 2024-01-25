@@ -49,7 +49,6 @@ const LoginBtn = styled.button`
   background-color: #1c1b1f;
   color: #fff;
   border: none;
-  cursor: pointer;
   &:hover {
     background-color: #ffc26f;
     font-weight: bold;
@@ -109,7 +108,6 @@ function Login() {
           values.input_id === memberObj.memberId &&
           values.input_pw === memberObj.memberPass
         ) {
-          // 로컬 스토리지에 memberObj 저장
           navigate(state ? state : "/");
         } else {
           alert("아이디 또는 비밀번호가 일치하지 않습니다.");
