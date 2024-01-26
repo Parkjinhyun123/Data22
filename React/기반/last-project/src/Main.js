@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Search from "./components/adress/Search";
 import App from "./components/App";
@@ -12,8 +13,23 @@ import Terms from "./components/Account/Terms";
 import TermsHos from "./components/Account/TermsHos";
 import OwnerJoinComplete from "./components/Account/OwnerJoinComplete";
 import PartnerJoinComplete from "./components/Account/PartnerJoinComplete";
+import Spinner from "./components/Spinner";
 
 function Main() {
+  const [showSpinner, setShowSpinner] = useState(true);
+
+  const closeModal = () => {
+    setShowSpinner(false);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      closeModal();
+    }, 1300);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -30,7 +46,13 @@ function Main() {
         <Route path="/OwnerJoinComplete" element={<OwnerJoinComplete />} />
         <Route path="/PartnerJoinComplete" element={<PartnerJoinComplete />} />
       </Routes>
+      {showSpinner && (
+        <div>
+          <Spinner closeModal={closeModal} />
+        </div>
+      )}
     </BrowserRouter>
   );
 }
+
 export default Main;
