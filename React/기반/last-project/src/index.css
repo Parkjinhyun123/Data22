@@ -24,11 +24,11 @@ body {
 
 html,
 body > * {
-  cursor: url("./assets/mouse_cat.png") 20 30, auto !important;
+  cursor: url("./assets/mouse_dog.png") 20 30, auto !important;
 }
 
 body:active > * {
-  cursor: url("./assets/mouse_cat_after.png") 20 30, auto !important;
+  cursor: url("./assets/mouse_dog_after.png") 20 30, auto !important;
 }
 
 button,
