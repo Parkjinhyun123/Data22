@@ -17,6 +17,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600&display=swap");
 
+html,
 body {
   font-family: "LibreBaskerville-Bold", "LibreBaskerville-Italic",
     "LibreBaskerville-Regular", "Noto Sans KR", sans-serif;
@@ -38,7 +39,8 @@ select,
 option,
 textarea,
 table > *,
-label {
+label,
+div {
   cursor: url("./assets/mouse_dog.png") 20 30, auto !important;
 }
 
@@ -48,6 +50,7 @@ a:active,
 select:active,
 option:active,
 textarea:active table:active > *,
-label:active {
+label:active,
+div:active {
   cursor: url("./assets/mouse_dog_after.png") 20 30, auto !important;
 }

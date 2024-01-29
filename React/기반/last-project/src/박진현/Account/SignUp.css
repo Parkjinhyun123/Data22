@@ -85,14 +85,13 @@ h3 > .now {
 
 .submitBtn {
   width: 20%;
+  margin-top: 30px;
 }
 
 .btn_wrapper {
   display: flex;
   justify-content: center;
   gap: 24px;
-  margin-top: 30px;
-  margin-bottom: 30px;
 }
 
 h2,

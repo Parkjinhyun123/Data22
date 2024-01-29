@@ -21,7 +21,7 @@ function Spinner({ closeModal }) {
 
   return (
     <div className="spinner open">
-      <img src={randomSrc} alt="Spinner" />
+      <img src={randomSrc} alt="Spinner" className="inner" />
     </div>
   );
 }

@@ -1,10 +1,22 @@
 import KakaoLogin from "react-kakao-login";
 import { styled } from "styled-components";
-import KakaoLogo from "../../assets/kakao logo_r.png";
+import KakaoLogo from "../../assets/kakao logo.png";
 import { useEffect, useState } from "react";
 import { addDatas } from "../../api/firebase";
 
-const SocialKakaoSimple = () => {
+const KakaoLoginBtn = styled.button`
+  background-color: #f7e600;
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+`;
+
+const SocialKakao = () => {
   const [user, setUser] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
   const { Kakao } = window;
@@ -12,6 +24,7 @@ const SocialKakaoSimple = () => {
     const jsKey = "12960e8f1d627ea898d565f3b8ab8afb";
     if (Kakao && !Kakao.isInitialized()) {
       await Kakao.init(jsKey);
+      console.log(`kakao 초기화 ${Kakao.isInitialized()}`);
     }
   };
   const kakaoLogin = async () => {
@@ -30,7 +43,7 @@ const SocialKakaoSimple = () => {
             const data = {
               nickname: kakaoAccount.profile.nickname,
             };
-
+            alert(`돌아오신 것을 환영합니다! ${data.nickname} 님`);
             try {
               await addDatas("socialmember", data);
             } catch (error) {
@@ -49,12 +62,22 @@ const SocialKakaoSimple = () => {
     });
   };
 
+  const kakaoLogout = () => {
+    Kakao.Auth.logout((res) => {
+      console.log(Kakao.Auth.getAccessToken());
+      console.log(res);
+      localStorage.removeItem("nickname");
+      setUser(null);
+    });
+  };
+
   useEffect(() => {
     initKakao();
     Kakao.Auth.getAccessToken() ? setIsLogin(true) : setIsLogin(false);
   }, []);
 
   useEffect(() => {
+    console.log(isLogin);
     if (isLogin) {
       setUser({
         email: localStorage.getItem("email"),
@@ -66,14 +89,14 @@ const SocialKakaoSimple = () => {
 
   return (
     <div className="App">
-      <img
-        src={KakaoLogo}
-        alt="카카오 로그인 로고"
-        onClick={kakaoLogin}
-        style={{ width: "25px" }}
-      />
+      <KakaoLoginBtn onClick={kakaoLogin}>
+        {" "}
+        <img src={KakaoLogo} alt="카카오 로그인 로고" />
+        Kakao 로 로그인
+        <div></div>
+      </KakaoLoginBtn>
     </div>
   );
 };
 
-export default SocialKakaoSimple;
+export default SocialKakao;

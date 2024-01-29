@@ -12,6 +12,7 @@ const SocialKakaoSimple = () => {
     const jsKey = "12960e8f1d627ea898d565f3b8ab8afb";
     if (Kakao && !Kakao.isInitialized()) {
       await Kakao.init(jsKey);
+      console.log(`kakao 초기화 ${Kakao.isInitialized()}`);
     }
   };
   const kakaoLogin = async () => {
@@ -49,12 +50,24 @@ const SocialKakaoSimple = () => {
     });
   };
 
+  const kakaoLogout = () => {
+    Kakao.Auth.logout((res) => {
+      console.log(Kakao.Auth.getAccessToken());
+      console.log(res);
+      localStorage.removeItem("email");
+      localStorage.removeItem("profileImg");
+      localStorage.removeItem("nickname");
+      setUser(null);
+    });
+  };
+
   useEffect(() => {
     initKakao();
     Kakao.Auth.getAccessToken() ? setIsLogin(true) : setIsLogin(false);
   }, []);
 
   useEffect(() => {
+    console.log(isLogin);
     if (isLogin) {
       setUser({
         email: localStorage.getItem("email"),

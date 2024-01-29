@@ -44,7 +44,6 @@ function Naver() {
 
   const getUser = async () => {
     await naverLogin.getLoginStatus((status) => {
-      console.log(`로그인?: ${status}`);
       if (status) {
         setUser({ ...naverLogin.user });
 
@@ -74,16 +73,7 @@ function Naver() {
       .catch((error) => {
         console.error("User 데이터 추가 중 오류가 발생하였습니다:", error);
       });
-  } else {
-    console.log(
-      "localStorage에 필요한 데이터가 없어 Firebase에 저장되지 않았습니다."
-    );
   }
-
-  const naverLogout = () => {
-    localStorage.removeItem("com.naver.nid.access_token");
-    window.location.reload();
-  };
 
   useEffect(() => {
     naverLogin.init();

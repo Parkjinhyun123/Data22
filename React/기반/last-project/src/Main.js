@@ -14,6 +14,8 @@ import TermsHos from "./components/Account/TermsHos";
 import OwnerJoinComplete from "./components/Account/OwnerJoinComplete";
 import PartnerJoinComplete from "./components/Account/PartnerJoinComplete";
 import Spinner from "./components/Spinner";
+import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 
 function Main() {
   const [showSpinner, setShowSpinner] = useState(true);
@@ -25,7 +27,7 @@ function Main() {
   useEffect(() => {
     const timer = setTimeout(() => {
       closeModal();
-    }, 1300);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -33,18 +35,23 @@ function Main() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<LoginPage />} />
-        <Route path="/findId" element={<FindId />} />
-        <Route path="/findPass" element={<FindPass />} />
-        <Route path="/Account/ChoiceAccount" element={<ChoiceAccount />} />
-        <Route path="/Terms" element={<Terms />} />
-        <Route path="/SignUp" element={<SignUp />} />
-        <Route path="/TermsHos" element={<TermsHos />} />
-        <Route path="/SignUpHos" element={<SignUpHos />} />
-        <Route path="/SignUpPh" element={<SignUpPh />} />
-        <Route path="/Search" element={<Search />} />
-        <Route path="/OwnerJoinComplete" element={<OwnerJoinComplete />} />
-        <Route path="/PartnerJoinComplete" element={<PartnerJoinComplete />} />
+        <Route path="/" element={<App />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/findId" element={<FindId />} />
+          <Route path="/findPass" element={<FindPass />} />
+          <Route path="/Account/ChoiceAccount" element={<ChoiceAccount />} />
+          <Route path="/Terms" element={<Terms />} />
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/TermsHos" element={<TermsHos />} />
+          <Route path="/SignUpHos" element={<SignUpHos />} />
+          <Route path="/SignUpPh" element={<SignUpPh />} />
+          <Route path="/Search" element={<Search />} />
+          <Route path="/OwnerJoinComplete" element={<OwnerJoinComplete />} />
+          <Route
+            path="/PartnerJoinComplete"
+            element={<PartnerJoinComplete />}
+          />
+        </Route>
       </Routes>
       {showSpinner && (
         <div>

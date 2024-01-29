@@ -3,7 +3,7 @@ import Adress from "./Adress";
 import { addDatas, idDatas, nickDatas } from "../../api/firebase";
 import "./SignUp.css";
 import { styled } from "styled-components";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -256,6 +256,7 @@ function SignUp() {
       }
     }
   };
+
   const handleCancelCheck = () => {
     const result = window.confirm(
       "입력한 정보가 사라집니다 정말 가입을 취소하시겠습니까?"

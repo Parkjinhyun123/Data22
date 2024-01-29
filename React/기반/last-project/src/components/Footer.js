@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { FiChevronUp } from "react-icons/fi";
 import "./Footer.css";
 import { Link } from "react-router-dom";
+import Logo from "../assets/Logo_footer_w.svg";
 
 function Footer() {
   const [showInfo, setShowInfo] = useState(false);
@@ -22,14 +23,14 @@ function Footer() {
 
   return (
     <div className="footer">
-      <Container>
+      <div>
         <ul
           className="links"
           style={{ display: "flex", justifyContent: "space-between" }}
         >
           <li>
             <Link to="customerservice" className="customer-service">
-              <img src="/logo/Logo_footer_w.svg" className="footer-img" />
+              <img src={Logo} className="footer-img" />
             </Link>
           </li>
           <li>
@@ -81,7 +82,7 @@ function Footer() {
         <div>
           <div></div>
         </div>
-      </Container>
+      </div>
     </div>
   );
 }

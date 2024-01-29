@@ -35,6 +35,7 @@ const LoginBtnWrapper = styled.div`
 
 const InputArea = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;

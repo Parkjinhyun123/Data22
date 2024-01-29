@@ -41,7 +41,6 @@ const CancleBtn = styled.button`
   border: none;
   cursor: pointer;
   background-color: #1c1b1f;
-
   padding: 8px 16px;
   &:active,
   &:focus {
@@ -56,7 +55,6 @@ const CancleBtn = styled.button`
 const SignBtn = styled.button`
   border: none;
   background-color: #ff9b50;
-
   padding: 8px 16px;
   font-weight: bold;
   cursor: pointer;
@@ -265,7 +263,7 @@ function SignUpHos() {
         </Link>
       </div>
       <table>
-        <div className="form">
+        <tbody>
           <tr>
             <th scope="row">
               <div className="form-el">
@@ -420,18 +418,17 @@ function SignUpHos() {
               />
             </td>
           </tr>
-          <br />
-          <div className="btn_wrapper">
-            <CancleBtn className="submitBtn" onClick={handleCancelCheck}>
-              <Link to="/">취소</Link>
-            </CancleBtn>
-
-            <SignBtn type="submit" className="submitBtn" onClick={handleSubmit}>
-              <Link to="/PartnerJoinComplete">가입하기 </Link>
-            </SignBtn>
-          </div>
-        </div>
+        </tbody>
       </table>
+      <div className="btn_wrapper">
+        <CancleBtn className="submitBtn" onClick={handleCancelCheck}>
+          <Link to="/">취소</Link>
+        </CancleBtn>
+
+        <SignBtn type="submit" className="submitBtn" onClick={handleSubmit}>
+          <Link to="/PartnerJoinComplete">가입하기 </Link>
+        </SignBtn>
+      </div>
     </Container>
   );
 }

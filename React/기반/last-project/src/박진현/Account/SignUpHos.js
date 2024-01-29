@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import Adress from "./Adress";
-import { addDatas, idDatas, nickDatas } from "../../api/firebase";
+import { addDatas, idDatas } from "../../api/firebase";
 import "./SignUp.css";
 import { styled } from "styled-components";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -13,6 +13,28 @@ const Container = styled.div`
   flex-direction: column;
   background-color: #f8ebd8;
   margin: 0 auto;
+`;
+
+const HosBtn = styled.button`
+  width: 135px;
+  border: none;
+  background-color: #ff9b50;
+  color: #fff;
+  padding: 8px 16px;
+  font-weight: bold;
+  margin: 8px;
+  cursor: pointer;
+`;
+
+const PhBtn = styled.button`
+  width: 135px;
+  border: none;
+  background-color: #d9d9d9;
+  color: #fff;
+  padding: 8px 16px;
+  font-weight: bold;
+  margin: 8px;
+  cursor: pointer;
 `;
 
 const CancleBtn = styled.button`
@@ -37,21 +59,20 @@ const SignBtn = styled.button`
 
   padding: 8px 16px;
   font-weight: bold;
-  margin-right: 8px;
+  cursor: pointer;
   &:active,
   &:focus {
     outline: none;
   }
   & > a {
-    text-decoration: none;
     color: #fff;
+    text-decoration: none;
   }
 `;
 
-function SignUp() {
+function SignUpHos() {
   const [id, setId] = useState("");
-  const [nickName, setNickName] = useState("");
-  const [name, setName] = useState("");
+  const [partnerName, setPartnerName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [email, setEmail] = useState("");
@@ -60,12 +81,10 @@ function SignUp() {
   const phoneRef = useRef();
 
   const [idMessage, setIdMessage] = useState("");
-  const [nameMessage, setNameMessage] = useState("");
   const [passwordMessage, setPasswordMessage] = useState("");
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState("");
 
   const [isId, setIsId] = useState(false);
-  const [isNickName, setIsNickName] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
 
@@ -74,15 +93,12 @@ function SignUp() {
   const onChangeId = (e) => {
     const currentId = e.target.value;
     setId(currentId);
-    const idRegExp = /^[a-zA-Z0-9]{4,12}$/;
-    if (currentId.trim() === "") {
-      setIsId(false);
-      alert("아이디를 입력해주세요.");
-    } else if (!idRegExp.test(currentId)) {
+    const idRegExp = /^[a-zA-z0-9]{4,12}$/;
+    if (!idRegExp.test(currentId)) {
       setIdMessage("사용 불가능한 아이디 입니다.");
       setIsId(false);
     } else {
-      setIdMessage("사용 가능한 아이디 입니다.");
+      setIdMessage("사용가능한 아이디 입니다.");
       setIsId(true);
     }
   };
@@ -105,47 +121,6 @@ function SignUp() {
         }
       });
     }
-  };
-
-  const onChangeNickName = (e) => {
-    const currentName = e.target.value;
-    setNickName(currentName);
-
-    if (currentName.length < 2 || currentName.length > 5) {
-      setIsNickName(false);
-      setNameMessage("사용불가능한 닉네임 입니다.");
-    } else {
-      setNameMessage("사용가능한 닉네임 입니다.");
-      setIsNickName(true);
-    }
-  };
-
-  const handleNickAjax = () => {
-    if (nickName.trim() === "") {
-      setNameMessage("닉네임을 입력해주세요.");
-      setIsNickName(false);
-      alert("닉네임을 입력해주세요.");
-    } else {
-      let isExist = 0;
-      Promise.all([
-        nickDatas("member", nickName),
-        nickDatas("socialmember", nickName),
-      ]).then(([memberResult, socialMemberResult]) => {
-        isExist = memberResult + socialMemberResult;
-        if (isExist === 0) {
-          alert("사용 가능한 닉네임 입니다.");
-          setIsNickName(true);
-        } else {
-          setNameMessage("중복된 닉네임 입니다.");
-          setIsNickName(false);
-        }
-      });
-    }
-  };
-
-  const onChangeName = (e) => {
-    const curentName = e.target.value;
-    setName(curentName);
   };
 
   const onChangePassword = (e) => {
@@ -174,6 +149,11 @@ function SignUp() {
     }
   };
 
+  const onChangePartner = (e) => {
+    const currentPartner = e.target.value;
+    setPartnerName(currentPartner);
+  };
+
   const onChangeEmail = (e) => {
     const currentEmail = e.target.value;
     setEmail(currentEmail);
@@ -186,18 +166,6 @@ function SignUp() {
     let result;
     result = "";
     for (let i = 0; i < value.length && i < numberLength; i++) {
-      switch (i) {
-        case 3:
-          result += "-";
-          break;
-        case 7:
-          result += "-";
-          break;
-
-        default:
-          break;
-      }
-
       result += value[i];
     }
 
@@ -229,33 +197,42 @@ function SignUp() {
   };
 
   const handleSubmit = () => {
-    if (id === "" || nickName === "" || mail2 === "") {
-      alert("빈칸을 모두 채워주세요!");
-    } else if (isId && isNickName && isPassword && isPasswordConfirm) {
-      addDatas("member", {
-        memberId: id,
-        memberName: name,
-        memberPass: password,
-        memberNickName: nickName,
-        memberPhone: phone,
-        memberMail: email,
-        memberMail2: mail2,
-      });
-    } else {
-      if (!isId) {
-        alert("아이디 중복확인을 해주세요.");
-      }
-      if (!isNickName) {
-        alert("닉네임 중복확인을 해주세요.");
-      }
-      if (!isPassword) {
-        alert("비밀번호를 입력해주세요.");
-      }
-      if (!isPasswordConfirm) {
-        alert("비밀번호가 일치하지않습니다.");
-      }
+    if (id.trim() === "") {
+      alert("아이디를 입력해주세요.");
+      return;
     }
+    if (partnerName.trim() === "") {
+      alert("업체명 입력해주세요.");
+      return;
+    }
+    if (password.trim() === "") {
+      alert("비밀번호를 입력해주세요.");
+      return;
+    }
+    if (passwordConfirm.trim() === "") {
+      alert("비밀번호 확인을 입력해주세요.");
+      return;
+    }
+    if (email.trim() === "") {
+      alert("이메일을 입력해주세요.");
+      return;
+    }
+    if (phone.trim() === "") {
+      alert("전화번호를 입력해주세요.");
+      return;
+    }
+
+    const memberInfo = {
+      memberId: id,
+      memberPass: password,
+      partnerName: partnerName,
+      memberPhone: phone,
+      memberMail: email,
+      memberMail2: mail2,
+    };
+    addDatas("member", memberInfo);
   };
+
   const handleCancelCheck = () => {
     const result = window.confirm(
       "입력한 정보가 사라집니다 정말 가입을 취소하시겠습니까?"
@@ -267,7 +244,7 @@ function SignUp() {
 
   return (
     <Container>
-      <h2 style={{ fontSize: "42px" }}> Pet Owner Join </h2>
+      <h2 style={{ fontSize: "42px" }}> Pet Partnership Join </h2>
       <h3>정보입력</h3>
       <div className="headWrapper">
         <h3>
@@ -280,6 +257,12 @@ function SignUp() {
           <div> 정보입력 </div>
           <div> 가입완료 </div>
         </div>
+      </div>
+      <div className="choicePartner">
+        <HosBtn className="choice">병원</HosBtn>
+        <Link to="/SignUpPh">
+          <PhBtn>약국</PhBtn>
+        </Link>
       </div>
       <table>
         <tbody>
@@ -304,20 +287,7 @@ function SignUp() {
                 value="중복확인"
                 onClick={handleAjax}
               />
-              <p className={`${isId} ? 'true' : "false"`}>
-                {" "}
-                &nbsp;{idMessage}{" "}
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <div className="form-el">
-                <label htmlFor="name">이름</label>
-              </div>
-            </th>
-            <td>
-              <input id="name" name="name" onChange={onChangeName} />
+              <p className={`${isId} ? 'true' : "false"`}> {idMessage} </p>
             </td>
           </tr>
           <tr>
@@ -336,7 +306,7 @@ function SignUp() {
                 placeholder="숫자,영문자,특수문자 조합으로 8자리 이상 입력해주세요."
               />
               <p className={`${isPassword} ? 'true' : 'false'`}>
-                &nbsp;{passwordMessage}
+                {passwordMessage}
               </p>
             </td>
           </tr>
@@ -356,34 +326,23 @@ function SignUp() {
                 onChange={onChangePasswordConfirm}
               />
               <p className={`${isPasswordConfirm} ? "true" : "false"`}>
-                &nbsp;{passwordConfirmMessage}
+                {passwordConfirmMessage}
               </p>
             </td>
           </tr>
           <tr>
             <th scope="row">
               <div className="form-el">
-                <label htmlFor="nickname">닉네임</label> <br />
+                <label htmlFor="name">병원명</label>
               </div>
             </th>
             <td>
               <input
-                id="nickname"
-                name="nickname"
-                value={nickName}
-                onChange={onChangeNickName}
-                placeholder="닉네임은 2글자 이상 5글자 이하로 입력해주세요."
+                id="name"
+                name="name"
+                value={partnerName}
+                onChange={onChangePartner}
               />
-              <input
-                type="button"
-                className="member-btn"
-                id="nick_ajax"
-                value="중복확인"
-                onClick={handleNickAjax}
-              />
-              <p className={`${isNickName} ? "true" : "false"`}>
-                &nbsp;{nameMessage}
-              </p>
             </td>
           </tr>
           <tr>
@@ -428,7 +387,7 @@ function SignUp() {
           </tr>
           <tr>
             <th scope="row">
-              <label htmlFor="phone">연락처</label>
+              <label htmlFor="phone">대표 연락처</label>
             </th>
             <td>
               <input
@@ -437,12 +396,6 @@ function SignUp() {
                 value={phone}
                 ref={phoneRef}
                 onChange={handlePhone}
-              />
-              <input
-                type="button"
-                className="member-btn"
-                id="nick_ajax"
-                value="본인인증"
               />
             </td>
           </tr>
@@ -454,18 +407,32 @@ function SignUp() {
               <Adress />
             </td>
           </tr>
+          <tr>
+            <th scope="row">
+              <label htmlFor="partner">사업자 등록증</label>
+            </th>
+            <td>
+              <input
+                type="file"
+                id="file"
+                name="file"
+                style={{ color: "rgba(0,0,0,0.5)", backgroundColor: "#fff" }}
+              />
+            </td>
+          </tr>
         </tbody>
       </table>
       <div className="btn_wrapper">
         <CancleBtn className="submitBtn" onClick={handleCancelCheck}>
           <Link to="/">취소</Link>
         </CancleBtn>
+
         <SignBtn type="submit" className="submitBtn" onClick={handleSubmit}>
-          <Link to="/OwnerJoinComplete"> 가입하기</Link>
+          <Link to="/PartnerJoinComplete">가입하기 </Link>
         </SignBtn>
       </div>
     </Container>
   );
 }
 
-export default SignUp;
+export default SignUpHos;

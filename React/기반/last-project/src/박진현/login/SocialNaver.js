@@ -1,12 +1,28 @@
 import { useEffect, useRef } from "react";
 import { useState } from "react";
 import { styled } from "styled-components";
-import NaverLogo from "../../assets/naver logo_r.png";
+import NaverLogo from "../../assets/naver logo.png";
 import { addDatas } from "../../api/firebase";
 const { naver } = window;
 
 const NaverIdLogin = styled.div`
   display: none;
+`;
+
+const NaverLoginBtn = styled.button`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #06bd34;
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 16px;
+  color: #fff;
+  cursor: pointer;
 `;
 
 function Naver() {
@@ -21,13 +37,14 @@ function Naver() {
     isPopup: true,
     loginButton: {
       color: "green",
-      type: 1,
+      type: 3,
       height: 50,
     },
   });
 
   const getUser = async () => {
     await naverLogin.getLoginStatus((status) => {
+      console.log(`로그인?: ${status}`);
       if (status) {
         setUser({ ...naverLogin.user });
 
@@ -57,7 +74,16 @@ function Naver() {
       .catch((error) => {
         console.error("User 데이터 추가 중 오류가 발생하였습니다:", error);
       });
+  } else {
+    console.log(
+      "localStorage에 필요한 데이터가 없어 Firebase에 저장되지 않았습니다."
+    );
   }
+
+  const naverLogout = () => {
+    localStorage.removeItem("com.naver.nid.access_token");
+    window.location.reload();
+  };
 
   useEffect(() => {
     naverLogin.init();
@@ -72,12 +98,11 @@ function Naver() {
     <div>
       <div>
         <NaverIdLogin ref={naverRef} id="naverIdLogin" />
-        <img
-          src={NaverLogo}
-          alt="네이버 로그인 아이콘"
-          onClick={handleNaverLogin}
-          style={{ width: "25px" }}
-        />
+        <NaverLoginBtn onClick={handleNaverLogin}>
+          <img src={NaverLogo} alt="네이버 로그인 아이콘" />
+          Naver 로 로그인
+          <div></div>
+        </NaverLoginBtn>
       </div>
     </div>
   );

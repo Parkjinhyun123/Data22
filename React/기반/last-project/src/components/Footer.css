@@ -1,20 +1,10 @@
-@font-face {
-  font-family: LibreBaskerville;
-  src: url(../Libre_Baskerville/LibreBaskerville-Regular.ttf) format("truetype");
-  font-display: swap;
-}
-@font-face {
-  font-family: NotoSans;
-  src: url(../Noto_Sans_KR/NotoSansKR-VariableFont_wght.ttf) format("truetype");
-  font-display: swap;
-}
-
 .footer {
   padding: 1rem;
   color: white;
   background-color: #000;
   margin-top: auto;
   height: 300px;
+  width: 100%;
 }
 
 .links {
@@ -96,7 +86,7 @@
   }
 
   .terms {
-    margin-left: auto;
+    margin-left: 0;
     font-size: 16px;
   }
 
