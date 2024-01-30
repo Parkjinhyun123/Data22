@@ -15,6 +15,7 @@ function Nav() {
   const handleRemoveLocal = () => {
     if (window.confirm("로그아웃 하시겠습니까?")) {
       localStorage.removeItem("member");
+      localStorage.removeItem("com.naver.nid.access_token");
       localStorage.removeItem("user.name");
       localStorage.removeItem("user.nickname");
       localStorage.removeItem("user.email");
@@ -25,6 +26,15 @@ function Nav() {
     }
   };
 
+  const handleMyPageClick = (e) => {
+    if (isLogined === null) {
+      alert("로그인 후 이용하실 수 있습니다.");
+      navigate("/login");
+      e.preventDefault();
+    } else {
+      navigate("/mypage");
+    }
+  };
   return (
     <nav>
       <div className="nav-container">
@@ -57,7 +67,12 @@ function Nav() {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to="/mypage" className="nav-link" style={getLinkStyle}>
+            <NavLink
+              to="/mypage"
+              className="nav-link"
+              style={getLinkStyle}
+              onClick={handleMyPageClick}
+            >
               My Page
             </NavLink>
           </li>

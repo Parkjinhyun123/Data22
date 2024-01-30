@@ -14,11 +14,12 @@ import TermsHos from "./components/Account/TermsHos";
 import OwnerJoinComplete from "./components/Account/OwnerJoinComplete";
 import PartnerJoinComplete from "./components/Account/PartnerJoinComplete";
 import Spinner from "./components/Spinner";
-import Nav from "./components/Nav";
-import Footer from "./components/Footer";
+import clickImg from "./assets/버튼.png";
 
 function Main() {
   const [showSpinner, setShowSpinner] = useState(true);
+  const [showImage, setShowImage] = useState(false);
+  const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
 
   const closeModal = () => {
     setShowSpinner(false);
@@ -31,6 +32,19 @@ function Main() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  const handleClick = (event) => {
+    setImagePosition({ x: event.clientX, y: event.clientY });
+    setShowImage(true);
+
+    // 타이머를 저장하는 상태를 추가합니다.
+    const timer = setTimeout(() => {
+      setShowImage(false);
+    }, 2000);
+
+    // 컴포넌트가 언마운트될 때 타이머를 취소합니다.
+    return () => clearTimeout(timer);
+  };
 
   return (
     <BrowserRouter>
@@ -58,6 +72,25 @@ function Main() {
           <Spinner closeModal={closeModal} />
         </div>
       )}
+      <div
+        onClick={handleClick}
+        style={{ position: "relative", width: "100%", height: "100%" }}
+      >
+        {showImage && (
+          <img
+            id="follow-image"
+            src={clickImg}
+            alt="이미지"
+            style={{
+              position: "absolute",
+              left: `${imagePosition.x}px`,
+              top: `${imagePosition.y}px`,
+              visibility: showImage ? "visible" : "hidden",
+              zIndex: 9999,
+            }}
+          />
+        )}
+      </div>
     </BrowserRouter>
   );
 }

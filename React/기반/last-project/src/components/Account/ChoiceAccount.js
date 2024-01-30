@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
-import ButtonImg from "../../assets/버튼.png";
+import ownerImg from "../../assets/pet owner.png";
+import partnerImg from "../../assets/pet partner.png";
 import SocialKakaoSimple from "./../login/SocialKakaoSimple";
 import SocialNaverSimple from "./../login/SocialNaverSimple";
 import { Link } from "react-router-dom";
@@ -26,8 +27,9 @@ const ContentBox = styled.div`
 `;
 
 const Content = styled.div`
-  border: 2px solid #000;
+  border: 2px solid #d9d9d980;
   padding: 32px;
+  background-color: #fff;
   text-align: center;
   & > * {
     padding: 16px;
@@ -80,7 +82,7 @@ function ChoiceAccount() {
             지금 바로 가입하세요.
           </p>
           <ImgWrapper>
-            <img src={ButtonImg} alt="임시 이미지" />
+            <img src={ownerImg} alt="오너" />
           </ImgWrapper>
           <Link to="/Terms">
             <SignInBtn> 펫 오너로 가입 </SignInBtn>
@@ -104,7 +106,7 @@ function ChoiceAccount() {
             지금 바로 가입하세요.
           </p>
           <ImgWrapper>
-            <img src={ButtonImg} alt="임시 이미지" />
+            <img src={partnerImg} alt="파트너" />
           </ImgWrapper>
           <Link to="/TermsHos">
             <SignInBtn> 펫 병원&middot;약국 가입 </SignInBtn>

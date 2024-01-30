@@ -143,10 +143,8 @@ async function getMember(values) {
   const docQuery = query(collection(db, "member"), where("memberId", "==", id));
   let message = "";
   let memberObj = null;
-  console.log(values);
 
   const querySnapshot = await getDocs(docQuery);
-  console.log(querySnapshot);
   if (!querySnapshot.empty && querySnapshot.docs[0]) {
     // 수정된 부분
     const memberData = querySnapshot.docs[0].data();

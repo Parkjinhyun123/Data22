@@ -10,10 +10,10 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 60vh;
   padding: 16px;
   flex-direction: column;
   background-color: #f8ebd8;
@@ -127,7 +127,7 @@ function Login() {
     <Container>
       <div>
         <h2 style={{ margin: "30px", fontSize: "42px" }}>Login</h2>
-        <form onSubmit={handleLogin}>
+        <form style={{ margin: "50px" }} onSubmit={handleLogin}>
           <InputArea>
             <LoginInput
               type="text"
@@ -144,8 +144,8 @@ function Login() {
           </InputArea>
           <LoginBtnWrapper>
             <LoginBtn type="submit">로그인</LoginBtn>
-            <SocialNaver></SocialNaver>
-            <SocialKakao></SocialKakao>
+            <SocialNaver />
+            <SocialKakao />
             <GoogleOAuthProvider clientId="41843789723-sgafn18v02hjtmrfcdladehsf8hhq1tt.apps.googleusercontent.com">
               <SocialGoogle></SocialGoogle>
             </GoogleOAuthProvider>

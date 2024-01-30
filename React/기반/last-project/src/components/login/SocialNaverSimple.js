@@ -3,13 +3,12 @@ import { useState } from "react";
 import { styled } from "styled-components";
 import NaverLogo from "../../assets/naver logo_r.png";
 import { addDatas } from "../../api/firebase";
-const { naver } = window;
 
 const NaverIdLogin = styled.div`
   display: none;
 `;
 
-function Naver() {
+function NaverSimple() {
   const [user, setUser] = useState(null);
 
   const naverRef = useRef();
@@ -83,4 +82,4 @@ function Naver() {
   );
 }
 
-export default Naver;
+export default NaverSimple;

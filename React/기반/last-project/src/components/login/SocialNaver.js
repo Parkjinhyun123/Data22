@@ -1,9 +1,8 @@
 import { useEffect, useRef } from "react";
 import { useState } from "react";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import NaverLogo from "../../assets/naver logo.png";
 import { addDatas } from "../../api/firebase";
-const { naver } = window;
 
 const NaverIdLogin = styled.div`
   display: none;
@@ -37,22 +36,21 @@ function Naver() {
     isPopup: true,
     loginButton: {
       color: "green",
-      type: 3,
+      type: 1,
       height: 50,
     },
   });
 
   const getUser = async () => {
     await naverLogin.getLoginStatus((status) => {
+      console.log(status);
       if (status) {
         setUser({ ...naverLogin.user });
 
+        console.log(user);
         localStorage.setItem("user.name", naverLogin.user.name);
         localStorage.setItem("user.nickname", naverLogin.user.nickname);
         localStorage.setItem("user.email", naverLogin.user.email);
-
-        window.open("http://localhost:3000", "_self");
-        window.close();
       }
     });
   };
@@ -88,8 +86,12 @@ function Naver() {
     <div>
       <div>
         <NaverIdLogin ref={naverRef} id="naverIdLogin" />
-        <NaverLoginBtn onClick={handleNaverLogin}>
-          <img src={NaverLogo} alt="네이버 로그인 아이콘" />
+        <NaverLoginBtn>
+          <img
+            src={NaverLogo}
+            alt="네이버 로그인 아이콘"
+            onClick={handleNaverLogin}
+          />
           Naver 로 로그인
           <div></div>
         </NaverLoginBtn>
