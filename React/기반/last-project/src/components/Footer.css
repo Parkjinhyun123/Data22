@@ -26,7 +26,7 @@
   font-family: NotoSans;
   font-size: 16px;
   /* Media Query 적용 전  width쪽으로 margin-left 600 1080 */
-  margin-left: 600px;
+  margin-left: 50px;
   margin-right: 16px;
 }
 .privacy {
@@ -75,6 +75,16 @@
   width: 300px;
   height: auto;
   object-fit: cover;
+}
+
+li {
+  margin-left: 10px;
+  text-align: center;
+}
+
+span {
+  text-align: center;
+  width: 50%;
 }
 
 @media (min-width: 1236px) {

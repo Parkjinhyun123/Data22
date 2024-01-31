@@ -23,6 +23,11 @@ body {
     "LibreBaskerville-Regular", "Noto Sans KR", sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 html,
 body > * {
   cursor: url("./assets/mouse_dog.png") 20 30, auto !important;
