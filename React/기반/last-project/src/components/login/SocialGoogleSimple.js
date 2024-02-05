@@ -2,6 +2,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import GoogleLogo from "../../assets/google logo_r.png";
 import { styled } from "styled-components";
 import { addDatas } from "../../api/firebase";
+import { useNavigate } from "react-router-dom";
 
 const NewBtn = styled.div`
   & > button {
@@ -19,6 +20,7 @@ const NewBtn = styled.div`
 `;
 
 function SocialGoogleSimple() {
+  const navigate = useNavigate();
   const clientId =
     "41843789723-0iutpsu7570l8m4kk6lfusurgvk5qt28.apps.googleusercontent.com";
 
@@ -42,7 +44,8 @@ function SocialGoogleSimple() {
             console.log(`이메일: ${email}`);
             console.log(`이름: ${name}`);
             console.log(`프로필 사진: ${profilePicture}`);
-            await addDatas("socialmember", { email, name });
+            localStorage.setItem("nickname", name);
+            navigate("/SocialName");
           })
           .catch((error) => {
             console.error(error);

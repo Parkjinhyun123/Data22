@@ -15,6 +15,8 @@ import OwnerJoinComplete from "./components/Account/OwnerJoinComplete";
 import PartnerJoinComplete from "./components/Account/PartnerJoinComplete";
 import Spinner from "./components/Spinner";
 import MainPage from "./pages/MainPage";
+import SocialName from "./components/Account/SocialName";
+import SocialNameComplete from "./components/Account/SocialNameComplete";
 
 function Main() {
   const [showSpinner, setShowSpinner] = useState(true);
@@ -51,6 +53,8 @@ function Main() {
             path="/PartnerJoinComplete"
             element={<PartnerJoinComplete />}
           />
+          <Route path="/SocialName" element={<SocialName />} />
+          <Route path="/SocialNameComplete" element={<SocialNameComplete />} />
         </Route>
       </Routes>
       {showSpinner && (

@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Adress from "./Adress";
 import { addDatas, idDatas, nickDatas } from "../../api/firebase";
 import "./SignUp.css";
 import { styled } from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -49,63 +49,20 @@ const SignBtn = styled.button`
 `;
 
 function SignUp() {
-  const [id, setId] = useState("");
   const [nickName, setNickName] = useState("");
   const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [mail2, setMail2] = useState("");
   const phoneRef = useRef();
-
-  const [idMessage, setIdMessage] = useState("");
   const [nameMessage, setNameMessage] = useState("");
-  const [passwordMessage, setPasswordMessage] = useState("");
-  const [passwordConfirmMessage, setPasswordConfirmMessage] = useState("");
-
-  const [isId, setIsId] = useState(false);
   const [isNickName, setIsNickName] = useState(false);
-  const [isPassword, setIsPassword] = useState(false);
-  const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
-
   const email2Ref = useRef(null);
+  const navigate = useNavigate();
 
-  const onChangeId = (e) => {
-    const currentId = e.target.value;
-    setId(currentId);
-    const idRegExp = /^[a-zA-Z0-9]{4,12}$/;
-    if (currentId.trim() === "") {
-      setIsId(false);
-      alert("아이디를 입력해주세요.");
-    } else if (!idRegExp.test(currentId)) {
-      setIdMessage("사용 불가능한 아이디 입니다.");
-      setIsId(false);
-    } else {
-      setIdMessage("사용 가능한 아이디 입니다.");
-      setIsId(true);
-    }
-  };
-
-  const handleAjax = () => {
-    if (id.trim() === "") {
-      setIdMessage("아이디를 입력해주세요.");
-      setIsId(false);
-      alert("아이디를 입력해주세요.");
-    } else {
-      let isExist = 0;
-      idDatas("member", id).then((result) => {
-        isExist = result;
-        if (isExist === 0) {
-          alert("사용 가능한 아이디 입니다.");
-          setIsId(true);
-        } else if (isExist !== 0) {
-          setIdMessage("중복된 아이디 입니다.");
-          setIsId(false);
-        }
-      });
-    }
-  };
+  useEffect(() => {
+    setNickName(localStorage.getItem("nickname") || "");
+  }, []);
 
   const onChangeNickName = (e) => {
     const currentName = e.target.value;
@@ -140,37 +97,6 @@ function SignUp() {
           setIsNickName(false);
         }
       });
-    }
-  };
-
-  const onChangeName = (e) => {
-    const curentName = e.target.value;
-    setName(curentName);
-  };
-
-  const onChangePassword = (e) => {
-    const currentPassword = e.target.value;
-    setPassword(currentPassword);
-    const passwordRegExp =
-      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-    if (!passwordRegExp.test(currentPassword)) {
-      setPasswordMessage("사용불가능한 비밀번호입니다.");
-      setIsPassword(false);
-    } else {
-      setPasswordMessage("안전한 비밀번호 입니다.");
-      setIsPassword(true);
-    }
-  };
-
-  const onChangePasswordConfirm = (e) => {
-    const currentPasswordConfirm = e.target.value;
-    setPasswordConfirm(currentPasswordConfirm);
-    if (password !== currentPasswordConfirm) {
-      setPasswordConfirmMessage("비밀번호가 일치하지 않습니다.");
-      setIsPasswordConfirm(false);
-    } else if (password === currentPasswordConfirm) {
-      setPasswordConfirmMessage("비밀번호가 일치합니다.");
-      setIsPasswordConfirm(true);
     }
   };
 
@@ -214,45 +140,37 @@ function SignUp() {
     const self = email2Ref.current;
 
     if (selectedValue === "other") {
-      // "직접입력"이 선택된 경우
       if (self) {
         self.disabled = false;
         self.value = "";
       }
     } else {
-      // 다른 옵션이 선택된 경우
       if (self) {
-        self.value = e.target.value; // 기본값 또는 이전 값으로 초기화
+        self.value = e.target.value;
         self.disabled = true;
       }
     }
   };
 
-  const handleSubmit = () => {
-    if (id === "" || nickName === "" || mail2 === "") {
+  const handleSubmit = async () => {
+    if (nickName === "" || mail2 === "") {
       alert("빈칸을 모두 채워주세요!");
-    } else if (isId && isNickName && isPassword && isPasswordConfirm) {
-      addDatas("member", {
-        memberId: id,
-        memberName: name,
-        memberPass: password,
-        memberNickName: nickName,
-        memberPhone: phone,
-        memberMail: email,
-        memberMail2: mail2,
-      });
-    } else {
-      if (!isId) {
-        alert("아이디 중복확인을 해주세요.");
+    } else if (isNickName) {
+      try {
+        await addDatas("member", {
+          memberNickName: nickName,
+          memberPhone: phone,
+          memberMail: email,
+          memberMail2: mail2,
+          memberType: "social",
+        });
+        navigate("/SocialNameComplete");
+      } catch (error) {
+        console.log("Firebase 데이터 저장 에러:", error);
       }
+    } else {
       if (!isNickName) {
         alert("닉네임 중복확인을 해주세요.");
-      }
-      if (!isPassword) {
-        alert("비밀번호를 입력해주세요.");
-      }
-      if (!isPasswordConfirm) {
-        alert("비밀번호가 일치하지않습니다.");
       }
     }
   };
@@ -272,95 +190,16 @@ function SignUp() {
       <h3>정보입력</h3>
       <div className="headWrapper">
         <h3>
-          <div className="sign-num">1</div> -{" "}
-          <div className="sign-num now">2</div> -{" "}
-          <div className="sign-num">3</div>
+          <div className="sign-num now">1</div> -{" "}
+          <div className="sign-num">2</div>
         </h3>
         <div className="headWrapper-sum">
-          <div> 약관동의 </div>
           <div> 정보입력 </div>
           <div> 가입완료 </div>
         </div>
       </div>
       <table>
         <tbody>
-          <tr>
-            <th scope="row">
-              <div className="form-el">
-                <label htmlFor="id">아이디</label>
-              </div>
-            </th>
-            <td>
-              <input
-                id="id"
-                name="id"
-                value={id}
-                onChange={onChangeId}
-                placeholder="4-12사이 대소문자 또는 숫자만 입력해 주세요."
-              />
-              <input
-                type="button"
-                className="member-btn"
-                id="id_ajax"
-                value="중복확인"
-                onClick={handleAjax}
-              />
-              <p className={`${isId} ? 'true' : "false"`}>
-                {" "}
-                &nbsp;{idMessage}{" "}
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <div className="form-el">
-                <label htmlFor="name">이름</label>
-              </div>
-            </th>
-            <td>
-              <input id="name" name="name" onChange={onChangeName} />
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <div className="form-el">
-                <label htmlFor="password">비밀번호</label>
-              </div>
-            </th>
-            <td>
-              <input
-                id="password"
-                name="password"
-                value={password}
-                type="password"
-                onChange={onChangePassword}
-                placeholder="숫자,영문자,특수문자 조합으로 8자리 이상 입력해주세요."
-              />
-              <p className={`${isPassword} ? 'true' : 'false'`}>
-                &nbsp;{passwordMessage}
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <div className="form-el">
-                <label htmlFor="passwordConfirm">비밀번호 확인</label>
-              </div>
-            </th>
-            <td>
-              <input
-                id="passwordConfirm"
-                name="passwordConfirm"
-                value={passwordConfirm}
-                type="password"
-                placeholder="숫자,영문자,특수문자 조합으로 8자리 이상 입력해주세요."
-                onChange={onChangePasswordConfirm}
-              />
-              <p className={`${isPasswordConfirm} ? "true" : "false"`}>
-                &nbsp;{passwordConfirmMessage}
-              </p>
-            </td>
-          </tr>
           <tr>
             <th scope="row">
               <div className="form-el">
@@ -462,7 +301,7 @@ function SignUp() {
           <Link to="/">취소</Link>
         </CancleBtn>
         <SignBtn type="submit" className="submitBtn" onClick={handleSubmit}>
-          <Link to="/OwnerJoinComplete"> 가입하기</Link>
+          <div style={{ color: "#fff" }}> 가입하기</div>
         </SignBtn>
       </div>
     </Container>

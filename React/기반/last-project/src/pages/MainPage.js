@@ -2,6 +2,7 @@ import styled from "styled-components";
 import MainCarousel from "../components/MainCarousel";
 import { Link } from "react-router-dom";
 import BtnBorder from "../assets/button round_1.png";
+import BtnBorderHover from "../assets/button round_hover.png";
 
 const Container = styled.div`
   display: flex;
@@ -16,17 +17,24 @@ const Container = styled.div`
   gap: 16px;
   box-sizing: border-box;
 `;
-
 const StyleLink = styled(Link)`
-  background-image: url("../assets/button round_1.png");
+  position: relative;
+  height: 100px;
+  width: 200px;
+  background-image: url(${BtnBorder});
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  &:hover {
+    background-image: url(${BtnBorderHover});
+  }
 `;
 
-const LinkImg = styled.div`
-  background-image: url("../assets/button round_1.png");
-  background-size: cover;
-  background-position: center;
+const Inner = styled.span`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 function MainPage() {
@@ -39,10 +47,9 @@ function MainPage() {
         <br />
         보다 편리하고 이로운 펫 라이프를 만족할 수 있습니다.
       </p>
+
       <StyleLink to="/about">
-        <LinkImg>
-          <span>More</span>
-        </LinkImg>
+        <Inner>More</Inner>
       </StyleLink>
     </Container>
   );

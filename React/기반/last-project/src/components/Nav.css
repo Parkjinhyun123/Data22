@@ -20,7 +20,6 @@ nav {
   margin: 0;
   padding: 0;
   display: flex;
-  font-family: LibreBaskerville;
 }
 
 .nav-item {
@@ -34,7 +33,6 @@ li {
 .nav-link {
   text-decoration: none;
   color: #1c1b1f;
-  font-family: LibreBaskerville;
   font-weight: 700;
   font-size: 16px;
   padding: 10px;

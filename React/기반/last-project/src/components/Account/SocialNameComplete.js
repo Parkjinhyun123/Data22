@@ -34,13 +34,12 @@ function JoinComplete() {
       <h3>가입완료</h3>
       <div className="headWrapper">
         <h3>
-          <div className="sign-num">1</div> - <div className="sign-num">2</div>{" "}
-          - <div className="sign-num now">3</div>
+          <div className="sign-num">1</div> -{" "}
+          <div className="sign-num now">2</div>
         </h3>
         <div className="headWrapper-sum">
           <div> 약관동의 </div>
           <div> 정보입력 </div>
-          <div> 가입완료 </div>
         </div>
       </div>
       <div className="welcome">
@@ -52,7 +51,7 @@ function JoinComplete() {
           <br /> 로그인 후 모든 서비스를 이용할 수 있습니다.
         </p>
         <div className="welcome-btn">
-          <Link to="/">
+          <Link to="/login">
             <LoginBtn>로그인</LoginBtn>
           </Link>
         </div>

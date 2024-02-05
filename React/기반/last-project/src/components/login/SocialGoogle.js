@@ -1,7 +1,10 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import GoogleLogo from "../../assets/google logo.png";
 import { styled } from "styled-components";
-import { addDatas } from "../../api/firebase";
+import { addDatas, getSocialMember } from "../../api/firebase";
+import { useContext, useState } from "react";
+import AuthContext from "../Account/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const NewBtn = styled.div`
   & > button {
@@ -19,6 +22,11 @@ const NewBtn = styled.div`
 `;
 
 function SocialGoogle() {
+  const [isLogin, setIsLogin] = useState(false);
+  const [memberObj, setMemberObj] = useState(null);
+  const { handleLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const clientId =
     "41843789723-0iutpsu7570l8m4kk6lfusurgvk5qt28.apps.googleusercontent.com";
 
@@ -43,9 +51,25 @@ function SocialGoogle() {
             console.log(`이메일: ${email}`);
             console.log(`이름: ${name}`);
             console.log(`프로필 사진: ${profilePicture}`);
+            localStorage.setItem("name", name);
 
-            // 여기서 addDatas 함수를 호출하여 name과 email 값을 socialmember 컬렉션에 추가
-            await addDatas("socialmember", { email, name }); // await 키워드 추가
+            const userData = {
+              nickname: name,
+            };
+            const memberObj = await getSocialMember(userData.nickname);
+            console.log(memberObj);
+            if (memberObj) {
+              alert(`돌아오신 것을 환영합니다! ${userData.nickname} 님`);
+              const memberObj = await getSocialMember(userData.nickname);
+              setMemberObj(memberObj);
+              handleLogin();
+              setTimeout(() => {
+                navigate("/");
+              }, 500); // 500ms 후에 navigate 함수를 호출합니다.
+            } else {
+              // 일치하는 회원 정보가 없는 경우
+              navigate("/SocialName");
+            }
           })
           .catch((error) => {
             console.error(error);

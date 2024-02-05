@@ -224,7 +224,7 @@ function SignUpPh() {
     const memberInfo = {
       memberId: id,
       memberPass: password,
-      partnerName: partnerName,
+      phName: partnerName,
       memberPhone: phone,
       memberMail: email,
       memberMail2: mail2,
@@ -234,7 +234,7 @@ function SignUpPh() {
 
   const handleCancelCheck = () => {
     const result = window.confirm(
-      "입력한 정보가 사라집니다 정말 가입을 취소하시겠습니까?"
+      "입력한 정보가 사라집니다. 정말 가입을 취소하시겠습니까?"
     );
     if (result) {
       window.location.href = "/";

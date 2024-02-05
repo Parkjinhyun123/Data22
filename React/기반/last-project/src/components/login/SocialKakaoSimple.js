@@ -1,21 +1,23 @@
-import KakaoLogin from "react-kakao-login";
-import { styled } from "styled-components";
 import KakaoLogo from "../../assets/kakao logo_r.png";
 import { useEffect, useState } from "react";
 import { addDatas } from "../../api/firebase";
+import { useNavigate } from "react-router-dom";
 
 const SocialKakaoSimple = () => {
   const [user, setUser] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
   const { Kakao } = window;
+  const navigate = useNavigate();
+
   const initKakao = async () => {
     const jsKey = "12960e8f1d627ea898d565f3b8ab8afb";
     if (Kakao && !Kakao.isInitialized()) {
       await Kakao.init(jsKey);
     }
   };
-  const kakaoLogin = async () => {
-    await Kakao.Auth.login({
+
+  const kakaoLogin = () => {
+    Kakao.Auth.login({
       success: async (res) => {
         console.log(res);
         Kakao.Auth.setAccessToken(res.access_token);
@@ -32,11 +34,11 @@ const SocialKakaoSimple = () => {
             };
 
             try {
-              await addDatas("socialmember", data);
+              localStorage.setItem("nickname", kakaoAccount.profile.nickname);
+              navigate("/SocialName");
             } catch (error) {
               console.log("Firebase 데이터 저장 에러:", error);
             }
-            localStorage.setItem("nickname", kakaoAccount.profile.nickname);
           },
           fail: (error) => {
             console.log("카카오 인가 요청 실패:", error);

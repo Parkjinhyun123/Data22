@@ -52,7 +52,7 @@ function JoinComplete() {
           <br /> 로그인 후 모든 서비스를 이용할 수 있습니다.
         </p>
         <div className="welcome-btn">
-          <Link to="/">
+          <Link to="/login">
             <LoginBtn>로그인</LoginBtn>
           </Link>
         </div>

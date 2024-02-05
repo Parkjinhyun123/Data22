@@ -1,8 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import NaverLogo from "../../assets/naver logo.png";
-import { addDatas } from "../../api/firebase";
+import { addDatas, getSocialMember } from "../../api/firebase";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../Account/AuthContext";
 
 const NaverIdLogin = styled.div`
   display: none;
@@ -26,14 +28,17 @@ const NaverLoginBtn = styled.button`
 
 function Naver() {
   const [user, setUser] = useState(null);
-
+  const [memberObj, setMemberObj] = useState(null);
+  const { handleLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [loginStatus, setLoginStatus] = useState(null);
   const naverRef = useRef();
   const { naver } = window;
 
   const naverLogin = new naver.LoginWithNaverId({
     clientId: "Dt3h07_52mnBoskaynlU",
-    callbackUrl: "http://localhost:3000",
-    isPopup: true,
+    callbackUrl: "http://localhost:3000/login",
+    isPopup: false,
     loginButton: {
       color: "green",
       type: 1,
@@ -41,57 +46,44 @@ function Naver() {
     },
   });
 
-  const getUser = async () => {
-    await naverLogin.getLoginStatus((status) => {
-      console.log(status);
-      if (status) {
-        setUser({ ...naverLogin.user });
-
-        console.log(user);
-        localStorage.setItem("user.name", naverLogin.user.name);
-        localStorage.setItem("user.nickname", naverLogin.user.nickname);
-        localStorage.setItem("user.email", naverLogin.user.email);
-      }
-    });
-  };
-
-  const naverUser = {
-    name: localStorage.getItem("user.name"),
-    nickname: localStorage.getItem("user.nickname"),
-    email: localStorage.getItem("user.email"),
-  };
-
-  const collectionName = "socialmember";
-
-  if (naverUser.name && naverUser.nickname && naverUser.email) {
-    addDatas(collectionName, naverUser)
-      .then(() => {
-        console.log("User 데이터가 성공적으로 추가되었습니다.");
-      })
-      .catch((error) => {
-        console.error("User 데이터 추가 중 오류가 발생하였습니다:", error);
-      });
-  }
-
   useEffect(() => {
     naverLogin.init();
-    getUser();
+    naverLogin.getLoginStatus(async (status) => {
+      if (status) {
+        const userData = { ...naverLogin.user };
+        setLoginStatus(status);
+        setUser(userData);
+
+        // getSocialMember 함수 호출
+        const memberObjFromFirebase = await getSocialMember(userData.nickname);
+        setMemberObj(memberObjFromFirebase); // memberObj 상태 업데이트
+
+        if (memberObjFromFirebase) {
+          alert(`돌아오신 것을 환영합니다! ${userData.nickname} 님`);
+          handleLogin();
+          setTimeout(() => {
+            navigate("/");
+          }, 500);
+        } else {
+          // 일치하는 회원 정보가 없는 경우
+          navigate("/SocialName");
+        }
+      }
+    });
   }, []);
 
   const handleNaverLogin = () => {
-    naverRef.current.children[0].click();
+    if (naverRef.current && naverRef.current.children[0]) {
+      naverRef.current.children[0].click();
+    }
   };
 
   return (
     <div>
       <div>
         <NaverIdLogin ref={naverRef} id="naverIdLogin" />
-        <NaverLoginBtn>
-          <img
-            src={NaverLogo}
-            alt="네이버 로그인 아이콘"
-            onClick={handleNaverLogin}
-          />
+        <NaverLoginBtn onClick={handleNaverLogin}>
+          <img src={NaverLogo} alt="네이버 로그인 아이콘" />
           Naver 로 로그인
           <div></div>
         </NaverLoginBtn>

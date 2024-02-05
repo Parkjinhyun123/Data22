@@ -113,7 +113,7 @@ function Login() {
         }
       } else {
         console.log(memberObj);
-        alert("일치하는 아이디가 없습니다.");
+        alert("일치하는 회원 정보가 없습니다.");
       }
     } else if (message === null) {
       localStorage.setItem("member", JSON.stringify(memberObj));

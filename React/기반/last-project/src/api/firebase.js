@@ -17,6 +17,8 @@ import {
   where,
   arrayUnion,
   arrayRemove,
+  deleteDatas,
+  deleteField,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 import {
   getStorage,
@@ -38,6 +40,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// 공용
 async function getDatas(collectionName, options) {
   let docQuery;
   if (options === undefined) {
@@ -83,6 +86,7 @@ async function getData(collectionName, fieldName, condition, value) {
   return data.length === 1 ? data[0] : data;
 }
 
+// 아이디찾기 박진현
 export const getLastId = async () => {
   try {
     const querySnapshot = await getDocs(
@@ -97,6 +101,7 @@ export const getLastId = async () => {
   }
 };
 
+// 회원가입 박진현
 const addDatas = async (collectionName, data) => {
   try {
     const docRef = await addDoc(collection(db, collectionName), data);
@@ -111,6 +116,7 @@ const addDatas = async (collectionName, data) => {
   console.log("전달된 데이터:", data);
 };
 
+// 아이디 중복확인 박진현
 async function idDatas(collectionName, checkId) {
   const Snapshot = await getDocs(
     query(collection(db, collectionName), where("memberId", "==", checkId))
@@ -118,13 +124,13 @@ async function idDatas(collectionName, checkId) {
   return Snapshot.size;
 }
 
+// 닉네임 중복확인 박진현
 async function nickDatas(collectionName, nickName) {
   const Snapshot = await getDocs(
     query(collection(db, collectionName), where("nickname", "==", nickName))
   );
 
   if (Snapshot.empty) {
-    // nickname으로 조회된 결과가 없을 경우 memberNickName으로 조회
     const MemberSnapshot = await getDocs(
       query(
         collection(db, collectionName),
@@ -138,6 +144,7 @@ async function nickDatas(collectionName, nickName) {
   return Snapshot.size;
 }
 
+// 로그인 박진현
 async function getMember(values) {
   const { input_id: id, input_pw: password } = values;
   const docQuery = query(collection(db, "member"), where("memberId", "==", id));
@@ -146,7 +153,6 @@ async function getMember(values) {
 
   const querySnapshot = await getDocs(docQuery);
   if (!querySnapshot.empty && querySnapshot.docs[0]) {
-    // 수정된 부분
     const memberData = querySnapshot.docs[0].data();
     if (
       memberData &&
@@ -163,6 +169,27 @@ async function getMember(values) {
   return { memberObj, message };
 }
 
+// 소셜로그인 박진현
+async function getSocialMember(nickname) {
+  const docQuery = query(
+    collection(db, "member"),
+    where("memberType", "==", "social"),
+    where("memberNickName", "==", nickname)
+  );
+  let memberObj = null;
+
+  const querySnapshot = await getDocs(docQuery);
+  if (!querySnapshot.empty && querySnapshot.docs[0]) {
+    const memberData = querySnapshot.docs[0].data();
+    if (memberData && memberData.memberType === "social") {
+      memberObj = memberData;
+    }
+    console.log(memberData);
+  }
+  return memberObj;
+}
+
+// 아이디찾기 박진현
 async function findId(memberName, memberMail, memberMail2, memberPhone) {
   const docQuery = query(
     collection(db, "member"),
@@ -182,7 +209,7 @@ async function findId(memberName, memberMail, memberMail2, memberPhone) {
   }
 }
 
-// 구분선
+// 비밀번호 변경 박진현
 async function changePassword(memberId, newMemberPass) {
   const docQuery = collection(db, "member");
   const queryRef = query(docQuery, where("memberId", "==", memberId));
@@ -200,6 +227,7 @@ async function changePassword(memberId, newMemberPass) {
   }
 }
 
+// 비밀번호 모달띄우기 조회 박진현
 async function findPass(
   memberId,
   memberName,
@@ -246,29 +274,6 @@ async function findPass(
     return "일치하는 회원 정보가 없습니다.";
   }
 }
-// 구분선
-
-async function updateDatas(collectionName, docId, upadateData, options) {
-  const docRef = doc(db, collectionName, docId);
-  try {
-    if (options) {
-      if (options.type == "ADD") {
-        await updateDoc(docRef, {
-          [options.fieldName]: arrayUnion(upadateData),
-        });
-      } else if (options.type === "DELETE") {
-        await updateDoc(docRef, {
-          [options.fieldName]: arrayRemove(upadateData),
-        });
-      }
-    } else {
-      await updateDoc(docRef, upadateData);
-    }
-    return true;
-  } catch (error) {
-    return false;
-  }
-}
 
 export {
   db,
@@ -282,11 +287,13 @@ export {
   doc,
   deleteDoc,
   updateDoc,
-  updateDatas,
   getMember,
   getData,
   idDatas,
   nickDatas,
   findId,
   findPass,
+  deleteDatas,
+  deleteField,
+  getSocialMember,
 };
