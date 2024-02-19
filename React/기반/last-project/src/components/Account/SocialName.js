@@ -278,12 +278,6 @@ function SignUp() {
                 ref={phoneRef}
                 onChange={handlePhone}
               />
-              <input
-                type="button"
-                className="member-btn"
-                id="nick_ajax"
-                value="본인인증"
-              />
             </td>
           </tr>
           <tr>

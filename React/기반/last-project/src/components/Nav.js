@@ -25,10 +25,10 @@ function Nav() {
         )
       ) {
         e.preventDefault();
-        return false; // 취소를 선택한 경우 false 반환
+        return false;
       }
     }
-    return true; // 그 외의 경우 true 반환
+    return true;
   };
 
   const handleRemoveLocal = () => {
@@ -43,6 +43,7 @@ function Nav() {
   };
 
   const handleMyPageClick = (e) => {
+    e.preventDefault();
     const result = handleLinkClick(e);
     if (!result) return;
 
@@ -51,9 +52,21 @@ function Nav() {
       navigate("/login");
       e.preventDefault();
     } else {
-      navigate("/mypage");
+      const member = JSON.parse(localStorage.getItem("member"));
+      const memberType = member ? member.memberType : null;
+
+      if (memberType === "owner") {
+        console.log("오너");
+        return navigate("/mypage");
+      } else if (memberType === "partner") {
+        console.log("파트너");
+        return navigate("/partnerpage");
+      } else if (memberType === "manager") {
+        return navigate("/managerpage");
+      }
     }
   };
+
   return (
     <nav>
       <div className="nav-container">
@@ -107,7 +120,6 @@ function Nav() {
           </li>
           <li className="nav-item">
             <NavLink
-              to="/mypage"
               className="nav-link"
               style={getLinkStyle}
               onClick={(e) => {
