@@ -1,3 +1,4 @@
+import { uploadString } from "firebase/storage";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
 import {
   getFirestore,
@@ -7,19 +8,16 @@ import {
   setDoc,
   addDoc,
   doc,
-  deleteDoc,
   updateDoc,
   query,
   orderBy,
   limit,
   startAfter,
-  exists,
   where,
-  arrayUnion,
-  arrayRemove,
-  deleteDatas,
-  deleteField,
+  onSnapshot,
+  deleteDoc,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+
 import {
   getStorage,
   ref,
@@ -39,8 +37,35 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage();
 
-// 공용
+// 이미지 업로드 김원상
+const uploadImages = async (images) => {
+  const imageUrls = [];
+
+  for (const image of images) {
+    const storageRef = ref(storage, `images/${image.name}`);
+    const base64String = await convertToBase64(image);
+    await uploadString(storageRef, base64String, "base64");
+    const imageUrl = await getDownloadURL(storageRef);
+    imageUrls.push(imageUrl);
+  }
+
+  return imageUrls;
+};
+// 이미지 업로드 - url 64진수 변환 김원상
+const convertToBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      resolve(reader.result.split(",")[1]);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+};
+
+// 컬렉션 이름 가져오기
 async function getDatas(collectionName, options) {
   let docQuery;
   if (options === undefined) {
@@ -65,12 +90,16 @@ async function getDatas(collectionName, options) {
     );
   }
   const querySnapshot = await getDocs(docQuery);
+
   const result = querySnapshot.docs;
   const lastQuery = result[result.length - 1];
+
   const reviews = result.map((doc) => ({ docId: doc.id, ...doc.data() }));
+
   return { reviews, lastQuery };
 }
 
+// 게시글 올린 시간 확인 김원상
 async function getData(collectionName, fieldName, condition, value) {
   const docQuery = query(
     collection(db, collectionName),
@@ -81,6 +110,7 @@ async function getData(collectionName, fieldName, condition, value) {
   const data = querySnapshot.docs.map((doc) => ({
     docId: doc.id,
     ...doc.data(),
+    uploadTime: doc.data().uploadTime ? doc.data().uploadTime.toDate() : null,
   }));
 
   return data.length === 1 ? data[0] : data;
@@ -103,6 +133,21 @@ export const getLastId = async () => {
 
 // 회원가입 박진현
 const addDatas = async (collectionName, data) => {
+  // try {
+  //   const memberData = localStorage.getItem("member");
+  //   const member = JSON.parse(memberData);
+  //   const userData = { memberNickName: member?.memberNickName };
+
+  //   const modifiedData = {
+  //     ...data,
+  //     userData: userData,
+  //   };
+
+  //   return await addDoc(collection(db, collectionName), modifiedData);
+  // } catch (error) {
+  //   console.error("Error adding document: ", error);
+  //   throw error;
+  // } 둘중 뭐 쓸지 모름 일단 아래께 진현님꺼 최신
   try {
     const docRef = await addDoc(collection(db, collectionName), data);
     console.log("Document written with ID: ", docRef.id);
@@ -116,7 +161,6 @@ const addDatas = async (collectionName, data) => {
   console.log("전달된 데이터:", data);
 };
 
-// 아이디 중복확인 박진현
 async function idDatas(collectionName, checkId) {
   const Snapshot = await getDocs(
     query(collection(db, collectionName), where("memberId", "==", checkId))
@@ -142,6 +186,23 @@ async function nickDatas(collectionName, nickName) {
   }
 
   return Snapshot.size;
+}
+
+async function getMemberNickName(memberId) {
+  try {
+    const memberData = await nickDatas("member", memberId);
+
+    if (memberData) {
+      const memberNickName = memberData.memberNickName;
+      return memberNickName;
+    } else {
+      console.log("Member not found for the given memberId.");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error getting memberNickName by memberId:", error);
+    throw error;
+  }
 }
 
 // 로그인 박진현
@@ -188,7 +249,6 @@ async function getSocialMember(nickname) {
   }
   return memberObj;
 }
-
 // 아이디찾기 박진현
 async function findId(memberName, memberMail, memberMail2, memberPhone) {
   const docQuery = query(
@@ -274,6 +334,193 @@ async function findPass(
     return "일치하는 회원 정보가 없습니다.";
   }
 }
+// 구분선
+
+async function fetchMessagesByMemberId() {
+  const member = JSON.parse(localStorage.getItem("member"));
+  const memberId = member.memberId;
+  console.log(member);
+  console.log(memberId);
+
+  const q = query(collection(db, "member"), where("memberId", "==", memberId));
+  const querySnapshot = await getDocs(q);
+  console.log(querySnapshot.empty);
+
+  const memberDoc = querySnapshot.docs.find(
+    (doc) => doc.data().memberId === memberId
+  );
+
+  if (memberDoc) {
+    const q2 = query(collection(db, `member/${memberDoc.id}/receiveMessage`));
+    const querySnapshot2 = await getDocs(q2);
+    console.log(querySnapshot2.empty);
+    const messages = querySnapshot2.docs.map((doc) => doc.data());
+    return messages;
+  } else {
+    console.log(`'memberId'가 ${memberId}인 문서를 찾을 수 없습니다.`);
+    return [];
+  }
+}
+
+// 메시지 목록띄우기 박진현
+async function fetchMessagesByMemberIdsend() {
+  const member = JSON.parse(localStorage.getItem("member"));
+  const memberId = member.memberId;
+  console.log(member);
+  console.log(memberId);
+  const q = query(collection(db, "member"), where("memberId", "==", memberId));
+  const querySnapshot = await getDocs(q);
+  console.log(querySnapshot.empty);
+  const memberDoc = querySnapshot.docs.find(
+    (doc) => doc.data().memberId === memberId
+  );
+  if (memberDoc) {
+    const q2 = query(collection(db, `member/${memberDoc.id}/sendMessage`));
+    const querySnapshot2 = await getDocs(q2);
+    console.log(querySnapshot2.empty);
+    const messages = querySnapshot2.docs.map((doc) => doc.data());
+    return messages;
+  } else {
+    console.log(`'memberId'가 ${memberId}인 문서를 찾을 수 없습니다.`);
+    return [];
+  }
+}
+
+// 보내는 메세지 저장 박진현
+async function sendMessageToMember(sendTitle, sendContent, date) {
+  const memberNickName = localStorage.getItem("member");
+
+  const memberQuery = query(
+    collection(db, "member"),
+    where("memberNickName", "==", memberNickName)
+  );
+  const querySnapshot = await getDocs(memberQuery);
+
+  querySnapshot.forEach(async (document) => {
+    const sendMessageCollection = collection(
+      db,
+      `member/${document.id}/sendMessage`
+    );
+    const sendMessageDoc = doc(sendMessageCollection);
+
+    await setDoc(sendMessageDoc, {
+      sendTitle: sendTitle,
+      sendContent: sendContent,
+      date: date,
+      memberNickName: memberNickName,
+    });
+  });
+}
+
+// 받은 메세지 저장 박진현
+async function receiveMessageToMember(
+  specificString,
+  receiveTitle,
+  receiveContent,
+  date
+) {
+  const memberQuery = query(
+    collection(db, "member"),
+    where("memberNickName", "==", specificString)
+  );
+  const querySnapshot = await getDocs(memberQuery);
+
+  querySnapshot.forEach(async (document) => {
+    const receiveMessageCollection = collection(
+      db,
+      `member/${document.id}/receiveMessage`
+    );
+    const receiveMessageDoc = doc(receiveMessageCollection);
+
+    await setDoc(receiveMessageDoc, {
+      receiveTitle: receiveTitle,
+      receiveContent: receiveContent,
+      date: date,
+      memberNickName: specificString,
+    });
+  });
+}
+
+// 탈퇴하기 박진현
+const deleteMemberDocument = async () => {
+  const localData = JSON.parse(localStorage.getItem("member"));
+  const q = query(
+    collection(db, "member"),
+    where("memberId", "==", localData.memberId)
+  );
+  try {
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      deleteDoc(doc.ref);
+    });
+    console.log("문서 삭제 완료");
+  } catch (error) {
+    console.error("문서 삭제 실패:", error);
+  }
+};
+// 회원정보 수정 박진현
+const updateFirebaseDocument = async (guardianInfo) => {
+  try {
+    const member = JSON.parse(localStorage.getItem("member"));
+
+    const q = query(
+      collection(db, "member"),
+      where("memberId", "==", member.memberId)
+    );
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      const docSnapshot = querySnapshot.docs[0];
+      console.log("문서 ID:", docSnapshot.id); // 문서 ID 로깅
+
+      const emailParts = guardianInfo.email
+        ? guardianInfo.email.split("@")
+        : [];
+      const updatedDoc = {
+        memberName: guardianInfo.name || member.memberName,
+        memberPhone: guardianInfo.phoneNumber || member.memberPhone,
+        memberMail: emailParts[0] || member.memberMail,
+        memberMail2: emailParts[1] || member.memberMail2,
+        memberNickName: guardianInfo.nickname || member.memberNickName,
+      };
+
+      const docRef = doc(db, "member", docSnapshot.id);
+      await updateDoc(docRef, updatedDoc);
+    }
+  } catch (error) {
+    console.error("파이어베이스 문서 업데이트 실패:", error);
+  }
+};
+
+// 마이페이지에 데이터 뿌리기 박진현
+async function getFirebaseDocument(setGuardianInfo) {
+  try {
+    const member = JSON.parse(localStorage.getItem("member"));
+
+    const q = query(
+      collection(db, "member"),
+      where("memberId", "==", member.memberId)
+    );
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      const docSnapshot = querySnapshot.docs[0];
+      console.log("문서 ID:", docSnapshot.id); // 문서 ID 로깅
+
+      setGuardianInfo({
+        name: docSnapshot.data().memberName,
+        phoneNumber: docSnapshot.data().memberPhone,
+        email: `${docSnapshot.data().memberMail}@${
+          docSnapshot.data().memberMail2
+        }`,
+        nickname: docSnapshot.data().memberNickName,
+      });
+    } else {
+    }
+  } catch (error) {
+    console.error("Error getting document:", error);
+  }
+}
 
 export {
   db,
@@ -293,7 +540,16 @@ export {
   nickDatas,
   findId,
   findPass,
-  deleteDatas,
-  deleteField,
+  uploadImages,
+  uploadString,
+  getMemberNickName,
+  onSnapshot,
   getSocialMember,
+  fetchMessagesByMemberId,
+  fetchMessagesByMemberIdsend,
+  sendMessageToMember,
+  receiveMessageToMember,
+  deleteMemberDocument,
+  updateFirebaseDocument,
+  getFirebaseDocument,
 };

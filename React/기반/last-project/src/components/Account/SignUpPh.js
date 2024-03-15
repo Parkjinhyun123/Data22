@@ -285,6 +285,7 @@ function SignUpPh() {
                 className="member-btn"
                 id="id_ajax"
                 value="중복확인"
+                onClick={handleAjax}
               />
               <p className={`${isId} ? 'true' : "false"`}> {idMessage} </p>
             </td>

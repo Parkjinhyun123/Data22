@@ -34,7 +34,7 @@ const CancleBtn = styled.button`
 const SignBtn = styled.button`
   border: none;
   background-color: #ff9b50;
-
+  color: #fff;
   padding: 8px 16px;
   font-weight: bold;
   margin-right: 8px;
@@ -447,12 +447,6 @@ function SignUp() {
                 value={phone}
                 ref={phoneRef}
                 onChange={handlePhone}
-              />
-              <input
-                type="button"
-                className="member-btn"
-                id="nick_ajax"
-                value="본인인증"
               />
             </td>
           </tr>
